@@ -1,0 +1,74 @@
+Package: SpectroPipeR
+Title: R pipeline for the downstream analysis of Spectronaut DIA-MS data
+Version: 0.1.2
+Authors@R: 
+    person("Stephan", "Michalik", , "stephan.michalik@uni-greifswald.de",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-6550-0132"))
+Description: a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.
+Encoding: UTF-8
+Language: eng
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends:
+    R (>= 4.1.0)
+biocViews:
+Imports: 
+    base64enc,
+    BiocParallel,
+    broom,
+    crayon,
+    doParallel,
+    doSNOW,
+    dplyr,
+    DT,
+    effsize,
+    factoextra,
+    FactoMineR,
+    forcats,
+    foreach,
+    GGally,
+    ggcorrplot,
+    gghalves,
+    ggplot2 (>= 3.4.4),
+    ggrepel,
+    grDevices,
+    hexbin,
+    htmltools,
+    htmlwidgets,
+    iq,
+    kableExtra,
+    knitr,
+    lubridate,
+    methods,
+    modelr,
+    openxlsx,
+    parallel,
+    patchwork,
+    PECA,
+    plotly,
+    purrr,
+    quarto,
+    readr,
+    readxl,
+    reshape2,
+    rlang,
+    rmarkdown,
+    RSQLite,
+    scales,
+    splines,
+    stats,
+    stringr,
+    summarytools,
+    sva,
+    tibble,
+    tidyr,
+    tidyverse,
+    umap,
+    UpSetR,
+    utils
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+License: MIT + file LICENSE
+VignetteBuilder: knitr

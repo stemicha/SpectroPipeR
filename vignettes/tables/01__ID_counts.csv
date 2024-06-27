@@ -1,0 +1,9 @@
+R.FileName,R.Condition,R.Replicate,distinct_ions,distinct_modified_peptides,distinct_peptides,distinct_proteins,ion_ID_outlier
+20230222_Exp...anual_MixA_TR1,A_manual,1,15992,12709,12337,1479,no
+20230222_Exp...anual_MixA_TR2,A_manual,2,15775,12531,12159,1473,no
+20230222_Exp...anual_MixA_TR3,A_manual,3,15715,12500,12131,1474,no
+20230222_Exp...anual_MixA_TR4,A_manual,4,15575,12409,12042,1470,no
+20230222_Exp...anual_MixB_TR1,B_manual,1,16418,12991,12600,1494,no
+20230222_Exp...anual_MixB_TR2,B_manual,2,16490,13041,12649,1499,no
+20230222_Exp...anual_MixB_TR3,B_manual,3,16541,13072,12682,1498,no
+20230222_Exp...anual_MixB_TR4,B_manual,4,16479,13050,12660,1492,no

@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^tests/util__generate_test_file\.R$
+^vignettes/*_files$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^tests/util__generate_test_file_XIC_test\.R$
+^DO_NOT_INCLUDE_test_file\.R$

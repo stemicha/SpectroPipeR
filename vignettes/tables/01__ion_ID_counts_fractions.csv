@@ -1,0 +1,9 @@
+R.FileName,R.Condition,R.Replicate,<0.01,>0.01,profiled
+20230222_Exp...anual_MixA_TR1,A_manual,1,15992,335,327
+20230222_Exp...anual_MixA_TR2,A_manual,2,15775,438,441
+20230222_Exp...anual_MixA_TR3,A_manual,3,15715,463,476
+20230222_Exp...anual_MixA_TR4,A_manual,4,15575,543,536
+20230222_Exp...anual_MixB_TR1,B_manual,1,16418,109,127
+20230222_Exp...anual_MixB_TR2,B_manual,2,16490,91,73
+20230222_Exp...anual_MixB_TR3,B_manual,3,16541,58,55
+20230222_Exp...anual_MixB_TR4,B_manual,4,16479,83,92

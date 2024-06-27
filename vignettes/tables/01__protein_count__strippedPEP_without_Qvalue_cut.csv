@@ -1,0 +1,17 @@
+R.FileName,R.Condition,R.Replicate,protein_count,number_of_peptides
+20230222_Exp...anual_MixA_TR1,A_manual,1,169,< 2
+20230222_Exp...anual_MixA_TR2,A_manual,2,169,< 2
+20230222_Exp...anual_MixA_TR3,A_manual,3,169,< 2
+20230222_Exp...anual_MixA_TR4,A_manual,4,169,< 2
+20230222_Exp...anual_MixB_TR1,B_manual,1,169,< 2
+20230222_Exp...anual_MixB_TR2,B_manual,2,169,< 2
+20230222_Exp...anual_MixB_TR3,B_manual,3,169,< 2
+20230222_Exp...anual_MixB_TR4,B_manual,4,169,< 2
+20230222_Exp...anual_MixA_TR1,A_manual,1,1334,>= 2
+20230222_Exp...anual_MixA_TR2,A_manual,2,1334,>= 2
+20230222_Exp...anual_MixA_TR3,A_manual,3,1334,>= 2
+20230222_Exp...anual_MixA_TR4,A_manual,4,1334,>= 2
+20230222_Exp...anual_MixB_TR1,B_manual,1,1334,>= 2
+20230222_Exp...anual_MixB_TR2,B_manual,2,1334,>= 2
+20230222_Exp...anual_MixB_TR3,B_manual,3,1334,>= 2
+20230222_Exp...anual_MixB_TR4,B_manual,4,1334,>= 2

@@ -1,0 +1,17 @@
+R.FileName,R.Condition,R.Replicate,protein_count,number_of_peptides,Qvalue_below
+20230222_Exp...anual_MixA_TR1,A_manual,1,169,< 2,0.01
+20230222_Exp...anual_MixA_TR2,A_manual,2,174,< 2,0.01
+20230222_Exp...anual_MixA_TR3,A_manual,3,175,< 2,0.01
+20230222_Exp...anual_MixA_TR4,A_manual,4,184,< 2,0.01
+20230222_Exp...anual_MixB_TR1,B_manual,1,169,< 2,0.01
+20230222_Exp...anual_MixB_TR2,B_manual,2,172,< 2,0.01
+20230222_Exp...anual_MixB_TR3,B_manual,3,172,< 2,0.01
+20230222_Exp...anual_MixB_TR4,B_manual,4,165,< 2,0.01
+20230222_Exp...anual_MixA_TR1,A_manual,1,1310,>= 2,0.01
+20230222_Exp...anual_MixA_TR2,A_manual,2,1299,>= 2,0.01
+20230222_Exp...anual_MixA_TR3,A_manual,3,1299,>= 2,0.01
+20230222_Exp...anual_MixA_TR4,A_manual,4,1286,>= 2,0.01
+20230222_Exp...anual_MixB_TR1,B_manual,1,1325,>= 2,0.01
+20230222_Exp...anual_MixB_TR2,B_manual,2,1327,>= 2,0.01
+20230222_Exp...anual_MixB_TR3,B_manual,3,1326,>= 2,0.01
+20230222_Exp...anual_MixB_TR4,B_manual,4,1327,>= 2,0.01

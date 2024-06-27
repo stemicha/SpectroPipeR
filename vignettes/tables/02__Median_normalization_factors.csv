@@ -1,0 +1,9 @@
+R.FileName,R.Condition,R.Replicate,MedianNormalizationFactor,normalization_outlier
+20230222_Exp...anual_MixA_TR1,A_manual,1,0.8117017828000328,no
+20230222_Exp...anual_MixA_TR2,A_manual,2,0.8680521046814462,no
+20230222_Exp...anual_MixA_TR3,A_manual,3,0.9313351156896978,no
+20230222_Exp...anual_MixA_TR4,A_manual,4,1.080934793502883,no
+20230222_Exp...anual_MixB_TR1,B_manual,1,1.0050862313747415,no
+20230222_Exp...anual_MixB_TR2,B_manual,2,1.0473045245384625,no
+20230222_Exp...anual_MixB_TR3,B_manual,3,1.016163510426914,no
+20230222_Exp...anual_MixB_TR4,B_manual,4,1.1874938095737817,no

@@ -1,0 +1,8 @@
+.quarto-title-block .quarto-title-banner {
+  background-image: url(SpectroPipeR_hexbin_logo.png);
+  background-size: 130px;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 100px;
+  background-origin: content-box;
+}

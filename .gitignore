@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+inst/doc
+docs
+DO_NOT_INCLUDE_test_file.R
+.DS_Store

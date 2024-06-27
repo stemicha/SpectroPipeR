@@ -1,0 +1,9 @@
+R.Condition,R.FileName,R.Replicate,R.Run Date,measurement_order
+A_manual,20230222_Exp...anual_MixA_TR1,1,2023-02-23T02:40:34Z,1
+A_manual,20230222_Exp...anual_MixA_TR2,2,2023-02-23T04:48:36Z,2
+A_manual,20230222_Exp...anual_MixA_TR3,3,2023-02-23T06:56:38Z,3
+A_manual,20230222_Exp...anual_MixA_TR4,4,2023-02-23T09:04:40Z,4
+B_manual,20230222_Exp...anual_MixB_TR1,1,2023-02-23T11:12:43Z,5
+B_manual,20230222_Exp...anual_MixB_TR2,2,2023-02-23T13:20:47Z,6
+B_manual,20230222_Exp...anual_MixB_TR3,3,2023-02-23T15:28:46Z,7
+B_manual,20230222_Exp...anual_MixB_TR4,4,2023-02-23T17:36:48Z,8
