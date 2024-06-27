@@ -1,7 +1,7 @@
 
 # SpectroPipeR <img src="vignettes/figures/SpectroPipeR_hexbin_logo.png" align="right" width="200" />
 
-- a streamlining post Spectronaut™ DIA-MS data analysis R package -
+a streamlining post Spectronaut™ DIA-MS data analysis R package
 
 <!-- badges: start -->
 <!-- badges: end -->
