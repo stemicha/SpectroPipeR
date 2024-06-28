@@ -145,7 +145,7 @@ In SpectroPipeR, users can optionally set the `filter_oxidized_peptides` paramet
 
 ### HYE species mix experiements
 
-The HYE species mix experiments were carried out with 4 replicates as described in [A multicenter study benchmarks software tools for label-free proteome quantification](https://www.nature.com/articles/nbt.3685).
+The HYE species mix experiments were carried out with 4 replicates as described in [A multicenter study benchmarks software tools for label-free proteome quantification](https://www.nature.com/articles/nbt.3685). The data can be accessed via MassIVE (MSV000092489) - https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=0f33717d84fd45b1a318ad40670022cc.
 
 Spectronaut version 18.6 was used for data analysis. Following filtering, the ion data only included peptides containing methionine oxidation without prior carbamidomethylation, along with their unmodified counterparts. To determine quantitative ratios, mix A ion intensities were divided by the corresponding ion intensities from mix B.
 
