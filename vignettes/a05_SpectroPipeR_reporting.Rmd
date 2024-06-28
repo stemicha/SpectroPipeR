@@ -150,7 +150,7 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 
 ## SpectroPipeR_report_module() output
 
-![SpectroPipeR_report_module() - screenshot of html output report](figures/report_example.png){width=80%}
+![SpectroPipeR_report_module() - screenshot of html output report](figures/example_report.png){width=80%}
 
 
 After the function was executed the SpectroPipeR_report.html file was generated inside the output folder.

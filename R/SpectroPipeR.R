@@ -2,17 +2,8 @@
 #' @description
 #' Function for performing the whole SpectroPipeR analysis workflow.
 #'
-#' @param file location (path) of Spectronaut output report
-#'  <u>essential columns of the report:</u>
-#'   R.FileName, R.Condition, R.Replicate, R.Instrument Name, R.Raw File Name, R.MS1 Mass Analyzer,
-#'   R.MS2 Mass Analyzer, R.Run Date, PG.ProteinGroups, PG.Organisms, PG.IBAQ, PEP.StrippedSequence,
-#'   EG.ModifiedPeptide, PEP.NrOfMissedCleavages, EG.UserGroup, EG.Qvalue, EG.PEP, EG.Cscore,
-#'   EG.NormalizationFactor, EG.TotalQuantity (Settings), EG.SignalToNoise, EG.Identified, EG.ApexRT,
-#'   EG.IntCorrScore, EG.DatapointsPerPeak, EG.DatapointsPerPeak (MS1), FG.Charge, FG.Id, FG.XICDBID,
-#'   FG.LabeledSequence, FG.ShapeQualityScore, FG.MS1Quantity, FG.MS2Quantity, FG.MS1RawQuantity,
-#'   FG.MS2RawQuantity;
-#'
-#'   you might use the `Spectronaut_export_scheme()` function for getting a SpectroPipeR report scheme encompassing all columns
+#' @param file location (path) of Spectronaut output report;
+#'   you should use the `Spectronaut_export_scheme()` function for getting a SpectroPipeR report scheme encompassing all mandatory columns
 #' @param parameter __mandatory parameter list element__
 #'
 #'  _table of list elements:_

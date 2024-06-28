@@ -2,17 +2,8 @@
 #' @description
 #' Function for loading Spectronaut data and performing identification (ID) analysis, which is an essential first step in the SpectroPipeR workflow.
 #'
-#' @param file location (path) of Spectronaut output report
-#'  <u>essential columns of the report:</u>
-#'   R.FileName, R.Condition, R.Replicate, R.Instrument Name, R.Raw File Name, R.MS1 Mass Analyzer,
-#'   R.MS2 Mass Analyzer, R.Run Date, PG.ProteinGroups, PG.Organisms, PG.IBAQ, PEP.StrippedSequence,
-#'   EG.ModifiedPeptide, PEP.NrOfMissedCleavages, EG.UserGroup, EG.Qvalue, EG.PEP, EG.Cscore,
-#'   EG.NormalizationFactor, EG.TotalQuantity (Settings), EG.SignalToNoise, EG.Identified, EG.ApexRT,
-#'   EG.IntCorrScore, EG.DatapointsPerPeak, EG.DatapointsPerPeak (MS1), FG.Charge, FG.Id, FG.XICDBID,
-#'   FG.LabeledSequence, FG.ShapeQualityScore, FG.MS1Quantity, FG.MS2Quantity, FG.MS1RawQuantity,
-#'   FG.MS2RawQuantity;
-#'
-#'   you might use the `Spectronaut_export_scheme()` function for getting a SpectroPipeR report scheme encompassing all columns
+#' @param file location (path) of Spectronaut output report;
+#'   you should use the `Spectronaut_export_scheme()` function for getting a SpectroPipeR report scheme encompassing all mandatory columns
 #' @param ID_condition_filtering TRUE or FALSE if a condition-wise filtering should be performed
 #' @param ID_condition_filtering_percent (numerical value ranging from 0 - 1, default = 0.5) define the proportion for the condition-wise ID filtering
 #' @param max_chars_file_name_capping integer, (default = 35) number of max characters used for raw file name presentation; must be adjusted if function

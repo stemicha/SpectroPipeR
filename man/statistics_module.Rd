@@ -15,7 +15,8 @@ statistics_module(
 
 \item{condition_comparisons}{condition comparisons for pairwise- comparison; e.g. condition_comparisons <- cbind(c("condition1","control"),c("condition3","control") )}
 
-\item{number_of_cores}{number of processor cores to be used for the calculations default = 2; \code{parallel::detectCores()-2} for faster processing (will detect the number of cores in the system and use nearly all cores)}
+\item{number_of_cores}{number of processor cores to be used for the calculations default = 2;
+\code{parallel::detectCores()-2} for faster processing (will detect the number of cores in the system and use nearly all cores)}
 }
 \value{
 SpectroPipeR_statistics list element containing the statistics analysis results in addition to the automatically generated plots and tables in output folder

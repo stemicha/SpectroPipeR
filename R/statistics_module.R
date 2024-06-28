@@ -3,7 +3,8 @@
 #' Function for performing statistical analysis on Spectronaut output reports, representing the fourth step in the pipeline and is dependent on the normalization and quantification module output from step 2.
 #' @param SpectroPipeR_data_quant it is the SpectroPipeR_data_quant list object from norm_quant_module() object e.g. `SpectroPipeR_data_quant` see example below
 #' @param condition_comparisons condition comparisons for pairwise- comparison; e.g. condition_comparisons <- cbind(c("condition1","control"),c("condition3","control") )
-#' @param number_of_cores number of processor cores to be used for the calculations default = 2; `parallel::detectCores()-2` for faster processing (will detect the number of cores in the system and use nearly all cores)
+#' @param number_of_cores number of processor cores to be used for the calculations default = 2;
+#' `parallel::detectCores()-2` for faster processing (will detect the number of cores in the system and use nearly all cores)
 #' @returns SpectroPipeR_statistics list element containing the statistics analysis results in addition to the automatically generated plots and tables in output folder
 #'  For the description of the generated figures and tables please read the manual & vignettes
 #'
