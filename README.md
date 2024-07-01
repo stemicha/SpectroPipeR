@@ -3,6 +3,8 @@
 
 a streamlining post Spectronaut™ DIA-MS data analysis R package
 
+The manual can be found under https://stemicha.github.io/SpectroPipeR/
+
 <!-- badges: start -->
 <!-- badges: end -->
 
