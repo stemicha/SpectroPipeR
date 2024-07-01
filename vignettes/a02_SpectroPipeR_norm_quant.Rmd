@@ -51,6 +51,10 @@ The `norm_quant_module()` function serves to further process the data from the `
 
 <u>**protein quantification:**</u> - protein quantification can be either done by Hi3 (project-wide determination of Hi3 peptides) or MaxLFQ approach ([iq package](https://academic.oup.com/bioinformatics/article/36/8/2611/5697917))
 
+EG.TotalQuantity (Settings) column is used for the quantification. 
+Per default MS2 level should be selected in the quantification setting in Spectronaut™.
+
+
 ## norm_quant_module() workflow
 
 1. load read_spectronaut_module() output
