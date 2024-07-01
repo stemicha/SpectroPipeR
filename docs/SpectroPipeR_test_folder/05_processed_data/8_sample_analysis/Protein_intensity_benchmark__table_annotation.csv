@@ -1,0 +1,37 @@
+parameter,description
+slr,signal log2-ratios on peptide basis
+t,t of t-statistics on peptide basis
+score,score of t-statistics on peptide basis
+n,number of peptides
+p,raw p-value of statistics on peptide basis
+p.fdr,adjusted p-value (q-value) of statistics on peptide basis
+PG.ProteinGroups,Protein groups
+group1,group1 of condition comparison
+group2,group2 of condition comparison
+slr_ratio_meta,how the ratio is formed
+test,which test was used for statistics on peptide level
+type,which type of ratio aggregation to ProteinGroup level was used for signal log2-ratios on peptide basis
+significant_changed,if there is a significant change FC & q-value (cutoffs e.g.: FC = 1.5 & adjusted-p-value = 0.05)
+significant_changed_raw_p,if there is a significant change FC & p-value(cutoffs e.g.: FC = 1.5 & p-value = 0.05)
+significant_changed_fc,fold-change cutoff used for analysis
+significant_changed_p_value,p-value/q-value cutoff used for analysis
+fold_change_absolute,ablsolute fold-change
+fold_change_direction,fold-change direction
+fold_change,fold-change
+median_protein_data_ratio,ratio of protein data (median protein intensity per condtion; ratio between 2 condtion medians)
+log2_median_protein_data_ratio,log2 ratio of protein data (median protein intensity per condtion; ratio between 2 condtion medians)
+log2_protein_ratios__peptide_ratios,log2 RATIOprotein/RATIOpeptide per comparison and ProteinGroup
+protein_estimation_comment,is the protein intensity estimate ratio to high or to low in comparsion to the peptide ratio
+group1_median_protein_intensity,median protein intensity estimate of group 1
+group2_median_protein_intensity,median protein intensity estimate of group 2
+group1_median_S2N,group1 median over signal-to-noise of ions
+group2_median_S2N,group2 median over signal-to-noise of ions
+group1_present_replicate_percentage,group1 present with selected q-value cutoff with at least 2 peptides per replicate: percentage of replicates per condition; NA = only 1 peptide per replicate >> may have globally 2 or more peptide
+group2_present_replicate_percentage,group2 present with selected q-value cutoff with at least 2 peptides per replicate: percentage of replicates per condition; NA = only 1 peptide per replicate >> may have globally 2 or more peptide
+direction_of_protein_ratios_and_peptide_ratios,does the protein ratio and peptide ratio point into the same direction?
+effect_size_method,effect size estimation method used (mean scaled peptides intensities are used as input)
+d,effect size estimate
+d_pooled_SD,within-groups standard diviation
+d_95CI_lower,the lower 95% confidence interval
+d_95CI_upper,the upper 95% confidence interval
+d_magnitute,"a qualitative assessment of the magnitude of effect size (|d|<0.2 negligible, |d|<0.5 small, |d|<0.8 medium, otherwise large); Cohen 1992"
