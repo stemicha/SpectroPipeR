@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SpectroPipeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,40 +113,22 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#setup example input paths / protein selection for plotting</span></span></span>
-<span class="r-in"><span><span class="va">Spectronaut_report_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/HYE_demo_data"</span>,</span></span>
-<span class="r-in"><span>                                       <span class="st">"HYE_demo_data_Report_SpectroPipeR.tsv"</span>,</span></span>
-<span class="r-in"><span>                                        package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">Spectronaut_xicDB_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/HYE_demo_data/XIC_DBs"</span>,package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">protein_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P29311"</span>,<span class="st">"P38720"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">output_path</span> <span class="op">&lt;-</span> <span class="st">"../SpectroPipeR_test_folder/single_XIC_plots"</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># extracting and plotting of XIC</span></span></span>
-<span class="r-in"><span><span class="fu">XIC_plot_module</span><span class="op">(</span>Spectronaut_report_path <span class="op">=</span> <span class="va">Spectronaut_report_path</span>,</span></span>
-<span class="r-in"><span>                Spectronaut_xicDB_path <span class="op">=</span> <span class="va">Spectronaut_xicDB_path</span>,</span></span>
-<span class="r-in"><span>                protein_groups <span class="op">=</span> <span class="va">protein_groups</span>,</span></span>
-<span class="r-in"><span>                output_path <span class="op">=</span> <span class="va">output_path</span>,</span></span>
-<span class="r-in"><span>                number_of_cores <span class="op">=</span> <span class="fl">2</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The output directory already exists, and there is a possibility that files within it may be overwritten.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> loading Spectronaut report data ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> extract ion meta data from report ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> extract ion IDs of selected proteins groups ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> extracting XIC (this might take a while) ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                    |                                                            |   0%  |                                                                    |========                                                    |  12%  |                                                                    |                                                            |   0%  |                                                                    |===============                                             |  25%  |                                                                    |                                                            |   0%  |                                                                    |======================                                      |  38%  |                                                                    |                                                            |   0%  |                                                                    |==============================                              |  50%  |                                                                    |                                                            |   0%  |                                                                    |======================================                      |  62%  |                                                                    |                                                            |   0%  |                                                                    |=============================================               |  75%  |                                                                    |                                                            |   0%  |                                                                    |====================================================        |  88%  |                                                                    |                                                            |   0%  |                                                                    |============================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> extracting XIC runs (this might take a while) ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                    |                                                            |   0%  |                                                                    |========                                                    |  12%  |                                                                    |                                                            |   0%  |                                                                    |===============                                             |  25%  |                                                                    |                                                            |   0%  |                                                                    |======================                                      |  38%  |                                                                    |                                                            |   0%  |                                                                    |==============================                              |  50%  |                                                                    |                                                            |   0%  |                                                                    |======================================                      |  62%  |                                                                    |                                                            |   0%  |                                                                    |=============================================               |  75%  |                                                                    |                                                            |   0%  |                                                                    |====================================================        |  88%  |                                                                    |                                                            |   0%  |                                                                    |============================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> reformat extracted XIC(s) ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> add ion meta data to extracted XICs ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> register processor cores</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> plotting (this might take a while) ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                    |                                                            |   0%  |                                                                    |==============================                              |  50%  |                                                                    |                                                            |   0%  |                                                                    |============================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> DONE ...</span>
-<span class="r-in"><span></span></span>
-</code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co">#setup example input paths / protein selection for plotting</span></span>
+<span><span class="va">Spectronaut_report_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/HYE_demo_data"</span>,</span>
+<span>                                       <span class="st">"HYE_demo_data_Report_SpectroPipeR.tsv"</span>,</span>
+<span>                                        package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
+<span><span class="va">Spectronaut_xicDB_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/HYE_demo_data/XIC_DBs"</span>,package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
+<span><span class="va">protein_groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P29311"</span>,<span class="st">"P38720"</span><span class="op">)</span></span>
+<span><span class="va">output_path</span> <span class="op">&lt;-</span> <span class="st">"../SpectroPipeR_test_folder/single_XIC_plots"</span></span>
+<span></span>
+<span><span class="co"># extracting and plotting of XIC</span></span>
+<span><span class="fu">XIC_plot_module</span><span class="op">(</span>Spectronaut_report_path <span class="op">=</span> <span class="va">Spectronaut_report_path</span>,</span>
+<span>                Spectronaut_xicDB_path <span class="op">=</span> <span class="va">Spectronaut_xicDB_path</span>,</span>
+<span>                protein_groups <span class="op">=</span> <span class="va">protein_groups</span>,</span>
+<span>                output_path <span class="op">=</span> <span class="va">output_path</span>,</span>
+<span>                number_of_cores <span class="op">=</span> <span class="fl">2</span></span>
+<span><span class="op">)</span></span>
+<span></span></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SpectroPipeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -193,328 +193,34 @@ high intense ions keep their higher intensity).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load library</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SpectroPipeR</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># parameter list</span></span></span>
-<span class="r-in"><span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span>,</span></span>
-<span class="r-in"><span>              ion_q_value_cutoff <span class="op">=</span> <span class="fl">0.01</span>,</span></span>
-<span class="r-in"><span>              id_drop_cutoff <span class="op">=</span> <span class="fl">0.3</span>,</span></span>
-<span class="r-in"><span>              normalization_method <span class="op">=</span> <span class="st">"median"</span>,</span></span>
-<span class="r-in"><span>              normalization_factor_cutoff_outlier <span class="op">=</span> <span class="fl">4</span>,</span></span>
-<span class="r-in"><span>              filter_oxidized_peptides <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>              protein_intensity_estimation <span class="op">=</span> <span class="st">"MaxLFQ"</span>,</span></span>
-<span class="r-in"><span>              stat_test <span class="op">=</span> <span class="st">"modt"</span>,</span></span>
-<span class="r-in"><span>              type_slr <span class="op">=</span> <span class="st">"median"</span>,</span></span>
-<span class="r-in"><span>              fold_change <span class="op">=</span> <span class="fl">1.5</span>,</span></span>
-<span class="r-in"><span>              p_value_cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span></span>
-<span class="r-in"><span>              paired <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span>             <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># example input file</span></span></span>
-<span class="r-in"><span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span></span>
-<span class="r-in"><span>                                <span class="st">"SN_test_HYE_mix_file.tsv"</span>,</span></span>
-<span class="r-in"><span>                                package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># perform the analysis</span></span></span>
-<span class="r-in"><span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu">SpectroPipeR</span><span class="op">(</span>file <span class="op">=</span> <span class="va">example_file_path</span>,</span></span>
-<span class="r-in"><span>                                     parameter <span class="op">=</span> <span class="va">params</span>,</span></span>
-<span class="r-in"><span>                                     condition_comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HYE mix A"</span>,<span class="st">"HYE mix B"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                                     <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;"># READ SPECTRONAUT MODULE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">checking parameters ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">loading data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">write input data to output folder ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">R.FileName capping ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">02_ID_rate/8_sample_analysis ATTENTION !!! ---&gt; folder already exists - files will be replaced !!!</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating intermediate SDRF file</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving intermediate SDRF file ... please use https://lessdrf.streamlit.app for finalizing/editing file before submitting to a public repository</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">_________ data set loaded with ... _________</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">number of raw files = 8</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">number of conditions = 2</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">number of ions without filtering = 1095</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">number of peptides without filtering = 904</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">number of Protein groups without filtering = 93</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">count profiled values ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing counting of min. sample percentage where an ion was detected...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ion Q-value cutoff &lt; 0.01</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">25 % (2/8) is the min. sample percentage where an ion was detected</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing ID rate filtering ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing protein count over replicates (more than or equal 2 peptides) ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing protein count (&lt;2 and more than or equal 2 peptides) ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">_________ ON/OFF analysis: _________</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... filter with Q-value 0.01 ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... filter for 2 peptides and min. present in 50% of replicates ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... ON/OFF analysis write outputs ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">count missed cleavages ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">save missed cleavage plots...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">_________ ID rate per sample: _________</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ions: median = 1053.5; min. = 1019; max. = 1067</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">modified peptides: median = 921; min. = 893; max. = 931</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">stripped peptides: median = 872; min. = 847; max. = 885</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">protein groups: median = 92.5; min. = 90; max. = 93</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">read module done --&gt; please check outputs in folder: ../SpectroPipeR_test_folder/02_ID_rate/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;"># NORMALIZATION &amp; QUANTIFICATION MODULE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">sorting Replicates and conditions ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">NORMALIZATION WAS DONE IN SPECTRONAUT...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">...skipping normalization step and use Spectronaut normalized data instead...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">../SpectroPipeR_test_folder/03_normalization/8_sample_analysis ATTENTION !!! ---&gt; folder already exists - files will be replaced !!!</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">../SpectroPipeR_test_folder/05_processed_data/8_sample_analysis ATTENTION !!! ---&gt; folder already exists - files will be replaced !!!</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">save Normalization factor plot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">save Normalization boxplot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generate ion CV data...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">save ion CV data plots...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">save ion CV data vs. mean intensity hexbin plots...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">calculating peptide intensity data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">writing peptide intensity data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">filter Met_oxidized peptides ... TRUE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">60 Met_oxidized peptides filtered for quantification</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">replacing 0.0139821029082774 % of values (ZERO quantity values)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">with 0.5 = half-minimal value</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">protein intensity calculation ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">extracting iBAQ intensities from Spectronaut report ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">calc. mean, SD, CV of iBAQ intensities ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... save iBAQ data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">perform maxLFQ protein intensity calculation ... (this will take some time)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... preprocessing data for MaxLFQ estimation ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Concatenating secondary ids...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Removing low intensities...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... generate protein list for MaxLFQ estimation ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> # proteins = 93, # samples = 8</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 5.4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Completed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... calculation of MaxLFQ ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 5.4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Completed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... generate outputs for MaxLFQ estimation ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... do median normalization of MaxLFQ data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... save MaxLFQ boxplot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... save MaxLFQ data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... compare protein intensities and iBAQ protein intensities ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... CV plot calculation ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... calc. cumulative frequency of CV ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [=                                                           ]    0.99% - calculation ...  [=                                                           ]    1.98% - calculation ...  [==                                                          ]    2.97% - calculation ...  [==                                                          ]    3.96% - calculation ...  [===                                                         ]    4.95% - calculation ...  [====                                                        ]    5.94% - calculation ...  [====                                                        ]    6.93% - calculation ...  [=====                                                       ]    7.92% - calculation ...  [=====                                                       ]    8.91% - calculation ...  [======                                                      ]    9.90% - calculation ...  [=======                                                     ]   10.89% - calculation ...  [=======                                                     ]   11.88% - calculation ...  [========                                                    ]   12.87% - calculation ...  [========                                                    ]   13.86% - calculation ...  [=========                                                   ]   14.85% - calculation ...  [==========                                                  ]   15.84% - calculation ...  [==========                                                  ]   16.83% - calculation ...  [===========                                                 ]   17.82% - calculation ...  [===========                                                 ]   18.81% - calculation ...  [============                                                ]   19.80% - calculation ...  [============                                                ]   20.79% - calculation ...  [=============                                               ]   21.78% - calculation ...  [==============                                              ]   22.77% - calculation ...  [==============                                              ]   23.76% - calculation ...  [===============                                             ]   24.75% - calculation ...  [===============                                             ]   25.74% - calculation ...  [================                                            ]   26.73% - calculation ...  [=================                                           ]   27.72% - calculation ...  [=================                                           ]   28.71% - calculation ...  [==================                                          ]   29.70% - calculation ...  [==================                                          ]   30.69% - calculation ...  [===================                                         ]   31.68% - calculation ...  [====================                                        ]   32.67% - calculation ...  [====================                                        ]   33.66% - calculation ...  [=====================                                       ]   34.65% - calculation ...  [=====================                                       ]   35.64% - calculation ...  [======================                                      ]   36.63% - calculation ...  [=======================                                     ]   37.62% - calculation ...  [=======================                                     ]   38.61% - calculation ...  [========================                                    ]   39.60% - calculation ...  [========================                                    ]   40.59% - calculation ...  [=========================                                   ]   41.58% - calculation ...  [==========================                                  ]   42.57% - calculation ...  [==========================                                  ]   43.56% - calculation ...  [===========================                                 ]   44.55% - calculation ...  [===========================                                 ]   45.54% - calculation ...  [============================                                ]   46.53% - calculation ...  [=============================                               ]   47.52% - calculation ...  [=============================                               ]   48.51% - calculation ...  [==============================                              ]   49.50% - calculation ...  [==============================                              ]   50.50% - calculation ...  [===============================                             ]   51.49% - calculation ...  [===============================                             ]   52.48% - calculation ...  [================================                            ]   53.47% - calculation ...  [=================================                           ]   54.46% - calculation ...  [=================================                           ]   55.45% - calculation ...  [==================================                          ]   56.44% - calculation ...  [==================================                          ]   57.43% - calculation ...  [===================================                         ]   58.42% - calculation ...  [====================================                        ]   59.41% - calculation ...  [====================================                        ]   60.40% - calculation ...  [=====================================                       ]   61.39% - calculation ...  [=====================================                       ]   62.38% - calculation ...  [======================================                      ]   63.37% - calculation ...  [=======================================                     ]   64.36% - calculation ...  [=======================================                     ]   65.35% - calculation ...  [========================================                    ]   66.34% - calculation ...  [========================================                    ]   67.33% - calculation ...  [=========================================                   ]   68.32% - calculation ...  [==========================================                  ]   69.31% - calculation ...  [==========================================                  ]   70.30% - calculation ...  [===========================================                 ]   71.29% - calculation ...  [===========================================                 ]   72.28% - calculation ...  [============================================                ]   73.27% - calculation ...  [=============================================               ]   74.26% - calculation ...  [=============================================               ]   75.25% - calculation ...  [==============================================              ]   76.24% - calculation ...  [==============================================              ]   77.23% - calculation ...  [===============================================             ]   78.22% - calculation ...  [================================================            ]   79.21% - calculation ...  [================================================            ]   80.20% - calculation ...  [=================================================           ]   81.19% - calculation ...  [=================================================           ]   82.18% - calculation ...  [==================================================          ]   83.17% - calculation ...  [==================================================          ]   84.16% - calculation ...  [===================================================         ]   85.15% - calculation ...  [====================================================        ]   86.14% - calculation ...  [====================================================        ]   87.13% - calculation ...  [=====================================================       ]   88.12% - calculation ...  [=====================================================       ]   89.11% - calculation ...  [======================================================      ]   90.10% - calculation ...  [=======================================================     ]   91.09% - calculation ...  [=======================================================     ]   92.08% - calculation ...  [========================================================    ]   93.07% - calculation ...  [========================================================    ]   94.06% - calculation ...  [=========================================================   ]   95.05% - calculation ...  [==========================================================  ]   96.04% - calculation ...  [==========================================================  ]   97.03% - calculation ...  [=========================================================== ]   98.02% - calculation ...  [=========================================================== ]   99.01% - calculation ...  [============================================================]  100.00% - calculation ... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... render CV plot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating raw file / condition file ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">no outlier detected with 4 fold difference from the median</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">norm. &amp; quant. module done --&gt; please check outputs in folder: ../SpectroPipeR_test_folder/03_normalization/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">norm. &amp; quant. module done --&gt; please check outputs in folder: ../SpectroPipeR_test_folder/05_processed_data/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;"># MVA MODULE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">perfoming multivariate analysis ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">../SpectroPipeR_test_folder/04_multivariate_analysis/8_sample_analysis ATTENTION !!! ---&gt; folder already exists - files will be replaced !!!</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating raw file / condition file ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">PCA analysis on peptide level ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">PCA analysis on protein level ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">... 0 proteins removed due to NAs</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating Scree plots ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating Top10 variable contribution plot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating 3D PCA plot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating PCA plot 1st vs. 2nd dimension ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating PCA plot 1st to 5th dimension ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving PCA plot 1st to 5th dimension ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating Biplot of Top10 variables and individuals ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating individuals contribution plot ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating PCA plot matrix ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving PCA plot matrix ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving 3D PCA plots ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing correlation analysis ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing correlation analysis - calculate p-values ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating correlation plots ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving correlation plots ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">saving correlation plots with condition info ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">perform UMAP analysis on protein level ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">try UMAP with default settings ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">due to low complexity try UMAP with n_neighbors = 5 setting ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">MVA module done --&gt; please check outputs in folder: ../SpectroPipeR_test_folder/04_multivariate_analysis/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;"># STATISTICS MODULE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">../SpectroPipeR_test_folder/06_statistics/8_sample_analysis ATTENTION !!! ---&gt; folder already exists - files will be replaced !!!</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">reformatting data ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">register processor cores ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing statistical analysis (this might take a while) ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">close cores ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">start to end time comparison for stat. analysis: 0.00158582303259108 hours</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">estimating effect sizes ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [============================================================]  100.00% - calc. effect sizes... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">join and tidy tables ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">filtering statistical table using supplied cutoffs ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">writing output files ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">adding iBAQ quantiles to statistics table ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating Excel outputs ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">performing fold-change cutoff sensitivity analysis ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">plotting fold-change cutoff sensitivity analysis ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [================================================================================]  100.00% - 1 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">plotting fold-change simple cutoff sensitivity analysis (peptide n &gt; 1)...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [================================================================================]  100.00% - 1 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating volcano plots ...</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [============================================================]  100.00% - Volcano plots with adj. p-value </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [============================================================]  100.00% - Volcano plots with adj. p-value </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [============================================================]  100.00% - Volcano plots with raw p-value </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">condition-comparison-wise signal to noise comparison ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...signal to noise: save scatter plot...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">condition-comparison-wise comparison of peptide-int.-ratios vs. protein-int.-ratios ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...calculating protein ratios...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...combining ratio tables...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...generating ratio-ratios: protein_ratios/peptide_ratios...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...filter for at least 2 peptides...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...adding of protein intensity to table...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...add signal to noise per group...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...add detection with selected q-value cutoff with at least 2 peptides per replicate...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...add direction comparison for protein or peptide condition comp. ratio...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...save table of stat. significant with poor signal to noise...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...counting protein which having a 2fold difference...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...select Top15 over- or under-estimated proteins...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...protein int. benchmark: save scatter plot...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...protein int. benchmark: save histogram plot...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...protein int. benchmark: save table...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...counting protein: gradient of difference...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">...protein int. benchmark: gradient of difference area plots...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">statistics module done --&gt; please check outputs in folder: ../SpectroPipeR_test_folder/06_statistics/</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;"># REPORT MODULE</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBBBB;">#*****************************************</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">generating methods part ...</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">render HTML report ... this might take a while</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> processing file: DIA_MS_analysis_report_Master.qmd</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">1/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">2/37 [global.options]  </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">3/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">4/37 [setup]           </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">5/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">6/37 [unnamed-chunk-1] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">7/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">8/37 [unnamed-chunk-2] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">9/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">10/37 [unnamed-chunk-3] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">11/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;"># A tibble: 1 × 1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  value</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  &lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">1 0.01 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">12/37 [unnamed-chunk-4] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">13/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">14/37 [unnamed-chunk-5] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">15/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">16/37 [unnamed-chunk-6] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">17/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">18/37 [unnamed-chunk-7] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">19/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">20/37 [unnamed-chunk-8] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">21/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">22/37 [unnamed-chunk-9] </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">23/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">24/37 [unnamed-chunk-10]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">25/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">26/37 [unnamed-chunk-11]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">27/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">28/37 [unnamed-chunk-12]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">29/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">30/37 [unnamed-chunk-13]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">31/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">32/37 [unnamed-chunk-14]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">33/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">34/37 [unnamed-chunk-15]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">35/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">36/37 [unnamed-chunk-16]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">37/37                   </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">output file: DIA_MS_analysis_report_Master.knit.md</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">pandoc --output 2024_06_28__15_48_SpectroPipeR_report.html</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  to: html</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  standalone: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  self-contained: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  section-divs: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  html-math-method: katex</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  wrap: none</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  default-image-extension: png</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  css:</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">    - styles.css</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  toc: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  toc-depth: 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">metadata</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  document-css: false</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  link-citations: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  date-format: long</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  lang: en</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  title: SpectroPipeR DIA-MS analysis report</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  author: Stephan Michalik</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  date: '`r format(Sys.Date(), "%B %d, %Y")`'</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  title-block-banner: '#151515'</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  subtitle: automatically generated report</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  page-layout: full</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  toc-title: Contents</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  theme: united</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  highlight: tango</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  df_print: paged</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  toc-location: left</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  anchor-sections: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  smooth-scroll: true</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">  </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">Output created: 2024_06_28__15_48_SpectroPipeR_report.html</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">render HTML report ... DONE!</span></span>
-<span class="r-in"><span></span></span>
-</code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SpectroPipeR</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># parameter list</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span>,</span>
+<span>              ion_q_value_cutoff <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>              id_drop_cutoff <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>              normalization_method <span class="op">=</span> <span class="st">"median"</span>,</span>
+<span>              normalization_factor_cutoff_outlier <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>              filter_oxidized_peptides <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>              protein_intensity_estimation <span class="op">=</span> <span class="st">"MaxLFQ"</span>,</span>
+<span>              stat_test <span class="op">=</span> <span class="st">"modt"</span>,</span>
+<span>              type_slr <span class="op">=</span> <span class="st">"median"</span>,</span>
+<span>              fold_change <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>              p_value_cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>              paired <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>             <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># example input file</span></span>
+<span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
+<span>                                <span class="st">"SN_test_HYE_mix_file.tsv"</span>,</span>
+<span>                                package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
+<span><span class="co"># perform the analysis</span></span>
+<span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu">SpectroPipeR</span><span class="op">(</span>file <span class="op">=</span> <span class="va">example_file_path</span>,</span>
+<span>                                     parameter <span class="op">=</span> <span class="va">params</span>,</span>
+<span>                                     condition_comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HYE mix A"</span>,<span class="st">"HYE mix B"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                     <span class="op">)</span></span>
+<span></span></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
