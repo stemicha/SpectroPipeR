@@ -14,41 +14,41 @@
 #'
 #' | <u> __parameter__ </u> | <u> __description__ </u>                |
 #' |:-----------------------|:--------------------------------------|
-#' | output_folder          | _character_ - output folder path (abs.) |
-#' | ion_q_value_cutoff     | _numeric_ - Q-value used in Spectronaut analysis: Biognosys |
+#' | output_folder          | **mandatory !!!** - _character_ - output folder path (abs.) |
+#' | ion_q_value_cutoff     | **default = 0.01** - _numeric_ - Q-value used in Spectronaut analysis: Biognosys |
 #' |                        | default is 0.01 = 1% error rate |
-#' | id_drop_cutoff         | _numeric_ - value between 0-1 (1 = 100%); xx percent lower |
+#' | id_drop_cutoff         | **default = 0.3** - _numeric_ - value between 0-1 (1 = 100%); xx percent lower |
 #' |                        | than median of ion ID rate => outlier |
-#' | normalization_method   | _character_ - "median" or Spectronaut - auto-detection is per |
-#' |                        | default ON, meaning if normalization was performed in Spectronaut |
+#' | normalization_method   | **default = "median"** - _character_ - "median" or Spectronaut - auto-detection |
+#' |                        | is per default ON, meaning if normalization was performed in Spectronaut |
 #' |                        | this will be detected and preferred over parameter setting here;|
 #' |                        | median normalization is the fallback option|
-#' | normalization_factor_cutoff_outlier | _numeric_ - median off from global median |
+#' | normalization_factor_cutoff_outlier | **default = 4** - _numeric_ - median off from global median |
 #' |                        | (4 means abs. 4fold off) |
-#' | filter_oxidized_peptides | _logical_ - if oxidized peptides should be removed from peptide |
-#' |                          | quantification |
-#' | protein_intensity_estimation | _character_ - Hi3 = Hi3 protein intensity estimation, |
+#' | filter_oxidized_peptides | **default = TRUE** _logical_ - if oxidized peptides should be removed before |
+#' |                          |peptide quantification |
+#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_ - Hi3 = Hi3 protein intensity estimation, |
 #' |                              |  MaxLFQ = MaxLFQ protein intensity estimation |
-#' | stat_test              | _character_ - choose statistical test: "rots" = reproducibility |
+#' | stat_test              | **default = "rots"** - _character_ - choose statistical test: "rots" = reproducibility |
 #' |                        | optimized test statistics, "modt" = moderate t-test (lmfit, eBayes),|
 #' |                        | "t" = t-test |
-#' | type_slr               | _character_ - choose ratio aggregation method: "median" or "tukey" |
-#' |                        | is used when calculating protein values |
-#' | fold_change            | _numeric_ - fold-change used as cutoff e.g. 1.5 |
-#' | p_value_cutoff         | _numeric_ - p-value used as cutoff e.g. 0.05 |
-#' | paired                 | _logical_ - Should paired statistics be applied? |
+#' | type_slr               | **default = "median"** - _character_ - choose ratio aggregation method: |
+#' |                        | "median" or "tukey" is used when calculating protein values |
+#' | fold_change            | **default = 1.5** - _numeric_ - fold-change used as cutoff e.g. 1.5 |
+#' | p_value_cutoff         | **default = 0.05** - _numeric_ - p-value used as cutoff e.g. 0.05 |
+#' | paired                 | **default = FALSE** - _logical_ - Should paired statistics be applied? |
 #'
 #'
-#' | <u>example parameters list</u>:                         |
+#' | <u>example parameters list (default)</u>:                         |
 #' |---------------------------------------------------------|
 #' | params <- list(output_folder = "../Spectronaut_example",|
-#' |               ion_q_value_cutoff = 0.001,|
+#' |               ion_q_value_cutoff = 0.01,|
 #' |               id_drop_cutoff = 0.3,|
 #' |               normalization_method = "median",|
-#' |                normalization_factor_cutoff_outlier = 4,|
-#' |                filter_oxidized_peptides = T,|
-#' |                protein_intensity_estimation = "MaxLFQ",|
-#' |               stat_test = "modt",|
+#' |               normalization_factor_cutoff_outlier = 4,|
+#' |               filter_oxidized_peptides = T,|
+#' |               protein_intensity_estimation = "MaxLFQ",|
+#' |               stat_test = "rots",|
 #' |               type_slr = "median",|
 #' |               fold_change = 1.5,|
 #' |               p_value_cutoff = 0.05,|
@@ -113,6 +113,9 @@
 #'               paired = FALSE
 #')
 #'
+#'#'## or use default parameters and just setup the mandatory output-folder
+#'# params <- list(output_folder = "../SpectroPipeR_test_folder")
+#'
 #'# example input file
 #'example_file_path <- system.file("extdata",
 #'                                 "SN_test_HYE_mix_file.tsv",
@@ -130,11 +133,48 @@ read_spectronaut_module <- function(file = "",
                                     max_chars_file_name_capping = 35,
                                     print.plot = FALSE){
 
+# setup default parameters ------------------------------------------------
+  parameter_user_input <- parameter
+
+  if(is.null(parameter_user_input$ion_q_value_cutoff)){
+    parameter_user_input$ion_q_value_cutoff <- 0.01 # default = 0.01
+  }
+  if(is.null(parameter_user_input$id_drop_cutoff)){
+    parameter_user_input$id_drop_cutoff <- 0.3 # default = 0.4
+  }
+  if(is.null(parameter_user_input$normalization_method)){
+    parameter_user_input$normalization_method <- "median" # default = "median"
+  }
+  if(is.null(parameter_user_input$normalization_factor_cutoff_outlier)){
+    parameter_user_input$normalization_factor_cutoff_outlier <- 4 # default = 4
+  }
+  if(is.null(parameter_user_input$filter_oxidized_peptides)){
+    parameter_user_input$filter_oxidized_peptides <- TRUE # default = TRUE
+  }
+  if(is.null(parameter_user_input$protein_intensity_estimation)){
+    parameter_user_input$protein_intensity_estimation <- "MaxLFQ" # default = "MaxLFQ"
+  }
+  if(is.null(parameter_user_input$stat_test)){
+    parameter_user_input$stat_test <- "rots" # default = "rots"
+  }
+  if(is.null(parameter_user_input$type_slr)){
+    parameter_user_input$type_slr <- "median" # default = "median"
+  }
+  if(is.null(parameter_user_input$fold_change)){
+    parameter_user_input$fold_change <- 1.5 # default = 1.5
+  }
+  if(is.null(parameter_user_input$p_value_cutoff)){
+    parameter_user_input$p_value_cutoff <- 0.05 # default = 0.05
+  }
+  if(is.null(parameter_user_input$paired)){
+    parameter_user_input$paired <- FALSE # default = FALSE
+  }
+
   # get output folder main
-  out_folder <- parameter$output_folder
+  out_folder <- parameter_user_input$output_folder
 
   #define parameter_input
-  parameter_input <- parameter
+  parameter_input <- parameter_user_input
 
   #add input file path
   parameter_input$Spectronaut_report_file <- file
@@ -144,8 +184,8 @@ read_spectronaut_module <- function(file = "",
                        parameter_input)
 
   #check if output-folder exist
-  if (dir.exists(parameter$output_folder)==FALSE) {
-    dir.create(parameter$output_folder,recursive = T)
+  if (dir.exists(parameter_user_input$output_folder)==FALSE) {
+    dir.create(parameter_user_input$output_folder,recursive = T)
     crayon::magenta("generate output folder")
   }else{
     crayon::magenta("provided output folder exists / files and folders will be overwritten")
@@ -173,7 +213,7 @@ read_spectronaut_module <- function(file = "",
                    log_file_name = log_file_name)
 
   #check parameters
-  parameter_check(parameter, log_file_name = log_file_name)
+  parameter_check(parameter_input, log_file_name = log_file_name)
 
 
   # create folders
@@ -440,7 +480,7 @@ read_spectronaut_module <- function(file = "",
                      .data$EG.Qvalue.formatted,
                      .data$R.FileName,
                      .data$R.Condition) %>%
-      dplyr::filter(.data$EG.Qvalue.formatted<=parameter$ion_q_value_cutoff) %>%
+      dplyr::filter(.data$EG.Qvalue.formatted<=parameter_input$ion_q_value_cutoff) %>%
       dplyr::group_by(.data$R.Condition,
                       .data$ion) %>%
       dplyr::summarise(sample_count = n_distinct(.data$R.FileName))%>%
@@ -463,7 +503,7 @@ read_spectronaut_module <- function(file = "",
 
     message_function(text = "perform ion ID condition filtering: write output in 01_input_data and go on with analysis", color = "green",log_file_name = log_file_name)
     write_csv(x = tmp_data_input,
-              file = paste0(out_folder,"/","01_input_data/input_data__filtered_ion_identifications_condition_wise__Qvalue_cutoff_",parameter$ion_q_value_cutoff,"__percentage_cutoff_",ID_condition_filtering_percent,".csv"))
+              file = paste0(out_folder,"/","01_input_data/input_data__filtered_ion_identifications_condition_wise__Qvalue_cutoff_",parameter_input$ion_q_value_cutoff,"__percentage_cutoff_",ID_condition_filtering_percent,".csv"))
 
   }
 
@@ -501,25 +541,25 @@ read_spectronaut_module <- function(file = "",
       group_by(.data$R.FileName,
                .data$R.Condition,
                .data$R.Replicate) %>%
-      summarise(distinct_ions_q_value_filtered = n_distinct(.data$ion[.data$EG.Qvalue.formatted < parameter$ion_q_value_cutoff]),
-                distinct_ions_q_value_larger = n_distinct(.data$ion[.data$EG.Qvalue.formatted > parameter$ion_q_value_cutoff | is.na(.data$EG.Qvalue.formatted)])
+      summarise(distinct_ions_q_value_filtered = n_distinct(.data$ion[.data$EG.Qvalue.formatted < parameter_input$ion_q_value_cutoff]),
+                distinct_ions_q_value_larger = n_distinct(.data$ion[.data$EG.Qvalue.formatted > parameter_input$ion_q_value_cutoff | is.na(.data$EG.Qvalue.formatted)])
                 ) %>%
       ungroup()
-    colnames(tmp_summary_distinct_ions)[4:5] <- c(paste("<",parameter$ion_q_value_cutoff,sep=""),
-                                                  paste(">",parameter$ion_q_value_cutoff,sep=""))
+    colnames(tmp_summary_distinct_ions)[4:5] <- c(paste("<",parameter_input$ion_q_value_cutoff,sep=""),
+                                                  paste(">",parameter_input$ion_q_value_cutoff,sep=""))
 
   }else{
     tmp_summary_distinct_ions <- tmp_data_input %>%
       group_by(.data$R.FileName,
                .data$R.Condition,
                .data$R.Replicate) %>%
-      summarise(distinct_ions_q_value_filtered = n_distinct(.data$ion[.data$EG.Qvalue.formatted < parameter$ion_q_value_cutoff]),
-                distinct_ions_q_value_larger = n_distinct(.data$ion[(.data$EG.Qvalue.formatted > parameter$ion_q_value_cutoff | is.na(.data$EG.Qvalue.formatted)) & .data$EG.Qvalue != "Profiled"]),
+      summarise(distinct_ions_q_value_filtered = n_distinct(.data$ion[.data$EG.Qvalue.formatted < parameter_input$ion_q_value_cutoff]),
+                distinct_ions_q_value_larger = n_distinct(.data$ion[(.data$EG.Qvalue.formatted > parameter_input$ion_q_value_cutoff | is.na(.data$EG.Qvalue.formatted)) & .data$EG.Qvalue != "Profiled"]),
                 distinct_ions_profiled = n_distinct(.data$ion[.data$EG.Qvalue == "Profiled"])) %>%
       ungroup()
 
-    colnames(tmp_summary_distinct_ions)[4:6] <- c(paste("<",parameter$ion_q_value_cutoff,sep=""),
-                                                  paste(">",parameter$ion_q_value_cutoff,sep=""),
+    colnames(tmp_summary_distinct_ions)[4:6] <- c(paste("<",parameter_input$ion_q_value_cutoff,sep=""),
+                                                  paste(">",parameter_input$ion_q_value_cutoff,sep=""),
                                                   "profiled")
 
   }
@@ -529,12 +569,12 @@ read_spectronaut_module <- function(file = "",
   message_function(text = "performing counting of min. sample percentage where an ion was detected...",
                    color = "blue",
                    log_file_name = log_file_name)
-  message_function(text = paste("ion Q-value cutoff <",parameter$ion_q_value_cutoff),
+  message_function(text = paste("ion Q-value cutoff <",parameter_input$ion_q_value_cutoff),
                    color = "blue",
                    log_file_name = log_file_name)
 
   sample_count_detect_tmp<- min(unlist(tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
     dplyr::group_by(.data$ion) %>%
     dplyr::summarise(sample_count = dplyr::n_distinct(.data$R.FileName))%>%
     dplyr::ungroup() %>%
@@ -552,7 +592,7 @@ read_spectronaut_module <- function(file = "",
                    log_file_name = log_file_name)
   #ID rate
   tmp_summary_distinct <- tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
     dplyr::group_by(.data$R.FileName,
                     .data$R.Condition,
                     .data$R.Replicate) %>%
@@ -567,7 +607,7 @@ read_spectronaut_module <- function(file = "",
                    log_file_name = log_file_name)
 
   replicate_count_ID<- dplyr::left_join(tmp_data_input %>%
-                                   dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+                                   dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
                                    dplyr::group_by(.data$R.FileName,
                                                    .data$R.Condition,
                                                    .data$R.Replicate,
@@ -604,7 +644,7 @@ read_spectronaut_module <- function(file = "",
 
   #ID rate proteins with 1 or ≥2 peptides
   protein_count_ID <- dplyr::bind_rows( tmp_data_input %>%
-                                   dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+                                   dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
                                    dplyr::group_by(.data$R.FileName,
                                                    .data$R.Condition,
                                                    .data$R.Replicate,
@@ -618,7 +658,7 @@ read_spectronaut_module <- function(file = "",
                                    dplyr::ungroup() %>%
                                    dplyr::mutate(number_of_peptides = "< 2"),
   tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
     dplyr::group_by(.data$R.FileName,
                     .data$R.Condition,
                     .data$R.Replicate,
@@ -666,7 +706,7 @@ read_spectronaut_module <- function(file = "",
   #ion ID median
   ion_id_median <- stats::median(tmp_summary_distinct$distinct_ions)
   #ion ID cutoff
-  ion_id_cutoff <- stats::median(tmp_summary_distinct$distinct_ions)-stats::median(tmp_summary_distinct$distinct_ions)*parameter$id_drop_cutoff
+  ion_id_cutoff <- stats::median(tmp_summary_distinct$distinct_ions)-stats::median(tmp_summary_distinct$distinct_ions)*parameter_input$id_drop_cutoff
 
   #id_outliers
   tmp_summary_distinct_outlier <- tmp_summary_distinct[base::which(tmp_summary_distinct$distinct_ions<ion_id_cutoff),]
@@ -680,13 +720,13 @@ read_spectronaut_module <- function(file = "",
 
   #write ID percentage over replicates ≥2 peptides
   readr::write_csv(x = replicate_count_ID,
-              file = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count_over_replicates_min_2_pep_Qvalue_cutoff_",parameter$ion_q_value_cutoff,".csv"))
+              file = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count_over_replicates_min_2_pep_Qvalue_cutoff_",parameter_input$ion_q_value_cutoff,".csv"))
   readr::write_csv(x = replicate_count_ID_percentage_wide,
-            file = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count_over_replicates_min_2_pep_percentage_WIDE_Qvalue_cutoff_",parameter$ion_q_value_cutoff,".csv"))
+            file = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count_over_replicates_min_2_pep_percentage_WIDE_Qvalue_cutoff_",parameter_input$ion_q_value_cutoff,".csv"))
 
   #write ID counts proteins <2 and ≥2 peptides
   readr::write_csv(x = protein_count_ID %>%
-                mutate(Qvalue_below = parameter$ion_q_value_cutoff),
+                mutate(Qvalue_below = parameter_input$ion_q_value_cutoff),
               file = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count__strippedPEP.csv"))
 
 
@@ -721,7 +761,7 @@ read_spectronaut_module <- function(file = "",
 
   #do plotting ====
   ion_ID_rate_plot_colors <- c("dodgerblue4","orangered4","darkgrey")
-  names(ion_ID_rate_plot_colors) <- c(paste("<",parameter$ion_q_value_cutoff,sep=""),"profiled",paste(">",parameter$ion_q_value_cutoff,sep=""))
+  names(ion_ID_rate_plot_colors) <- c(paste("<",parameter_input$ion_q_value_cutoff,sep=""),"profiled",paste(">",parameter_input$ion_q_value_cutoff,sep=""))
 
   #protein ID rate plot (1 and 2 peptides)
   max_value_ID <- max(unlist(protein_count_ID_wo_filtering %>%
@@ -744,7 +784,7 @@ read_spectronaut_module <- function(file = "",
           panel.grid = element_blank())+
     labs(title="protein ID rate",
          fill="peptide count",
-         subtitle = paste("Q-value filter <",parameter$ion_q_value_cutoff),
+         subtitle = paste("Q-value filter <",parameter_input$ion_q_value_cutoff),
          x="raw file name",
          caption = "100% >> protein IDs whole dataset")
 
@@ -789,7 +829,7 @@ read_spectronaut_module <- function(file = "",
                             panel.grid = element_blank())+
                       labs(title = "ion ID rate",
                            fill = "filtering/\nprofiled",
-                           subtitle = paste("Q-value filter <",parameter$ion_q_value_cutoff),x="raw file name")+
+                           subtitle = paste("Q-value filter <",parameter_input$ion_q_value_cutoff),x="raw file name")+
                       scale_y_continuous(sec.axis = sec_axis(~(./length(unique(tmp_data_input$ion)))*100, name = "% of total"))
 
 
@@ -805,7 +845,7 @@ read_spectronaut_module <- function(file = "",
           strip.text.x = element_text(size=16))+
     scale_fill_manual(values = c("yes"="orangered","no"="darkgrey"))+
     labs(title="ID rate",
-         subtitle = paste("Q-value <",parameter$ion_q_value_cutoff),
+         subtitle = paste("Q-value <",parameter_input$ion_q_value_cutoff),
          x="raw file name")
 
   #ion ID rate cutoff plot
@@ -822,7 +862,7 @@ read_spectronaut_module <- function(file = "",
     geom_hline(yintercept = ion_id_median,
                linetype="dotted")+
     labs(title="ion ID rate",
-         subtitle = paste("Q-value <",parameter$ion_q_value_cutoff),x="raw file name",
+         subtitle = paste("Q-value <",parameter_input$ion_q_value_cutoff),x="raw file name",
          caption=c("dotted line = median / solid line = cutoff"))
 
   #writeOutputPlots in folder
@@ -900,7 +940,7 @@ read_spectronaut_module <- function(file = "",
 # add ON/OFF analysis per condition -----------------------------------------------------
 
   message_function(text = "_________ ON/OFF analysis: _________", color = "blue",log_file_name = log_file_name)
-  message_function(text = paste0("... filter with Q-value ",parameter$ion_q_value_cutoff," ..."), color = "blue",log_file_name = log_file_name)
+  message_function(text = paste0("... filter with Q-value ",parameter_input$ion_q_value_cutoff," ..."), color = "blue",log_file_name = log_file_name)
 
   condition_replicate_count<- tmp_data_input %>%
     group_by(.data$R.Condition) %>%
@@ -909,7 +949,7 @@ read_spectronaut_module <- function(file = "",
 
   #PG with 2 peptides
   PG_2_peptides_ID <- tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted <= parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted <= parameter_input$ion_q_value_cutoff) %>%
     dplyr::group_by(.data$R.FileName,
              .data$R.Condition,
              .data$PG.ProteinGroups) %>%
@@ -1029,7 +1069,7 @@ read_spectronaut_module <- function(file = "",
                    log_file_name = log_file_name)
   #calc. missed cleavage count per sample with q-value cut
   mc_count_data <- tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted<parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted<parameter_input$ion_q_value_cutoff) %>%
     dplyr::distinct(.data$R.FileName,
                     .data$R.Condition,
                     .data$PEP.StrippedSequence,
@@ -1061,7 +1101,7 @@ read_spectronaut_module <- function(file = "",
 
   # missed cleavage count of whole project
   mc_count_data_global <- tmp_data_input %>%
-    dplyr::filter(.data$EG.Qvalue.formatted<parameter$ion_q_value_cutoff) %>%
+    dplyr::filter(.data$EG.Qvalue.formatted<parameter_input$ion_q_value_cutoff) %>%
     dplyr::distinct(.data$PEP.StrippedSequence,
                     .data$PEP.NrOfMissedCleavages) %>%
     dplyr::group_by(.data$PEP.NrOfMissedCleavages) %>%
@@ -1104,7 +1144,7 @@ read_spectronaut_module <- function(file = "",
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.1))+
     scale_y_continuous(sec.axis = sec_axis(~(./n_total_peptides)*100, name = "%"))+
     labs(title ="count of missed cleavages per sample",
-         subtitle = paste("Q-value <",parameter$ion_q_value_cutoff),
+         subtitle = paste("Q-value <",parameter_input$ion_q_value_cutoff),
          y = "peptide count",
          x = "raw file name",
          fill = "MC",
@@ -1132,7 +1172,7 @@ read_spectronaut_module <- function(file = "",
     theme_light(base_size = 16)+
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.1))+
     labs(title ="percentage of missed\ncleavages per sample",
-         subtitle = paste("Q-value <",parameter$ion_q_value_cutoff),
+         subtitle = paste("Q-value <",parameter_input$ion_q_value_cutoff),
          y = "MC [%]", x = "raw file name", caption = "")+
     geom_text(mapping = aes(label = paste(round(.data$MC_percentage,digits = 1),"%",sep = "")),
               angle = 90,
@@ -1189,7 +1229,7 @@ read_spectronaut_module <- function(file = "",
     message_function(text = paste("modified peptides: ","median = ",median(tmp_summary_distinct$distinct_modified_peptides),"; min. = ",min(tmp_summary_distinct$distinct_modified_peptides),"; max. = ",max(tmp_summary_distinct$distinct_modified_peptides),sep=""),color = "blue",log_file_name = log_file_name)
     message_function(text = paste("stripped peptides: ","median = ",median(tmp_summary_distinct$distinct_peptides),"; min. = ",min(tmp_summary_distinct$distinct_peptides),"; max. = ",max(tmp_summary_distinct$distinct_peptides),sep=""),color = "blue",log_file_name = log_file_name)
     message_function(text = paste("protein groups: ","median=",median(tmp_summary_distinct$distinct_proteins),"; min. = ",min(tmp_summary_distinct$distinct_proteins),"; max. = ",max(tmp_summary_distinct$distinct_proteins),sep=""),color = "blue",log_file_name = log_file_name)
-    message_function(text = paste("Attention ---> OUTLIER detected !!! >",parameter$id_drop_cutoff*100,"% lower than median ion ID rate"),color = "red",log_file_name = log_file_name)
+    message_function(text = paste("Attention ---> OUTLIER detected !!! >",parameter_input$id_drop_cutoff*100,"% lower than median ion ID rate"),color = "red",log_file_name = log_file_name)
     message_function(text = paste("samples detected with ID rates below cutoff of ",ion_id_cutoff,":"),color = "blue",log_file_name = log_file_name)
 
     message_function(text = paste(tmp_summary_distinct_outlier$R.FileName,collapse = "\n"),color = "yellow",log_file_name = log_file_name)

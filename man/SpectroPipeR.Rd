@@ -32,40 +32,40 @@ you should use the \code{Spectronaut_export_scheme()} function for getting a Spe
 
 \emph{table of list elements:}\tabular{ll}{
    \if{html}{\out{<u>}} \strong{parameter} \if{html}{\out{</u>}} \tab \if{html}{\out{<u>}} \strong{description} \if{html}{\out{</u>}} \cr
-   output_folder \tab \emph{character} - output folder path (abs.) \cr
-   ion_q_value_cutoff \tab \emph{numeric} - Q-value used in Spectronaut analysis: Biognosys \cr
+   output_folder \tab \strong{mandatory !!!} - \emph{character} - output folder path (abs.) \cr
+   ion_q_value_cutoff \tab \strong{default = 0.01} - \emph{numeric} - Q-value used in Spectronaut analysis: Biognosys \cr
     \tab default is 0.01 = 1\% error rate \cr
-   id_drop_cutoff \tab \emph{numeric} - value between 0-1 (1 = 100\%); xx percent lower \cr
+   id_drop_cutoff \tab \strong{default = 0.3} - \emph{numeric} - value between 0-1 (1 = 100\%); xx percent lower \cr
     \tab than median of ion ID rate => outlier \cr
-   normalization_method \tab \emph{character} - "median" or Spectronaut - auto-detection is per \cr
-    \tab default ON, meaning if normalization was performed in Spectronaut \cr
+   normalization_method \tab \strong{default = "median"} - \emph{character} - "median" or Spectronaut - auto-detection \cr
+    \tab is per default ON, meaning if normalization was performed in Spectronaut \cr
     \tab this will be detected and preferred over parameter setting here; \cr
     \tab median normalization is the fallback option \cr
-   normalization_factor_cutoff_outlier \tab \emph{numeric} - median off from global median \cr
+   normalization_factor_cutoff_outlier \tab \strong{default = 4} - \emph{numeric} - median off from global median \cr
     \tab (4 means abs. 4fold off) \cr
-   filter_oxidized_peptides \tab \emph{logical} - if oxidized peptides should be removed from peptide \cr
-    \tab quantification \cr
-   protein_intensity_estimation \tab \emph{character} - Hi3 = Hi3 protein intensity estimation, \cr
+   filter_oxidized_peptides \tab \strong{default = TRUE} \emph{logical} - if oxidized peptides should be removed before \cr
+    \tab peptide quantification \cr
+   protein_intensity_estimation \tab \strong{default = "MaxLFQ"} - \emph{character} - Hi3 = Hi3 protein intensity estimation, \cr
     \tab MaxLFQ = MaxLFQ protein intensity estimation \cr
-   stat_test \tab \emph{character} - choose statistical test: "rots" = reproducibility \cr
+   stat_test \tab \strong{default = "rots"} - \emph{character} - choose statistical test: "rots" = reproducibility \cr
     \tab optimized test statistics, "modt" = moderate t-test (lmfit, eBayes), \cr
     \tab "t" = t-test \cr
-   type_slr \tab \emph{character} - choose ratio aggregation method: "median" or "tukey" \cr
-    \tab is used when calculating protein values \cr
-   fold_change \tab \emph{numeric} - fold-change used as cutoff e.g. 1.5 \cr
-   p_value_cutoff \tab \emph{numeric} - p-value used as cutoff e.g. 0.05 \cr
-   paired \tab \emph{logical} - Should paired statistics be applied? \cr
+   type_slr \tab \strong{default = "median"} - \emph{character} - choose ratio aggregation method: \cr
+    \tab "median" or "tukey" is used when calculating protein values \cr
+   fold_change \tab \strong{default = 1.5} - \emph{numeric} - fold-change used as cutoff e.g. 1.5 \cr
+   p_value_cutoff \tab \strong{default = 0.05} - \emph{numeric} - p-value used as cutoff e.g. 0.05 \cr
+   paired \tab \strong{default = FALSE} - \emph{logical} - Should paired statistics be applied? \cr
 }
 \tabular{l}{
-   \if{html}{\out{<u>}}example parameters list\if{html}{\out{</u>}}: \cr
+   \if{html}{\out{<u>}}example parameters list (default)\if{html}{\out{</u>}}: \cr
    params <- list(output_folder = "../Spectronaut_example", \cr
-   ion_q_value_cutoff = 0.001, \cr
+   ion_q_value_cutoff = 0.01, \cr
    id_drop_cutoff = 0.3, \cr
    normalization_method = "median", \cr
    normalization_factor_cutoff_outlier = 4, \cr
    filter_oxidized_peptides = T, \cr
    protein_intensity_estimation = "MaxLFQ", \cr
-   stat_test = "modt", \cr
+   stat_test = "rots", \cr
    type_slr = "median", \cr
    fold_change = 1.5, \cr
    p_value_cutoff = 0.05, \cr

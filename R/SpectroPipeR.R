@@ -10,41 +10,41 @@
 #'
 #' | <u> __parameter__ </u> | <u> __description__ </u>                |
 #' |:-----------------------|:--------------------------------------|
-#' | output_folder          | _character_ - output folder path (abs.) |
-#' | ion_q_value_cutoff     | _numeric_ - Q-value used in Spectronaut analysis: Biognosys |
+#' | output_folder          | **mandatory !!!** - _character_ - output folder path (abs.) |
+#' | ion_q_value_cutoff     | **default = 0.01** - _numeric_ - Q-value used in Spectronaut analysis: Biognosys |
 #' |                        | default is 0.01 = 1% error rate |
-#' | id_drop_cutoff         | _numeric_ - value between 0-1 (1 = 100%); xx percent lower |
+#' | id_drop_cutoff         | **default = 0.3** - _numeric_ - value between 0-1 (1 = 100%); xx percent lower |
 #' |                        | than median of ion ID rate => outlier |
-#' | normalization_method   | _character_ - "median" or Spectronaut - auto-detection is per |
-#' |                        | default ON, meaning if normalization was performed in Spectronaut |
+#' | normalization_method   | **default = "median"** - _character_ - "median" or Spectronaut - auto-detection |
+#' |                        | is per default ON, meaning if normalization was performed in Spectronaut |
 #' |                        | this will be detected and preferred over parameter setting here;|
 #' |                        | median normalization is the fallback option|
-#' | normalization_factor_cutoff_outlier | _numeric_ - median off from global median |
+#' | normalization_factor_cutoff_outlier | **default = 4** - _numeric_ - median off from global median |
 #' |                        | (4 means abs. 4fold off) |
-#' | filter_oxidized_peptides | _logical_ - if oxidized peptides should be removed from peptide |
-#' |                          | quantification |
-#' | protein_intensity_estimation | _character_ - Hi3 = Hi3 protein intensity estimation, |
+#' | filter_oxidized_peptides | **default = TRUE** _logical_ - if oxidized peptides should be removed before |
+#' |                          |peptide quantification |
+#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_ - Hi3 = Hi3 protein intensity estimation, |
 #' |                              |  MaxLFQ = MaxLFQ protein intensity estimation |
-#' | stat_test              | _character_ - choose statistical test: "rots" = reproducibility |
+#' | stat_test              | **default = "rots"** - _character_ - choose statistical test: "rots" = reproducibility |
 #' |                        | optimized test statistics, "modt" = moderate t-test (lmfit, eBayes),|
 #' |                        | "t" = t-test |
-#' | type_slr               | _character_ - choose ratio aggregation method: "median" or "tukey" |
-#' |                        | is used when calculating protein values |
-#' | fold_change            | _numeric_ - fold-change used as cutoff e.g. 1.5 |
-#' | p_value_cutoff         | _numeric_ - p-value used as cutoff e.g. 0.05 |
-#' | paired                 | _logical_ - Should paired statistics be applied? |
+#' | type_slr               | **default = "median"** - _character_ - choose ratio aggregation method: |
+#' |                        | "median" or "tukey" is used when calculating protein values |
+#' | fold_change            | **default = 1.5** - _numeric_ - fold-change used as cutoff e.g. 1.5 |
+#' | p_value_cutoff         | **default = 0.05** - _numeric_ - p-value used as cutoff e.g. 0.05 |
+#' | paired                 | **default = FALSE** - _logical_ - Should paired statistics be applied? |
 #'
 #'
-#' | <u>example parameters list</u>:                         |
+#' | <u>example parameters list (default)</u>:                         |
 #' |---------------------------------------------------------|
 #' | params <- list(output_folder = "../Spectronaut_example",|
-#' |               ion_q_value_cutoff = 0.001,|
+#' |               ion_q_value_cutoff = 0.01,|
 #' |               id_drop_cutoff = 0.3,|
 #' |               normalization_method = "median",|
-#' |                normalization_factor_cutoff_outlier = 4,|
-#' |                filter_oxidized_peptides = T,|
-#' |                protein_intensity_estimation = "MaxLFQ",|
-#' |               stat_test = "modt",|
+#' |               normalization_factor_cutoff_outlier = 4,|
+#' |               filter_oxidized_peptides = T,|
+#' |               protein_intensity_estimation = "MaxLFQ",|
+#' |               stat_test = "rots",|
 #' |               type_slr = "median",|
 #' |               fold_change = 1.5,|
 #' |               p_value_cutoff = 0.05,|
@@ -213,6 +213,9 @@
 #'               p_value_cutoff = 0.05,
 #'               paired = FALSE
 #'              )
+#'
+#'## or use default parameters and just setup the mandatory output-folder
+#'# params <- list(output_folder = "../SpectroPipeR_test_folder")
 #'
 #'# example input file
 #'example_file_path <- system.file("extdata",
