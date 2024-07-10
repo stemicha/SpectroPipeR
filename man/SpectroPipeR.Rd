@@ -253,6 +253,9 @@ params <- list(output_folder = "../SpectroPipeR_test_folder",
               paired = FALSE
              )
 
+## or use default parameters and just setup the mandatory output-folder
+# params <- list(output_folder = "../SpectroPipeR_test_folder")
+
 # example input file
 example_file_path <- system.file("extdata",
                                 "SN_test_HYE_mix_file.tsv",

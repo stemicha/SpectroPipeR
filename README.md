@@ -76,20 +76,8 @@ Per default MS2 level should be selected in the quantification setting in Spectr
 # load library
 library(SpectroPipeR)
 
-# parameter list
-params <- list(output_folder = "../SpectroPipeR_test_folder", 
-               ion_q_value_cutoff = 0.01,             
-               id_drop_cutoff = 0.3,                   
-               normalization_method = "median",        
-               normalization_factor_cutoff_outlier = 4, 
-               filter_oxidized_peptides = FALSE,        
-               protein_intensity_estimation = "MaxLFQ",
-               stat_test = "modt",                      
-               type_slr = "median",                    
-               fold_change = 1.5,                       
-               p_value_cutoff = 0.05,                   
-               paired = FALSE                          
-              )
+# use default parameters list
+params <- list(output_folder = "../SpectroPipeR_test_folder")
 
 # example input file
 example_file_path <- system.file("extdata", "SN_test_HYE_mix_file.tsv", package="SpectroPipeR")
@@ -113,20 +101,8 @@ SpectroPipeR_analysis <- SpectroPipeR(file = example_file_path,
 library(SpectroPipeR)
 
 
-# parameter list
-params <- list(output_folder = "../SpectroPipeR_test_folder",
-               ion_q_value_cutoff = 0.001,
-               id_drop_cutoff = 0.3,
-               normalization_method = "median",
-               normalization_factor_cutoff_outlier = 4,
-               filter_oxidized_peptides = TRUE,
-               protein_intensity_estimation = "MaxLFQ",
-               stat_test = "modt",
-               type_slr = "median",
-               fold_change = 1.5,
-               p_value_cutoff = 0.05,
-               paired = FALSE
-)
+# use default parameters list
+params <- list(output_folder = "../SpectroPipeR_test_folder")
 
 # example input file
 example_file_path <- system.file("extdata",

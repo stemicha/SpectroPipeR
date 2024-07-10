@@ -495,20 +495,8 @@ replicates per condition</li>
 <span><span class="co"># example input file, bundled with SpectroPipeR package</span></span>
 <span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"SN_test_HYE_mix_file.tsv"</span>, package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># example parameter list</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span>, </span>
-<span>               ion_q_value_cutoff <span class="op">=</span> <span class="fl">0.01</span>,             </span>
-<span>               id_drop_cutoff <span class="op">=</span> <span class="fl">0.3</span>,                    </span>
-<span>               normalization_method <span class="op">=</span> <span class="st">"median"</span>,         </span>
-<span>               normalization_factor_cutoff_outlier <span class="op">=</span> <span class="fl">4</span>, </span>
-<span>               filter_oxidized_peptides <span class="op">=</span> <span class="cn">FALSE</span>,        </span>
-<span>               protein_intensity_estimation <span class="op">=</span> <span class="st">"MaxLFQ"</span>, </span>
-<span>               stat_test <span class="op">=</span> <span class="st">"rots"</span>,                      </span>
-<span>               type_slr <span class="op">=</span> <span class="st">"median"</span>,                     </span>
-<span>               fold_change <span class="op">=</span> <span class="fl">1.5</span>,                       </span>
-<span>               p_value_cutoff <span class="op">=</span> <span class="fl">0.05</span>,                   </span>
-<span>               paired <span class="op">=</span> <span class="cn">FALSE</span>                           </span>
-<span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># use default parameters list</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 1: load Spectronaut data module</span></span>
 <span><span class="va">SpectroPipeR_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_spectronaut_module.html">read_spectronaut_module</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">example_file_path</span>,</span>
