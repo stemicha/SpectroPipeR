@@ -1214,7 +1214,7 @@ read_spectronaut_module <- function(file = "",
     message_function(text = paste("modified peptides: ","median = ",median(tmp_summary_distinct$distinct_modified_peptides),"; min. = ",min(tmp_summary_distinct$distinct_modified_peptides),"; max. = ",max(tmp_summary_distinct$distinct_modified_peptides),sep=""),color = "blue",log_file_name = log_file_name)
     message_function(text = paste("stripped peptides: ","median = ",median(tmp_summary_distinct$distinct_peptides),"; min. = ",min(tmp_summary_distinct$distinct_peptides),"; max. = ",max(tmp_summary_distinct$distinct_peptides),sep=""),color = "blue",log_file_name = log_file_name)
     message_function(text = paste("protein groups: ","median=",median(tmp_summary_distinct$distinct_proteins),"; min. = ",min(tmp_summary_distinct$distinct_proteins),"; max. = ",max(tmp_summary_distinct$distinct_proteins),sep=""),color = "blue",log_file_name = log_file_name)
-    message_function(text = paste("Attention ---> OUTLIER detected !!! >",parameter_input$id_drop_cutoff*100,"% lower than median ion ID rate"),color = "red",log_file_name = log_file_name)
+    message_function(text = paste("Attention ---> OUTLIER detected !!! >",parameter_input$id_drop_cutoff*100,"% lower than median ion ID rate"),color = "yellow",log_file_name = log_file_name)
     message_function(text = paste("samples detected with ID rates below cutoff of ",ion_id_cutoff,":"),color = "blue",log_file_name = log_file_name)
 
     message_function(text = paste(tmp_summary_distinct_outlier$R.FileName,collapse = "\n"),color = "yellow",log_file_name = log_file_name)
