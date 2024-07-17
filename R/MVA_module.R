@@ -98,6 +98,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   #number of samples detected  ====
   sample_length <- length(unique(SpectroPipeR_data_quant$data_input_normalized$R.FileName))
+  condition_length <- length(unique(SpectroPipeR_data_quant$data_input_normalized$R.Condition))
 
   #colors setup ====
   if(is.null(costum_colors)){
@@ -1132,8 +1133,8 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/correlation_plots"),
          plot = correlation_plot_final,
-         width = if((0.4*sample_length)<20){20}else{0.4*sample_length},
-         height = if((0.4*sample_length)<10){10}else{0.2*sample_length},
+         width = if((0.4*sample_length)<13){20}else{0.5*sample_length},
+         height = if((0.4*sample_length)<10){10}else{0.25*sample_length},
          limitsize = F,
          dpi = 100)
 
@@ -1186,6 +1187,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
           panel.border = element_blank(),
           axis.ticks.y.left = element_blank(),
           legend.key.width = unit(2.5, "cm"),
+          strip.text = element_text(size = 5),
           strip.background = element_rect(color = c("black")))+
     labs(title="correlation plot (peptide level)",
          subtitle = "spearman corr.",
@@ -1252,6 +1254,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
           panel.border = element_blank(),
           legend.position = "bottom",
           legend.key.width = unit(2.5, "cm"),
+          strip.text = element_text(size = 5),
           strip.background = element_rect(color = c("black")))+
     labs(title="correlation plot (protein level)",
          subtitle = "spearman corr.",
@@ -1282,8 +1285,8 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/correlation_plots_condition"),
                  plot = correlation_plot_final_condition,
-                 width = if((0.4*sample_length)<20){20}else{0.4*sample_length},
-                 height = if((0.4*sample_length)<10){10}else{0.2*sample_length},
+                 width = if((0.4*sample_length)<11){20}else{0.8*sample_length},
+                 height = if((0.4*sample_length)<9){12}else{0.5*sample_length},
                  limitsize = F,
                  dpi = 100)
 

@@ -761,7 +761,7 @@ read_spectronaut_module <- function(file = "",
                                                                   fill=.data$number_of_peptides))+
     geom_bar(stat = "identity")+
     scale_fill_brewer(palette = "Set1")+
-    theme_minimal(base_size = 18)+
+    theme_minimal(base_size = 16)+
     scale_y_continuous(sec.axis = sec_axis(~(./max_value_ID)*100, name = "%"))+
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9),
           strip.text.x = element_text(size=16),
@@ -783,7 +783,7 @@ read_spectronaut_module <- function(file = "",
                                                                       fill = .data$number_of_peptides))+
     geom_bar(stat = "identity")+
     scale_fill_brewer(palette = "Set1")+
-    theme_minimal(base_size = 18)+
+    theme_minimal(base_size = 16)+
     scale_y_continuous(sec.axis = sec_axis(~(./max_value_ID)*100, name = "%"))+
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9),
           strip.text.x = element_text(size=16),
@@ -806,7 +806,7 @@ read_spectronaut_module <- function(file = "",
                                   y = .data$count,
                                   fill = forcats::fct_rev(.data$fraction))) +
                       geom_bar(stat="identity")+
-                      theme_minimal(base_size = 18)+
+                      theme_minimal(base_size = 16)+
                       scale_fill_manual(values = ion_ID_rate_plot_colors)+
                       theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9),
                             strip.text.x = element_text(size=16),
@@ -825,7 +825,7 @@ read_spectronaut_module <- function(file = "",
                                                fill = .data$ion_ID_outlier))+
     geom_bar(stat="identity")+
     facet_wrap(~.data$fraction,scales = "free",ncol=1)+
-    theme_minimal(base_size = 18)+
+    theme_minimal(base_size = 16)+
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9),
           strip.text.x = element_text(size=16))+
     scale_fill_manual(values = c("yes"="orangered","no"="darkgrey"))+
@@ -840,7 +840,7 @@ read_spectronaut_module <- function(file = "",
                                               y = .data$count,
                                               fill = .data$ion_ID_outlier))+
     geom_bar(stat="identity")+
-    theme_minimal(base_size = 18)+
+    theme_minimal(base_size = 16)+
     theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9))+
     scale_fill_manual(values = c("yes"="orangered","no"="darkgrey"))+
     geom_hline(yintercept = ion_id_cutoff)+
@@ -863,7 +863,7 @@ read_spectronaut_module <- function(file = "",
            protein_2_peptide_ID_rate_plot_wo
          },
          height = 10,
-         width = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
          limitsize = FALSE)
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/protein_count__strippedPEP"),
@@ -876,8 +876,9 @@ read_spectronaut_module <- function(file = "",
            protein_2_peptide_ID_rate_plot
          },
          height = 10,
-         width = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
          limitsize = FALSE)
+
   ggsave_pdf_png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/ID_ion_counts_plot"),
          plot = if(number_of_conditions>1){
            ion_ID_rate_plot+
@@ -888,8 +889,9 @@ read_spectronaut_module <- function(file = "",
            ion_ID_rate_plot
          },
          height = 10,
-         width = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
          limitsize = FALSE)
+
   ggsave_pdf_png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/ID_counts_plot"),
          plot = if(number_of_conditions>1){
            ID_rate_plot+
@@ -900,8 +902,9 @@ read_spectronaut_module <- function(file = "",
            ID_rate_plot
          },
          height = 20,
-         width = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
          limitsize = FALSE)
+
   ggsave_pdf_png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/ID_counts_plot_ion_filter"),
          plot = if(number_of_conditions>1){
            ID_rate_plot_filter+
@@ -912,7 +915,7 @@ read_spectronaut_module <- function(file = "",
            ID_rate_plot_filter
          },
          height = 10,
-         width = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
          limitsize = FALSE)
 
   #plot if print out == T
@@ -1175,7 +1178,7 @@ read_spectronaut_module <- function(file = "",
                         missed_cleavage_plot_percentage
                       },
                  filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/missed_cleavages_sample_wise_PERCENTAGE"),
-                 width = (sample_length*0.3)+1,
+                 width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
                  height = 10)
 
 
