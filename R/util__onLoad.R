@@ -10,7 +10,7 @@
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.SpectroPipeR <- list(
-    ragg.max_dim = 5E10,
+    ragg.max_dim = 5E70,
     ggrepel.max.overlaps = 100
   )
   toset <- !(names(op.SpectroPipeR) %in% names(op))

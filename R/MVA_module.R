@@ -1285,8 +1285,8 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/correlation_plots_condition"),
                  plot = correlation_plot_final_condition,
-                 width = if((0.4*sample_length)<11){20}else{0.8*sample_length},
-                 height = if((0.4*sample_length)<9){12}else{0.5*sample_length},
+                 width = if((0.4*sample_length)<13){20}else{0.4*sample_length},
+                 height = if((0.4*sample_length)<10){10}else{0.2*sample_length},
                  limitsize = F,
                  dpi = 100)
 
