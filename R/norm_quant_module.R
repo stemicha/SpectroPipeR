@@ -698,7 +698,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
 
 
 
-    #generating quantitative data of peptides and proteins ====
+    #generating quantitative data of peptides ====
     message_function(text = "calculating peptide intensity data ...",
                      color = "blue",
                      log_file_name = log_file_name)
@@ -746,7 +746,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
     }
 
 
-    #replacing 0 values with half-maximal values ====
+    #replacing 0 values with half-minimal values ====
     if(length(which(peptide_intensity$peptide_intensity==0))>0){
 
       #half-minimal value
