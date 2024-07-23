@@ -132,3 +132,86 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 
 ```
 
+If all the necessary packages are correctly installed, you can also execute SpectroPipeR analysis from the terminal using bash. Sometimes, extensive analyses require more computational power and memory, so it might be beneficial to run them on a server.
+
+Here is a basic example that you can use as a starting point, which you can save as "SpectroPipeR_terminal.sh"
+
+``` bash
+#!/bin/bash
+
+# Command line arguments
+input_file=$1
+parameter=$2
+condition_comparisons=$3
+
+
+# usage
+# bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"
+
+# R script
+Rscript -e "
+library(SpectroPipeR)
+
+print(\"$parameter\")
+print(\"$input_file\")
+print(\"$condition_comparisons\")
+
+
+# split parameters
+params <- strsplit(\"$parameter\",split = \";\")
+params <- strsplit(unlist(params),\"=\")
+names(params) <- lapply(params, function(x) x[1])
+params <- lapply(params, function(x) x[2])
+
+# convert parameters class
+convert_params <- function(params) {
+  numeric_params = c(\"ion_q_value_cutoff\",
+                     \"id_drop_cutoff\",
+                     \"normalization_factor_cutoff_outlier\",
+                     \"fold_change\",
+                     \"p_value_cutoff\")
+  logical_params = c(\"filter_oxidized_peptides\",
+                     \"paired\")
+  # iterate over each parameter
+  for (param in names(params)) {
+    # check if parameter is in numeric_params
+    if (param %in% numeric_params) {
+      # convert to numeric
+      params[[param]] <- as.numeric(params[[param]])
+    }
+    # check if parameter is in logical_params
+    else if (param %in% logical_params) {
+      # convert to logical
+      params[[param]] <- as.logical(params[[param]])
+    }
+  }
+  return(params)
+}
+
+params <- convert_params(params)
+
+# split condition comparisons
+cond_comp <- strsplit(\"$condition_comparisons\",split = \";\")
+cond_comp <- sapply(unlist(cond_comp), function(x) strsplit(x,split = \",\"))
+cond_comp <- do.call(cbind,cond_comp)
+
+class(params)
+print(params)
+
+# perform the analysis
+SpectroPipeR_analysis <- SpectroPipeR(file = \"$input_file\",
+                                     parameter = params,
+                                     condition_comparisons = cond_comp
+                                     )
+"
+
+
+```
+
+Example terminal usage:
+
+bash SpectroPipeR_terminal.sh [input_file] [named parameters separated by ;] [condition comparisons separated by ;]
+
+``` terminal
+bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"
+```
