@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">SpectroPipeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,6 +151,7 @@ MaxLFQ)</li>
 <li>extract iBAQ intensities (optional - covariate adjustment)</li>
 <li>calculate protein intensity CV</li>
 <li>compare protein int. (Hi3 or MaxLFQ) vs. iBAQ</li>
+<li>calc. cumulative frequency of CV</li>
 <li>generate sample to condition file including measurement order</li>
 <li>generate plots &amp; table outputs</li>
 </ol>
@@ -219,20 +220,54 @@ abundance profile for each protein across the samples.</p>
 <div class="section level5">
 <h5 id="batch-adjustment-of-data-using-combat">Batch adjustment of data using ComBat<a class="anchor" aria-label="anchor" href="#batch-adjustment-of-data-using-combat"></a>
 </h5>
-<p>ComBat allows users to adjust for batch effects in datasets where the
-batch covariate is known, using methodology described in Johnson <em>et
-al.</em> 2007. It uses either parametric (used by SpectroPipeR) or
-non-parametric empirical Bayes frameworks for adjusting data for batch
-effects.</p>
-<p>“The ComBat batch adjustment approach assumes that batch effects
-represent non-biological but systematic shifts in the mean or
-variability of proteomic features for all samples within a processing
-batch. … This procedure pools information across genes in each batch to
-shrink the batch effect parameter estimates toward the overall mean of
-the batch effect empirical estimates. These are used to adjust the data
-for batch effects. This approach provides a robust and often more
-accurate adjustment for the batch effect on each protein.” - modified
-from Zhang et al., 2018</p>
+<p>Batch effects refer to systematic differences between batches
+(groups) of samples in high-throughput experiments. These differences
+can arise due to various factors, such as batch variations in sample
+preparation, handling, processing procedures and measurement orders.
+Batch effects can obscure the true biological signal and lead to
+incorrect conclusions if not properly accounted for. In the SpectroPipeR
+pipeline, the ComBat tool was employed to adjust for batch effects in
+the datasets where the batch covariate was known. ComBat utilizes the
+methodology described in <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
+al. 2007</a>. It uses an empirical Bayes (EB) framework for adjusting
+data for batch effects that is robust to outliers in small sample sizes
+and performs comparable to existing methods for large samples. <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
+al. 2007:</a> This method incorporates systematic batch biases common
+across genes in making adjustments, assuming that phenomena resulting in
+batch effects often affect many genes in similar ways (i.e. increased
+expression, higher variability, etc). Specifically, the the L/S model
+parameters are estimated that represent the batch effects by pooling
+information across genes in each batch to shrink the batch effect
+parameter estimates toward the overall mean of the batch effect
+estimates (across peptides). These EB estimates are then used to adjust
+the data for batch effects, providing more robust adjustments for the
+batch effect on each peptide. In SpectroPipeR a parametric ComBAT
+emperical Bayes adjustment is implemented by utilizing the sva-package.
+After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of
+adjusted and un-adjusted data under <code>05_processed_data</code>.
+Following the adjustment of peptide data, protein intensities are then
+computed.</p>
+</div>
+<div class="section level5">
+<h5 id="covariate-adjustment">Covariate adjustment<a class="anchor" aria-label="anchor" href="#covariate-adjustment"></a>
+</h5>
+<p>SpectroPipeR is capable of performing covariate adjustment on
+quantitative data. This adjustment is achieved by utilizing
+user-provided meta data and a formula. The adjustment process employs
+the linear model function, lm(), and it operates on the log<sub>10</sub>
+transformed peptide intensity data. Once the linear model is fitted, the
+residuals are computed. These residuals are then adjusted back to the
+original quantitative range by adding the mean peptide intensity across
+all samples. This ensures that each peptide’s quantitative range is
+preserved. Following the adjustment of peptide data, protein intensities
+are then computed. Given that iBAQ intensities are derived from the
+Spectronaut report, they undergo a similar adjustment process as was
+applied to the peptides.</p>
+<div class="float">
+<img src="figures/Covariate_adj_example.png" style="width:100.0%" alt="covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide int.)"><div class="figcaption">covariate adjustment example on simulated
+peptide data (left pannel: peptide intensities; right pannel: age
+adjusted peptide int.)</div>
+</div>
 </div>
 </div>
 </div>
@@ -4421,45 +4456,6 @@ protein level
 </table>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="batch-adjusting-optional">batch adjusting (optional)<a class="anchor" aria-label="anchor" href="#batch-adjusting-optional"></a>
-</h3>
-<p>Batch effects refer to systematic differences between batches
-(groups) of samples in high-throughput experiments. These differences
-can arise due to various factors, such as batch variations in sample
-preparation, handling, processing procedures and measurement orders.
-Batch effects can obscure the true biological signal and lead to
-incorrect conclusions if not properly accounted for. In the SpectroPipeR
-pipeline, the ComBat tool was employed to adjust for batch effects in
-the datasets where the batch covariate was known. ComBat utilizes the
-methodology described in <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
-al. 2007</a>. It uses an empirical Bayes (EB) framework for adjusting
-data for batch effects that is robust to outliers in small sample sizes
-and performs comparable to existing methods for large samples. <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
-al. 2007:</a> This method incorporates systematic batch biases common
-across genes in making adjustments, assuming that phenomena resulting in
-batch effects often affect many genes in similar ways (i.e. increased
-expression, higher variability, etc). Specifically, the the L/S model
-parameters are estimated that represent the batch effects by pooling
-information across genes in each batch to shrink the batch effect
-parameter estimates toward the overall mean of the batch effect
-estimates (across peptides). These EB estimates are then used to adjust
-the data for batch effects, providing more robust adjustments for the
-batch effect on each peptide. In SpectroPipeR a parametric ComBAT
-emperical Bayes adjustment is implemented by utilizing the
-sva-package.</p>
-</div>
-<div class="section level3">
-<h3 id="covariate-adjusting-optional">covariate adjusting (optional)<a class="anchor" aria-label="anchor" href="#covariate-adjusting-optional"></a>
-</h3>
-<p>If a covariate adjustment of peptide intensity data was performed
-using the users input formula, a linear mixed model (LMM) was calculated
-based on that formula per peptide and the outcoming residuals were added
-to the mean peptide intensity over the samples. This means that the
-adjusted peptide intensities retain their intensity level (low intense
-peptides keep their low intensity and high intense ions keep their
-higher intensity).</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -111,7 +111,7 @@ The **correlation_plots** depicts the spearman correlation score (closer to 1 = 
 
 ![correlation with reordering](figures/03__correlation_plots.png){width="80%"}
 
-![correlation plot sorted by conditions](figures/03__correlation_plots_condition){width="80%"}
+![correlation plot sorted by conditions](figures/03__correlation_plots_condition.png){width="80%"}
 
 
 #### 3D PCA_plots
