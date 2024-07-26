@@ -51,8 +51,8 @@ are not included by default.
 
 <u>The following steps are advised:</u>
 
-1.  Proceed with the download and installation of SpectroPipeR as directed.
-2.  Utilize the `Spectronaut_export_scheme()` function to create
+1.  download and install SpectroPipeR (https://github.com/stemicha/SpectroPipeR)
+2.  load SpectroPipeR and utilize the `Spectronaut_export_scheme()` function to create
     the necessary Spectronaut report scheme (\*.rs).
 3.  Import the generated Spectronaut report scheme.
 4.  Conduct an analysis of your raw mass spectrometry data in
@@ -232,8 +232,8 @@ For further information please read [lesSDRF is more: maximizing the value of pr
 2. filtering the ions for the used Q-value cutoff specified in the parameters
 3. filter for ProteinGroups with 2 or more peptides
 4. count ProteinGroups per condition
-5. calculate the in how many replicates the ProteinGroups was identified with 2 or more peptides with a Q-value cutoff below the specified one in the parameters
-6. filter the list for ProteinGroups found only at least 50% of replicates per condition
+5. calculate in how many replicates the ProteinGroup was identified with 2 or more peptides with a Q-value cutoff below the specified one in the parameters
+6. filter the list for ProteinGroups found only in at least 50% of replicates per condition
 7. generate the wide output
 
 ## example code

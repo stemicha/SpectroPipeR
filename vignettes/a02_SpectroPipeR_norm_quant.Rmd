@@ -100,7 +100,7 @@ MaxLFQ stands for Maximal Peptide Ratio Extraction and Label-Free Quantification
 
 The MaxLFQ algorithm was developed by [Cox et al. in 2014](https://doi.org/10.1074/mcp.M113.031591) and is widely used in label-free quantitative proteomics. It is considered to be an accurate method for proteome-wide label-free quantification.
 
-In more technical terms, the MaxLFQ algorithm calculates ratio between any two samples using the peptide species that are present. The pair-wise protein ratio is then defined as the median of the peptide ratios, to protect against outliers (require a minimal number of two peptide ratios in order for a given protein ratio to be considered valid).At this point the algorithm constructed a triangular matrix containing all pair-wise protein ratios between any two samples, which is the maximal possible quantification information. Then the algorithm perform a least-squares analysis to reconstruct the abundance profile optimally satisfying the individual protein ratios in the matrix based on the sum of squared differences. Then the alg. rescales the whole profile to the cumulative intensity across samples, thereby preserving the total summed intensity for a protein over all samples.
+In more technical terms, the MaxLFQ algorithm calculates ratio between any two samples using the peptide species that are present. The pair-wise protein ratio is then defined as the median of the peptide ratios, to protect against outliers (require a minimal number of two peptide ratios in order for a given protein ratio to be considered valid). At this point the algorithm constructed a triangular matrix containing all pair-wise protein ratios between any two samples, which is the maximal possible quantification information. Then the algorithm perform a least-squares analysis to reconstruct the abundance profile optimally satisfying the individual protein ratios in the matrix based on the sum of squared differences. Then the algorithm rescales the whole profile to the cumulative intensity across samples, thereby preserving the total summed intensity for a protein over all samples.
 This procedure is repeated for all proteins, resulting in an accurate abundance profile for each protein across the samples.
 
 #### Batch adjustment of data using ComBat
@@ -109,15 +109,15 @@ Batch effects refer to systematic differences between batches (groups) of sample
 These differences can arise due to various factors, such as batch variations in sample preparation, handling, processing procedures and measurement orders. Batch effects can obscure the true biological signal and lead to incorrect conclusions if not properly accounted for.
 In the SpectroPipeR pipeline, the ComBat tool was employed to adjust for batch effects in the datasets where the batch covariate was known. ComBat utilizes the methodology described in [Johnson et al. 2007](https://pubmed.ncbi.nlm.nih.gov/16632515/).
 It uses an empirical Bayes (EB) framework for adjusting data for batch effects that is robust to outliers in small sample sizes and performs comparable to existing methods for large samples. [Johnson et al. 2007:](https://pubmed.ncbi.nlm.nih.gov/16632515/)
-This method incorporates systematic batch biases common across genes in making adjustments, assuming that phenomena resulting in batch effects often affect many genes in similar ways (i.e. increased expression, higher variability, etc). Specifically, the the L/S model parameters are estimated that represent the batch effects by pooling information across genes in each batch to shrink the batch effect parameter estimates toward the overall mean of the batch effect estimates (across peptides). These EB estimates are then used to adjust the data for batch effects, providing more robust adjustments for the batch effect on each peptide.
-In SpectroPipeR a parametric ComBAT emperical Bayes adjustment is implemented by utilizing the sva-package.
+This method incorporates systematic batch biases common across genes in making adjustments, assuming that phenomena resulting in batch effects often affect many genes in similar ways (i.e. increased expression, higher variability, etc). Specifically, the L/S model parameters are estimated that represent the batch effects by pooling information across genes in each batch to shrink the batch effect parameter estimates toward the overall mean of the batch effect estimates (across peptides). These EB estimates are then used to adjust the data for batch effects, providing more robust adjustments for the batch effect on each peptide.
+In SpectroPipeR a parametric ComBAT empirical Bayes adjustment is implemented by utilizing the sva-package.
 After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of adjusted and un-adjusted data under `05_processed_data`. Following the adjustment of peptide data, protein intensities are then computed.
 
 #### Covariate adjustment
 
 SpectroPipeR is capable of performing covariate adjustment on quantitative data. This adjustment is achieved by utilizing user-provided meta data and a formula. The adjustment process employs the linear model function, lm(), and it operates on the log<sub>10</sub> transformed peptide intensity data. Once the linear model is fitted, the residuals are computed. These residuals are then adjusted back to the original quantitative range by adding the mean peptide intensity across all samples. This ensures that each peptide's quantitative range is preserved. Following the adjustment of peptide data, protein intensities are then computed. Given that iBAQ intensities are derived from the Spectronaut report, they undergo a similar adjustment process as was applied to the peptides.
 
-![covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide int.)](figures/Covariate_adj_example.png){width="100%"}
+![covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)](figures/Covariate_adj_example.png){width="100%"}
 
 ## example code
 
@@ -322,7 +322,7 @@ The **CV_cumulative_frequency_plot** graphically represents the cumulative frequ
 
 #### sample_to_condition_file.csv
 
-The **sample_to_condition_file.csv** table contains the information about the run file name, condtion, replicate, run date and resulting measurement order.
+The **sample_to_condition_file.csv** table contains the information about the run file name, condition, replicate, run date and resulting measurement order.
 
 -   <u>R.Condition</u> is the condition naming which was setup in your
     Spectronaut analysis
@@ -390,8 +390,8 @@ The **iBAQ_protein_intensity_data_extracted_from_Spectronaut.csv** table contain
 -   <u>PG.IBAQ_raw</u> Spectronaut iBAQ calculations
 
 
-Since the a protein group can contain more than one protein the number of theoretical peptides may differ. Therefore Spectronaut separates with a ";" e.g. "6179.5;6376.5". 
-SpectroPipeR uses the mean of the iBAQ values to give an iBAQ estimate for the protein group as well.
+Since a protein group can contain more than one protein the number of theoretical peptides may differ. Therefore Spectronaut separates with a ";" e.g. "6179.5;6376.5" (iBAQ intensities from Spectronaut = PG.IBAQ_raw). 
+SpectroPipeR uses the mean of the iBAQ values to give an iBAQ estimate for the protein group as well (iBAQ_intensities).
 
 ```{r,eval = T,echo = F,message=F,warning=F}
 kable(read_csv(file = "tables/02a__iBAQ_protein_intensity_data_extracted_from_Spectronaut.csv")) %>% 
@@ -477,7 +477,7 @@ kable(read_csv(file = "tables/02a__maxLFQ_protein_intensity_data_normalization_f
 
 The **CV_20percent_cumulative_frequency.csv** table contains the cumulative frequency of the CV≤0.2 fraction on peptide and protein intensity level
 
--   <u>R.Condtion	</u> conditions as provided by Spectronaut report
+-   <u>R.Condition	</u> conditions as provided by Spectronaut report
 -   <u>cumulative frequency</u> cumulative frequency
 -   <u>CV_cut</u> CV threshold for which the cumulative frequency was calculated
 -   <u>level</u> peptide or protein level
@@ -492,7 +492,7 @@ kable(read_csv(file = "tables/02a__CV_20percent_cumulative_frequency.csv")) %>%
 
 The comprehensive **CV_cumulative_frequency.csv** table contains the cumulative frequency on peptide and protein intensity level
 
--   <u>R.Condtion	</u> conditions as provided by Spectronaut report
+-   <u>R.Condition	</u> conditions as provided by Spectronaut report
 -   <u>cumulative frequency</u> cumulative frequency
 -   <u>CV_cut</u> CV threshold for which the cumulative frequency was calculated
 -   <u>level</u> peptide or protein level

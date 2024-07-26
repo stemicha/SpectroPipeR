@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="../articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="../articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -206,12 +206,12 @@ between any two samples using the peptide species that are present. The
 pair-wise protein ratio is then defined as the median of the peptide
 ratios, to protect against outliers (require a minimal number of two
 peptide ratios in order for a given protein ratio to be considered
-valid).At this point the algorithm constructed a triangular matrix
+valid). At this point the algorithm constructed a triangular matrix
 containing all pair-wise protein ratios between any two samples, which
 is the maximal possible quantification information. Then the algorithm
 perform a least-squares analysis to reconstruct the abundance profile
 optimally satisfying the individual protein ratios in the matrix based
-on the sum of squared differences. Then the alg. rescales the whole
+on the sum of squared differences. Then the algorithm rescales the whole
 profile to the cumulative intensity across samples, thereby preserving
 the total summed intensity for a protein over all samples. This
 procedure is repeated for all proteins, resulting in an accurate
@@ -235,14 +235,14 @@ and performs comparable to existing methods for large samples. <a href="https://
 al. 2007:</a> This method incorporates systematic batch biases common
 across genes in making adjustments, assuming that phenomena resulting in
 batch effects often affect many genes in similar ways (i.e. increased
-expression, higher variability, etc). Specifically, the the L/S model
+expression, higher variability, etc). Specifically, the L/S model
 parameters are estimated that represent the batch effects by pooling
 information across genes in each batch to shrink the batch effect
 parameter estimates toward the overall mean of the batch effect
 estimates (across peptides). These EB estimates are then used to adjust
 the data for batch effects, providing more robust adjustments for the
 batch effect on each peptide. In SpectroPipeR a parametric ComBAT
-emperical Bayes adjustment is implemented by utilizing the sva-package.
+empirical Bayes adjustment is implemented by utilizing the sva-package.
 After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of
 adjusted and un-adjusted data under <code>05_processed_data</code>.
 Following the adjustment of peptide data, protein intensities are then
@@ -264,9 +264,9 @@ are then computed. Given that iBAQ intensities are derived from the
 Spectronaut report, they undergo a similar adjustment process as was
 applied to the peptides.</p>
 <div class="float">
-<img src="figures/Covariate_adj_example.png" style="width:100.0%" alt="covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide int.)"><div class="figcaption">covariate adjustment example on simulated
+<img src="figures/Covariate_adj_example.png" style="width:100.0%" alt="covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)"><div class="figcaption">covariate adjustment example on simulated
 peptide data (left pannel: peptide intensities; right pannel: age
-adjusted peptide int.)</div>
+adjusted peptide intensities)</div>
 </div>
 </div>
 </div>
@@ -665,7 +665,7 @@ analysis.</p>
 <h5 id="sample_to_condition_file-csv">sample_to_condition_file.csv<a class="anchor" aria-label="anchor" href="#sample_to_condition_file-csv"></a>
 </h5>
 <p>The <strong>sample_to_condition_file.csv</strong> table contains the
-information about the run file name, condtion, replicate, run date and
+information about the run file name, condition, replicate, run date and
 resulting measurement order.</p>
 <ul>
 <li>
@@ -1657,11 +1657,11 @@ Spectronaut analysis</li>
 <li>
 <u>PG.IBAQ_raw</u> Spectronaut iBAQ calculations</li>
 </ul>
-<p>Since the a protein group can contain more than one protein the
-number of theoretical peptides may differ. Therefore Spectronaut
-separates with a “;” e.g. “6179.5;6376.5”. SpectroPipeR uses the mean of
-the iBAQ values to give an iBAQ estimate for the protein group as
-well.</p>
+<p>Since a protein group can contain more than one protein the number of
+theoretical peptides may differ. Therefore Spectronaut separates with a
+“;” e.g. “6179.5;6376.5” (iBAQ intensities from Spectronaut =
+PG.IBAQ_raw). SpectroPipeR uses the mean of the iBAQ values to give an
+iBAQ estimate for the protein group as well (iBAQ_intensities).</p>
 <table class="table table" style="font-size: 10px; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -3818,7 +3818,8 @@ contains the cumulative frequency of the CV≤0.2 fraction on peptide and
 protein intensity level</p>
 <ul>
 <li>
-<u>R.Condtion </u> conditions as provided by Spectronaut report</li>
+<u>R.Condition </u> conditions as provided by Spectronaut
+report</li>
 <li>
 <u>cumulative frequency</u> cumulative frequency</li>
 <li>
@@ -3928,7 +3929,8 @@ contains the cumulative frequency on peptide and protein intensity
 level</p>
 <ul>
 <li>
-<u>R.Condtion </u> conditions as provided by Spectronaut report</li>
+<u>R.Condition </u> conditions as provided by Spectronaut
+report</li>
 <li>
 <u>cumulative frequency</u> cumulative frequency</li>
 <li>

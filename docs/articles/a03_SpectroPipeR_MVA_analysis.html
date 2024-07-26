@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="../articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="../articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -193,8 +193,8 @@ analysis, for more information see <a href="http://factominer.free.fr" class="ex
 <div class="section level3">
 <h3 id="example-code">example code<a class="anchor" aria-label="anchor" href="#example-code"></a>
 </h3>
-<p><strong>MVA_module() needs the output of the norm_quant_module()
-!</strong></p>
+<p><strong>MVA_module() needs the output of the norm_quant_module() from
+step 2 of the pipeline!</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 3: MVA module</span></span>
 <span><span class="fu"><a href="../reference/MVA_module.html">MVA_module</a></span><span class="op">(</span>SpectroPipeR_data_quant <span class="op">=</span> <span class="va">SpectroPipeR_data_quant</span><span class="op">)</span></span></code></pre></div>
@@ -324,7 +324,7 @@ at the peptide level, with colors indicating the measurement order.</p>
 </h5>
 <p>The <strong>UMAP_plot_protein_level_conditions_marked</strong>
 graphically represents the samples in the UMAP dimensions at the protein
-level, with colors indicating the measurement order.</p>
+level, with colors indicating the conditions.</p>
 <p><img src="figures/03__UMAP_plot_protein_level_conditions_marked.png" style="width:60.0%"></p>
 </div>
 <div class="section level5">

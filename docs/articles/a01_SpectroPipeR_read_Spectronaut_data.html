@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="../articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="../articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -108,10 +108,10 @@ it on your system ! <a href="https://quarto.org/docs/get-started/" class="extern
 output report that are not included by default.</p>
 <p><u>The following steps are advised:</u></p>
 <ol style="list-style-type: decimal">
-<li>Proceed with the download and installation of SpectroPipeR as
-directed.</li>
-<li>Utilize the <code><a href="../reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme()</a></code> function to
-create the necessary Spectronaut report scheme (*.rs).</li>
+<li>download and install SpectroPipeR (<a href="https://github.com/stemicha/SpectroPipeR" class="external-link uri">https://github.com/stemicha/SpectroPipeR</a>)</li>
+<li>load SpectroPipeR and utilize the
+<code><a href="../reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme()</a></code> function to create the
+necessary Spectronaut report scheme (*.rs).</li>
 <li>Import the generated Spectronaut report scheme.</li>
 <li>Conduct an analysis of your raw mass spectrometry data in
 Spectronaut and produce the output report using the imported report
@@ -477,10 +477,10 @@ metadata annotation</a></p>
 parameters</li>
 <li>filter for ProteinGroups with 2 or more peptides</li>
 <li>count ProteinGroups per condition</li>
-<li>calculate the in how many replicates the ProteinGroups was
-identified with 2 or more peptides with a Q-value cutoff below the
-specified one in the parameters</li>
-<li>filter the list for ProteinGroups found only at least 50% of
+<li>calculate in how many replicates the ProteinGroup was identified
+with 2 or more peptides with a Q-value cutoff below the specified one in
+the parameters</li>
+<li>filter the list for ProteinGroups found only in at least 50% of
 replicates per condition</li>
 <li>generate the wide output</li>
 </ol>
@@ -491,7 +491,7 @@ replicates per condition</li>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load SpectroPipeR</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SpectroPipeR</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
 <span><span class="co"># example input file, bundled with SpectroPipeR package</span></span>
 <span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"SN_test_HYE_mix_file.tsv"</span>, package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">

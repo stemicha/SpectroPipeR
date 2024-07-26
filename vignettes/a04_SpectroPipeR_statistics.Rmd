@@ -50,13 +50,13 @@ This ROPECA (reproducibility-optimized peptide change averaging) approach can be
 ### statistical analysis
 
 Pair-wise comparison can be carried out using an ordinary t-test ("t"), modified t-test ("modt"), or reproducibility-optimized test statistic ("rots").
-The type of data aggregation can be either ("median") or ("tukey") for calculating protein values.
+The type of data aggregation can be either median ("median") or tukey ("tukey") for calculating protein values.
 The test may be performed paired or unpaired depending on your experimental design.
 
 PECA determines differential gene expression using directly the peptide intensity measurements of proteomic datasets.
 An change between two groups of samples is first calculated for each peptide in the datasets.
 The protein-level changes are then defined as median/tukey over the peptide level changes.
-For more details about the peptide-level expression change averaging (PECA) procedure, see Elo et al. (2005), Laajala et al. (2009) and Suomi et al.
+For more details about the peptide-level expression change averaging (PECA) procedure, see [Elo _et al._ (2005)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1316121/), [Laajala _et al._ (2009)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2728531/) and [Suomi _et al._ (2024)](https://www.bioconductor.org/packages/release/bioc/html/PECA.html)
 
 PECA calculates the peptide level changes using the ordinary or modified t-statistic.
 The ordinary t-statistic is calculated using the function rowttests in the Bioconductor genefilter package.
@@ -69,7 +69,7 @@ The empirical Bayes moderated t-statistics test each individual contrast equal t
 For each protein, the moderated F-statistic tests whether all the contrasts are zero.
 The F-statistic is an overall test computed from the set of t-statistics for that peptide This is exactly analogous the relationship between t-tests and F-statistics in conventional anova, except that the residual mean squares have been moderated between proteins.
 
-**If "rots" is selected a Reproducibility-Optimized Test Statistic (ROTS):**
+**If "rots" is selected a Reproducibility-Optimized Test Statistic (ROTS) is calculated using the PECA package:**
 
 The reproducibility-optimization procedure (ROTS) enables the selection of a suitable gene ranking statistic directly from the given dataset.
 The statistic is optimized among a family of t-type statistics $$d_\alpha = |\overline{x}_1 - \overline{x}_2| / (\alpha_1 + \alpha_2*s)$$, where $|\overline{x}_1 - \overline{x}_2|$ is the difference between the two group averages of normalized peptide abundances, $\alpha_1$ and $\alpha_2$ are non-negative parameters to be optimized, and $s$ is the pooled standard error.
@@ -109,13 +109,13 @@ The peptide intensities were used to calculate the mean scaled peptide intensiti
 This step is important since peptides have different intensities due to different flyability in mass spec.
 For example if two peptides are injected at 10fmol and one flies much better than the other, then the better flying peptide will have a much higher intensity.
 Therefore we need to adjust for this effect and scale the peptides in the same numeric region.
-After scaling the scaled peptides intensities were used to calculate Cohen's d per protein and comparison.
+Following the scaling process, the intensities of the scaled peptides were employed to compute Cohen’s d for each protein, facilitating subsequent comparative analysis.
 
 ## example code
 
 **statistics_module() needs the output of the norm_quant_module() !**
 
-The condition_comparisons requires a cbind() with the user specififed conditions
+The condition_comparisons (mandatory) requires a cbind() with the user specified conditions as used during the setup of the analysis in Spectronaut. Therefore provide the conditions, which should be compared in the R code.
 
 ```{r}
 # condition comparison example
@@ -257,8 +257,8 @@ The **statistical_analysis.csv** holds the information of the statistical analys
 -   <u>effect_size_method:</u> effect size estimation method used
 -   <u>d:</u> effect size estimate
 -   <u>d_pooled_SD:</u> effect size estimate; pooled SD
--   <u>d_95CI_lower:</u> effect size estimate:the lower 95% confidence interval
--   <u>d_95CI_upper:</u> effect size estimate:the upper 95% confidence interval
+-   <u>d_95CI_lower:</u> effect size estimate: the lower 95% confidence interval
+-   <u>d_95CI_upper:</u> effect size estimate: the upper 95% confidence interval
 -   <u>d_magnitute:</u> a qualitative assessment of the magnitude of effect size (\|d\|\<0.2 negligible, \|d\|\<0.5 small, \|d\|\<0.8 medium, otherwise large); Cohen 1992
 
 ```{r,eval = T,echo = F,message=F,warning=F}
@@ -306,8 +306,8 @@ The Excel table **statistical_analysis_2_more_peptides_per_protein_iBAQ_quantile
 -   <u>effect_size_method:</u> effect size estimation method used
 -   <u>d:</u> effect size estimate
 -   <u>d_pooled_SD:</u> effect size estimate; pooled SD
--   <u>d_95CI_lower:</u> effect size estimate:the lower 95% confidence interval
--   <u>d_95CI_upper:</u> effect size estimate:the upper 95% confidence interval
+-   <u>d_95CI_lower:</u> effect size estimate: the lower 95% confidence interval
+-   <u>d_95CI_upper:</u> effect size estimate: the upper 95% confidence interval
 -   <u>d_magnitute:</u> a qualitative assessment of the magnitude of effect size (\|d\|\<0.2 negligible, \|d\|\<0.5 small, \|d\|\<0.8 medium, otherwise large); Cohen 1992
 -   <u>group1\_\_mean_iBAQ:</u> mean iBAQ intensity of group 1
 -   <u>group_1\_\_iBAQ_quantiles:</u> iBAQ intensity quantile of group 1
@@ -351,7 +351,7 @@ This information can be valuable for selecting the most appropriate estimation m
 
 The **Protein_intensity_benchmark\_\_scatter_plot** plot depicts the peptide intensity ratio on the x-axis and the protein intensity ratio on the y-axis for proteins with 2 or more peptides.
 
-The solid line shows the diagonal and the dashed lines indicate a 2fold difference.
+The solid line shows the diagonal and the dashed lines indicate a 2-fold difference.
 The count highlights the number of proteins which are affected by a difference above abs.
 2 fold-change.
 The size of the dots illustrate the number of peptides.

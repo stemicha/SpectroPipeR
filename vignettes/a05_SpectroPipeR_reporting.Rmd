@@ -44,25 +44,13 @@ The reporting module takes the inputs from:
 - step 5 - statistics (optional)
 
 to render an interactive standalone HTML report.
-The rendering is performed with **Quarto CLI**. You should install the Quarto CLI using [Quarto get started installation](https://quarto.org/docs/get-started/).
+The rendering is performed with **Quarto CLI**. So Quarto CLI is required. If you did not already install the Quarto CLI you should install the Quarto CLI using [Quarto get started installation](https://quarto.org/docs/get-started/).
 
 ## SpectroPipeR functions executed before
 
 ```{r}
 # parameter list
-params <- list(output_folder = "../SpectroPipeR_test_folder", 
-               ion_q_value_cutoff = 0.01,              
-               id_drop_cutoff = 0.3,                    
-               normalization_method = "median",         
-               normalization_factor_cutoff_outlier = 4, 
-               filter_oxidized_peptides = FALSE,        
-               protein_intensity_estimation = "MaxLFQ", 
-               stat_test = "modt",                      
-               type_slr = "median",                     
-               fold_change = 1.5,                       
-               p_value_cutoff = 0.05,                   
-               paired = FALSE                           
-)
+params <- list(output_folder = "../SpectroPipeR_test_folder")
 
 # example input file, bundled with SpectroPipeR package
 example_file_path <- system.file("extdata", "SN_test_HYE_mix_file.tsv", package="SpectroPipeR")
@@ -152,6 +140,7 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 
 ![SpectroPipeR_report_module() - screenshot of html output report](figures/example_report.png){width=80%}
 
+[SpectroPipeR example report](https://stemicha.github.io/SpectroPipeR_examples/species_mix_analysis__2024_07_11__15_06_SpectroPipeR_report.html)
 
 After the function was executed the SpectroPipeR_report.html file was generated inside the output folder.
 

@@ -1,5 +1,5 @@
 ---
-title: "SpectroPipeR - stat. results functional enrichment analysis"
+title: "SpectroPipeR - example code - functional enrichment analysis (external package)"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{SpectroPipeR - stat. results functional enrichment analysis}

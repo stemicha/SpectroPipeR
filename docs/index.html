@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -92,6 +92,13 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of SpectroPipeR like so:</p>
+<ul>
+<li>install R using <a href="https://cran.r-project.org" class="external-link uri">https://cran.r-project.org</a>.</li>
+<li>
+<u>optional:</u> install RStudio IDE using <a href="https://posit.co/download/rstudio-desktop/" class="external-link uri">https://posit.co/download/rstudio-desktop/</a>
+</li>
+<li>inside R execute the following code:</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install devtools</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
@@ -111,35 +118,59 @@
 <p>SpectroPipeR requires certain columns from the Spectronaut output report that are not included by default.</p>
 <p><em>The following steps are advised:</em></p>
 <ol style="list-style-type: decimal">
-<li><strong>Proceed with the download and installation of SpectroPipeR as directed</strong></li>
-<li><strong>Utilize the <code><a href="reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme()</a></code> function to create the necessary Spectronaut report scheme (SpectroPipeR_report.rs).</strong></li>
+<li><strong>download and installation of SpectroPipeR (if not already be done)</strong></li>
+<li><strong>load the SpectroPipeR package and utilize the <code><a href="reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme()</a></code> function to create the necessary Spectronaut report scheme (SpectroPipeR_report.rs) in the output folder provided.</strong></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme</a></span><span class="op">(</span>output_location <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># output_location: path to output folder for the SpectroPipeR_report.rs Spectronaut report scheme</span></span>
+<span><span class="fu"><a href="reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme</a></span><span class="op">(</span>output_location <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
-<li><strong>Import the generated SpectroPipeR report scheme into Spectronaut</strong></li>
-<li><strong>Conduct an analysis of your raw mass spectrometry data in Spectronaut and define conditions during analysis setup process</strong></li>
-<li><strong>produce the output report using the imported SpectroPipeR report scheme</strong></li>
+<li><strong>import the generated SpectroPipeR report scheme (SpectroPipeR_report.rs) into Spectronaut</strong></li>
+<li><strong>conduct an analysis of your raw mass spectrometry data in Spectronaut and define conditions during analysis setup process</strong></li>
+<li>**produce the output report (*.tsv) using the imported SpectroPipeR report scheme**</li>
+<li><strong>open R and use/edit code below to perform your analysis</strong></li>
 </ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># edit strings inside quotes</span></span>
+<span></span>
+<span><span class="co"># use/edit default parameters list // define output folder (mandatory !)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"[your path to output folder]"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add your path to your Spectronaut report (*.tsv)</span></span>
+<span><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="st">"[your path to Spectronaut report (*.tsv)]"</span></span>
+<span></span>
+<span><span class="co"># add your condition comparisons as named in Spectronaut analysis setup</span></span>
+<span><span class="va">condition_comp</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"[condition_2]"</span>,<span class="st">"[condition_1]"</span><span class="op">)</span>,</span>
+<span>                       <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"[condition_3]"</span>,<span class="st">"[condition_1]"</span><span class="op">)</span></span>
+<span>                        <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># launch analysis</span></span>
+<span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/SpectroPipeR.html">SpectroPipeR</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">file_path</span>,</span>
+<span>                                      parameter <span class="op">=</span> <span class="va">params</span>,</span>
+<span>                                      condition_comparisons <span class="op">=</span> <span class="va">condition_comp</span></span>
+<span>                                      <span class="op">)</span></span></code></pre></div>
 <p>Spectronaut output report should contain the following columns to work in SpectroPipeR (these are included when using the scheme generated by <code><a href="reference/Spectronaut_export_scheme.html">Spectronaut_export_scheme()</a></code>):</p>
 <p><u>mandatory Spectronaut report columns:</u></p>
 <p>R.FileName, R.Condition, R.Replicate, R.Instrument Name, R.Raw File Name, R.MS1 Mass Analyzer, R.MS2 Mass Analyzer, R.Run Date, PG.ProteinGroups, PG.Organisms, PG.IBAQ, PEP.StrippedSequence, EG.ModifiedPeptide, PEP.NrOfMissedCleavages, EG.UserGroup, EG.Qvalue, EG.PEP, EG.Cscore, EG.NormalizationFactor, EG.TotalQuantity (Settings), EG.SignalToNoise, EG.Identified, EG.ApexRT, EG.IntCorrScore, EG.DatapointsPerPeak, EG.DatapointsPerPeak (MS1), FG.Charge, FG.Id, FG.XICDBID, FG.LabeledSequence, FG.ShapeQualityScore, FG.MS1Quantity, FG.MS2Quantity, FG.MS1RawQuantity, FG.MS2RawQuantity</p>
 <p>EG.TotalQuantity (Settings) is used for the quantification. Per default MS2 level should be selected in the quantification setting in Spectronaut™.</p>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="code-example">code example<a class="anchor" aria-label="anchor" href="#code-example"></a>
 </h2>
 <div class="section level3">
 <h3 id="all-in-one-function-example">all-in-one function example:<a class="anchor" aria-label="anchor" href="#all-in-one-function-example"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load library</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SpectroPipeR</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># use default parameters list</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># example input file</span></span>
+<span><span class="co"># example input file // or path to your Spectronaut report (*.tsv)</span></span>
 <span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"SN_test_HYE_mix_file.tsv"</span>, package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># launch analysis</span></span>
@@ -152,15 +183,15 @@
 <div class="section level3">
 <h3 id="single-function-execution-example">single function execution example:<a class="anchor" aria-label="anchor" href="#single-function-execution-example"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load library</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">SpectroPipeR</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># use default parameters list</span></span>
 <span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># example input file</span></span>
+<span><span class="co"># example input file // or path to your Spectronaut report (*.tsv)</span></span>
 <span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span>
 <span>                                 <span class="st">"SN_test_HYE_mix_file.tsv"</span>,</span>
 <span>                                 package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
@@ -187,75 +218,75 @@
 <span>                           SpectroPipeR_data_stats <span class="op">=</span> <span class="va">SpectroPipeR_data_stats</span><span class="op">)</span></span></code></pre></div>
 <p>If all the necessary packages are correctly installed, you can also execute SpectroPipeR analysis from the terminal using bash. Sometimes, extensive analyses require more computational power and memory, so it might be beneficial to run them on a server.</p>
 <p>Here is a basic example that you can use as a starting point, which you can save as “SpectroPipeR_terminal.sh”</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Command line arguments</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="va">parameter</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="va">condition_comparisons</span><span class="op">=</span><span class="va">$3</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># usage</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co"># R script</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="st">library(SpectroPipeR)</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="st"># split parameters</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="st">params &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="st">params &lt;- strsplit(unlist(params),</span><span class="dt">\"</span><span class="st">=</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="st">names(params) &lt;- lapply(params, function(x) x[1])</span></span>
-<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="st">params &lt;- lapply(params, function(x) x[2])</span></span>
-<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="st"># convert parameters class</span></span>
-<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="st">convert_params &lt;- function(params) {</span></span>
-<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="st">  numeric_params = c(</span><span class="dt">\"</span><span class="st">ion_q_value_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">id_drop_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">normalization_factor_cutoff_outlier</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">fold_change</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">p_value_cutoff</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="st">  logical_params = c(</span><span class="dt">\"</span><span class="st">filter_oxidized_peptides</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">paired</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="st">  # iterate over each parameter</span></span>
-<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="st">  for (param in names(params)) {</span></span>
-<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="st">    # check if parameter is in numeric_params</span></span>
-<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="st">    if (param %in% numeric_params) {</span></span>
-<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="st">      # convert to numeric</span></span>
-<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.numeric(params[[param]])</span></span>
-<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="st">    # check if parameter is in logical_params</span></span>
-<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a><span class="st">    else if (param %in% logical_params) {</span></span>
-<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a><span class="st">      # convert to logical</span></span>
-<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.logical(params[[param]])</span></span>
-<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a><span class="st">  return(params)</span></span>
-<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a></span>
-<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a><span class="st">params &lt;- convert_params(params)</span></span>
-<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a><span class="st"># split condition comparisons</span></span>
-<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a><span class="st">cond_comp &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a><span class="st">cond_comp &lt;- sapply(unlist(cond_comp), function(x) strsplit(x,split = </span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">))</span></span>
-<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a><span class="st">cond_comp &lt;- do.call(cbind,cond_comp)</span></span>
-<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a></span>
-<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a><span class="st">class(params)</span></span>
-<span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a><span class="st">print(params)</span></span>
-<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a><span class="st"># perform the analysis</span></span>
-<span id="cb5-63"><a href="#cb5-63" tabindex="-1"></a><span class="st">SpectroPipeR_analysis &lt;- SpectroPipeR(file = </span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb5-64"><a href="#cb5-64" tabindex="-1"></a><span class="st">                                     parameter = params,</span></span>
-<span id="cb5-65"><a href="#cb5-65" tabindex="-1"></a><span class="st">                                     condition_comparisons = cond_comp</span></span>
-<span id="cb5-66"><a href="#cb5-66" tabindex="-1"></a><span class="st">                                     )</span></span>
-<span id="cb5-67"><a href="#cb5-67" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb5-68"><a href="#cb5-68" tabindex="-1"></a></span></code></pre></div>
-<p>Example terminal usage:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Command line arguments</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="va">parameter</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="va">condition_comparisons</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># usage</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># R script</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="st">library(SpectroPipeR)</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="st"># split parameters</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="st">params &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="st">params &lt;- strsplit(unlist(params),</span><span class="dt">\"</span><span class="st">=</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="st">names(params) &lt;- lapply(params, function(x) x[1])</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="st">params &lt;- lapply(params, function(x) x[2])</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="st"># convert parameters class</span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="st">convert_params &lt;- function(params) {</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="st">  numeric_params = c(</span><span class="dt">\"</span><span class="st">ion_q_value_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">id_drop_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">normalization_factor_cutoff_outlier</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">fold_change</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">p_value_cutoff</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="st">  logical_params = c(</span><span class="dt">\"</span><span class="st">filter_oxidized_peptides</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">paired</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="st">  # iterate over each parameter</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="st">  for (param in names(params)) {</span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="st">    # check if parameter is in numeric_params</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="st">    if (param %in% numeric_params) {</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="st">      # convert to numeric</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.numeric(params[[param]])</span></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a><span class="st">    # check if parameter is in logical_params</span></span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="st">    else if (param %in% logical_params) {</span></span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="st">      # convert to logical</span></span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.logical(params[[param]])</span></span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a><span class="st">  return(params)</span></span>
+<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" tabindex="-1"></a><span class="st">params &lt;- convert_params(params)</span></span>
+<span id="cb6-53"><a href="#cb6-53" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" tabindex="-1"></a><span class="st"># split condition comparisons</span></span>
+<span id="cb6-55"><a href="#cb6-55" tabindex="-1"></a><span class="st">cond_comp &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb6-56"><a href="#cb6-56" tabindex="-1"></a><span class="st">cond_comp &lt;- sapply(unlist(cond_comp), function(x) strsplit(x,split = </span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">))</span></span>
+<span id="cb6-57"><a href="#cb6-57" tabindex="-1"></a><span class="st">cond_comp &lt;- do.call(cbind,cond_comp)</span></span>
+<span id="cb6-58"><a href="#cb6-58" tabindex="-1"></a></span>
+<span id="cb6-59"><a href="#cb6-59" tabindex="-1"></a><span class="st">class(params)</span></span>
+<span id="cb6-60"><a href="#cb6-60" tabindex="-1"></a><span class="st">print(params)</span></span>
+<span id="cb6-61"><a href="#cb6-61" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" tabindex="-1"></a><span class="st"># perform the analysis</span></span>
+<span id="cb6-63"><a href="#cb6-63" tabindex="-1"></a><span class="st">SpectroPipeR_analysis &lt;- SpectroPipeR(file = </span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb6-64"><a href="#cb6-64" tabindex="-1"></a><span class="st">                                     parameter = params,</span></span>
+<span id="cb6-65"><a href="#cb6-65" tabindex="-1"></a><span class="st">                                     condition_comparisons = cond_comp</span></span>
+<span id="cb6-66"><a href="#cb6-66" tabindex="-1"></a><span class="st">                                     )</span></span>
+<span id="cb6-67"><a href="#cb6-67" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb6-68"><a href="#cb6-68" tabindex="-1"></a></span></code></pre></div>
+<p>example terminal usage:</p>
 <p>bash SpectroPipeR_terminal.sh [input_file] [named parameters separated by ;] [condition comparisons separated by ;]</p>
 <pre class="terminal"><code>bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</code></pre>
 </div>

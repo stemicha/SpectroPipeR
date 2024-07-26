@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="../articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="../articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -109,7 +109,8 @@ working with vector graphics.</p>
 <li>step 5 - statistics (optional)</li>
 </ul>
 <p>to render an interactive standalone HTML report. The rendering is
-performed with <strong>Quarto CLI</strong>. You should install the
+performed with <strong>Quarto CLI</strong>. So Quarto CLI is required.
+If you did not already install the Quarto CLI you should install the
 Quarto CLI using <a href="https://quarto.org/docs/get-started/" class="external-link">Quarto
 get started installation</a>.</p>
 <div class="section level3">
@@ -117,19 +118,7 @@ get started installation</a>.</p>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># parameter list</span></span>
-<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span>, </span>
-<span>               ion_q_value_cutoff <span class="op">=</span> <span class="fl">0.01</span>,              </span>
-<span>               id_drop_cutoff <span class="op">=</span> <span class="fl">0.3</span>,                    </span>
-<span>               normalization_method <span class="op">=</span> <span class="st">"median"</span>,         </span>
-<span>               normalization_factor_cutoff_outlier <span class="op">=</span> <span class="fl">4</span>, </span>
-<span>               filter_oxidized_peptides <span class="op">=</span> <span class="cn">FALSE</span>,        </span>
-<span>               protein_intensity_estimation <span class="op">=</span> <span class="st">"MaxLFQ"</span>, </span>
-<span>               stat_test <span class="op">=</span> <span class="st">"modt"</span>,                      </span>
-<span>               type_slr <span class="op">=</span> <span class="st">"median"</span>,                     </span>
-<span>               fold_change <span class="op">=</span> <span class="fl">1.5</span>,                       </span>
-<span>               p_value_cutoff <span class="op">=</span> <span class="fl">0.05</span>,                   </span>
-<span>               paired <span class="op">=</span> <span class="cn">FALSE</span>                           </span>
-<span><span class="op">)</span></span>
+<span><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"../SpectroPipeR_test_folder"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># example input file, bundled with SpectroPipeR package</span></span>
 <span><span class="va">example_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"SN_test_HYE_mix_file.tsv"</span>, package<span class="op">=</span><span class="st">"SpectroPipeR"</span><span class="op">)</span></span>
@@ -216,6 +205,8 @@ get started installation</a>.</p>
 <img src="figures/example_report.png" style="width:80.0%" alt="SpectroPipeR_report_module() - screenshot of html output report"><div class="figcaption">SpectroPipeR_report_module() - screenshot of
 html output report</div>
 </div>
+<p><a href="https://stemicha.github.io/SpectroPipeR_examples/species_mix_analysis__2024_07_11__15_06_SpectroPipeR_report.html">SpectroPipeR
+example report</a></p>
 <p>After the function was executed the SpectroPipeR_report.html file was
 generated inside the output folder.</p>
 </div>

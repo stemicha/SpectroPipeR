@@ -53,8 +53,8 @@
     <a class="dropdown-item" href="../articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 -  MVA analysis</a>
     <a class="dropdown-item" href="../articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a>
     <a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a>
-    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - XIC plotting</a>
-    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - stat. results functional enrichment analysis</a>
+    <a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a>
+    <a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a>
   </div>
 </li>
       </ul>
@@ -117,16 +117,19 @@ proteomics</a></p>
 </h4>
 <p>Pair-wise comparison can be carried out using an ordinary t-test
 (“t”), modified t-test (“modt”), or reproducibility-optimized test
-statistic (“rots”). The type of data aggregation can be either
-(“median”) or (“tukey”) for calculating protein values. The test may be
-performed paired or unpaired depending on your experimental design.</p>
+statistic (“rots”). The type of data aggregation can be either median
+(“median”) or tukey (“tukey”) for calculating protein values. The test
+may be performed paired or unpaired depending on your experimental
+design.</p>
 <p>PECA determines differential gene expression using directly the
 peptide intensity measurements of proteomic datasets. An change between
 two groups of samples is first calculated for each peptide in the
 datasets. The protein-level changes are then defined as median/tukey
 over the peptide level changes. For more details about the peptide-level
-expression change averaging (PECA) procedure, see Elo et al. (2005),
-Laajala et al. (2009) and Suomi et al.</p>
+expression change averaging (PECA) procedure, see <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1316121/" class="external-link">Elo <em>et
+al.</em> (2005)</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2728531/" class="external-link">Laajala
+<em>et al.</em> (2009)</a> and <a href="https://www.bioconductor.org/packages/release/bioc/html/PECA.html" class="external-link">Suomi
+<em>et al.</em> (2024)</a></p>
 <p>PECA calculates the peptide level changes using the ordinary or
 modified t-statistic. The ordinary t-statistic is calculated using the
 function rowttests in the Bioconductor genefilter package.</p>
@@ -142,7 +145,7 @@ exactly analogous the relationship between t-tests and F-statistics in
 conventional anova, except that the residual mean squares have been
 moderated between proteins.</p>
 <p><strong>If “rots” is selected a Reproducibility-Optimized Test
-Statistic (ROTS):</strong></p>
+Statistic (ROTS) is calculated using the PECA package:</strong></p>
 <p>The reproducibility-optimization procedure (ROTS) enables the
 selection of a suitable gene ranking statistic directly from the given
 dataset. The statistic is optimized among a family of t-type statistics
@@ -214,9 +217,10 @@ since peptides have different intensities due to different flyability in
 mass spec. For example if two peptides are injected at 10fmol and one
 flies much better than the other, then the better flying peptide will
 have a much higher intensity. Therefore we need to adjust for this
-effect and scale the peptides in the same numeric region. After scaling
-the scaled peptides intensities were used to calculate Cohen’s d per
-protein and comparison.</p>
+effect and scale the peptides in the same numeric region. Following the
+scaling process, the intensities of the scaled peptides were employed to
+compute Cohen’s d for each protein, facilitating subsequent comparative
+analysis.</p>
 </div>
 </div>
 <div class="section level3">
@@ -224,8 +228,10 @@ protein and comparison.</p>
 </h3>
 <p><strong>statistics_module() needs the output of the
 norm_quant_module() !</strong></p>
-<p>The condition_comparisons requires a cbind() with the user specififed
-conditions</p>
+<p>The condition_comparisons (mandatory) requires a cbind() with the
+user specified conditions as used during the setup of the analysis in
+Spectronaut. Therefore provide the conditions, which should be compared
+in the R code.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># condition comparison example</span></span>
 <span><span class="va">condition_comparisons_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
@@ -411,10 +417,10 @@ analysis</li>
 <li>
 <u>d_pooled_SD:</u> effect size estimate; pooled SD</li>
 <li>
-<u>d_95CI_lower:</u> effect size estimate:the lower 95% confidence
+<u>d_95CI_lower:</u> effect size estimate: the lower 95% confidence
 interval</li>
 <li>
-<u>d_95CI_upper:</u> effect size estimate:the upper 95% confidence
+<u>d_95CI_upper:</u> effect size estimate: the upper 95% confidence
 interval</li>
 <li>
 <u>d_magnitute:</u> a qualitative assessment of the magnitude of
@@ -1759,10 +1765,10 @@ analysis</li>
 <li>
 <u>d_pooled_SD:</u> effect size estimate; pooled SD</li>
 <li>
-<u>d_95CI_lower:</u> effect size estimate:the lower 95% confidence
+<u>d_95CI_lower:</u> effect size estimate: the lower 95% confidence
 interval</li>
 <li>
-<u>d_95CI_upper:</u> effect size estimate:the upper 95% confidence
+<u>d_95CI_upper:</u> effect size estimate: the upper 95% confidence
 interval</li>
 <li>
 <u>d_magnitute:</u> a qualitative assessment of the magnitude of
@@ -3621,7 +3627,7 @@ appropriate estimation method and protein candidates per comparison.</p>
 depicts the peptide intensity ratio on the x-axis and the protein
 intensity ratio on the y-axis for proteins with 2 or more peptides.</p>
 <p>The solid line shows the diagonal and the dashed lines indicate a
-2fold difference. The count highlights the number of proteins which are
+2-fold difference. The count highlights the number of proteins which are
 affected by a difference above abs. 2 fold-change. The size of the dots
 illustrate the number of peptides. Usually proteins with low number of
 peptides are stronger affected by a difference between protein intensity

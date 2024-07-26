@@ -78,7 +78,7 @@ The MVA_module() function will generate:
 
 ## example code
 
-**MVA_module() needs the output of the norm_quant_module() !**
+**MVA_module() needs the output of the norm_quant_module() from step 2 of the pipeline!**
 
 ```{r}
 # step 3: MVA module
@@ -172,7 +172,7 @@ The **PCA_plot_1st_to_5th_dimension\_\_peptide_level_measurement_order** graphic
 
 #### UMAP_plot_protein_level_conditions_marked
 
-The **UMAP_plot_protein_level_conditions_marked** graphically represents the samples in the UMAP dimensions at the protein level, with colors indicating the measurement order.
+The **UMAP_plot_protein_level_conditions_marked** graphically represents the samples in the UMAP dimensions at the protein level, with colors indicating the conditions.
 
 ![](figures/03__UMAP_plot_protein_level_conditions_marked.png){width="60%"}
 
