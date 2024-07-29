@@ -104,9 +104,9 @@ working with vector graphics.</p>
 </h2>
 <p>The statistical analysis is carried out by utilizing the <a href="https://bioconductor.org/packages/release/bioc/html/PECA.html" class="external-link">PECA
 package</a></p>
-<p>The recommended test is the “rots” test. This ROPECA
-(reproducibility-optimized peptide change averaging) approach can be
-inspected in detail in <a href="https://www.nature.com/articles/s41598-017-05949-y" class="external-link">Enhanced
+<p>The recommended test is the “rots” test (ROPECA approach). This
+ROPECA (reproducibility-optimized peptide change averaging) approach can
+be inspected in detail in <a href="https://www.nature.com/articles/s41598-017-05949-y" class="external-link">Enhanced
 differential expression statistics for data-independent acquisition
 proteomics</a></p>
 <div class="section level3">
@@ -134,7 +134,7 @@ al.</em> (2005)</a>, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC27285
 modified t-statistic. The ordinary t-statistic is calculated using the
 function rowttests in the Bioconductor genefilter package.</p>
 <p><strong>If “modt” is selected modified t-statistic is calculated
-using limma package:</strong></p>
+using limma package (fast processing time):</strong></p>
 <p>The modified t-statistic is calculated using the linear modeling
 approach in the Bioconductor limma package.</p>
 <p>The empirical Bayes moderated t-statistics test each individual
@@ -145,7 +145,8 @@ exactly analogous the relationship between t-tests and F-statistics in
 conventional anova, except that the residual mean squares have been
 moderated between proteins.</p>
 <p><strong>If “rots” is selected a Reproducibility-Optimized Test
-Statistic (ROTS) is calculated using the PECA package:</strong></p>
+Statistic (ROTS) is calculated using the PECA package (slower processing
+time):</strong></p>
 <p>The reproducibility-optimization procedure (ROTS) enables the
 selection of a suitable gene ranking statistic directly from the given
 dataset. The statistic is optimized among a family of t-type statistics
@@ -176,30 +177,6 @@ the FDR is calculated using the Benjamini-Hochberg procedure.</p>
 estimate of significance than other methods. For further details please
 see <a href="https://www.nature.com/articles/s41598-017-05949-y#Sec3https://www.nature.com/articles/s41598-017-05949-y#Sec3" class="external-link">Suomi
 &amp; Elo 2017</a></p>
-<p>The user is given the option to adjust the largest top list size
-considered in the reproducibility calculations, since lowering this size
-can markedly reduce the computation time. In large data matrices with
-thousands of rows, we generally recommend using a size of several
-thousands. In smaller data matrices, and especially if there are many
-rows with only a few non-missing entries, the size of K should be
-decreased accordingly.</p>
-<p><strong>ROTS</strong> tolerates a moderate number of missing values
-in the data matrix by effectively ignoring their contribution during the
-operation of the procedure. However, each row of the data matrix must
-contain at least two values in both groups. The rows containing only a
-few non-missing values should be removed; or alternatively, the missing
-data entries can be imputed using, e.g., the K-nearest neighbors
-imputation, which is implemented in the Bioconductor package impute.
-ROTS assumes the input data matrix is log<sub>2</sub> transformed (the
-default for log parameter is set to TRUE). Although, this only affects
-fold change values, we recommend setting log parameter to FALSE if the
-input matrix is not log transformed to avoid downstream confusions.</p>
-<p>If the parameter values a1 and a2 are set by the user, then no
-optimization is performed but the statistic and FDR-values are
-calculated for the given parameters. The false discovery rate (FDR) for
-the optimized test statistic is calculated by permuting the sample
-labels. The results for all the genes can be obtained by setting the FDR
-cutoff to 1.</p>
 <p>The significance of an expression change is determined based on the
 analytical p-value of the protein-level test statistic. Unadjusted
 p-values are reported along with the corresponding p-values looked up
@@ -210,17 +187,17 @@ user.</p>
 <div class="section level4">
 <h4 id="effect-size-implementation-in-spectropiper">Effect size implementation in SpectroPipeR<a class="anchor" aria-label="anchor" href="#effect-size-implementation-in-spectropiper"></a>
 </h4>
-<p>I implemented the effect size (Cohen’s d) of peptide ratios per
-comparisons as follows. The peptide intensities were used to calculate
-the mean scaled peptide intensities per protein. This step is important
-since peptides have different intensities due to different flyability in
-mass spec. For example if two peptides are injected at 10fmol and one
-flies much better than the other, then the better flying peptide will
-have a much higher intensity. Therefore we need to adjust for this
-effect and scale the peptides in the same numeric region. Following the
-scaling process, the intensities of the scaled peptides were employed to
-compute Cohen’s d for each protein, facilitating subsequent comparative
-analysis.</p>
+<p>In SpectroPipeR the effect size (Cohen’s d) of peptide ratios per
+comparisons is implemented as follows. The peptide intensities were used
+to calculate the mean scaled peptide intensities per protein. This step
+is important since peptides have different intensities due to different
+flyability in mass spec. For example if two peptides are injected at
+10fmol and one flies much better than the other, then the better flying
+peptide will have a much higher intensity. Therefore we need to adjust
+for this effect and scale the peptides in the same numeric region.
+Following the scaling process, the intensities of the scaled peptides
+were employed to compute Cohen’s d for each protein, facilitating
+subsequent comparative analysis.</p>
 </div>
 </div>
 <div class="section level3">
