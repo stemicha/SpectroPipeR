@@ -9,7 +9,7 @@
 #'
 
 fig_width_estimation <- function(sample_length = 717, condition_length = 4){
-  if((0.4*sample_length)<14){
+  if((0.4*sample_length)<10){
     return(15)
     }else{
       if(sample_length/condition_length<5){
