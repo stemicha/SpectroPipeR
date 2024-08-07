@@ -54,6 +54,8 @@ _The following steps are advised:_
 1. **download and installation of SpectroPipeR (if not already be done)**
 2. **load the SpectroPipeR package and utilize the `Spectronaut_export_scheme()` function to create the necessary Spectronaut report scheme (SpectroPipeR_report.rs) in the output folder provided.**
 ``` r
+# load library
+library(SpectroPipeR)
 # output_location: path to output folder for the SpectroPipeR_report.rs Spectronaut report scheme
 Spectronaut_export_scheme(output_location = "../SpectroPipeR_test_folder")
 ```
