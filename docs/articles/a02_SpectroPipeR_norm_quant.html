@@ -97,8 +97,11 @@ working with vector graphics.</p>
 process the data from the <code><a href="../reference/read_spectronaut_module.html">read_spectronaut_module()</a></code>;
 utilizes the read_spectronaut_module output:</p>
 <p><u><strong>data normalization:</strong></u> - normalize the ion data
-using the median-median lagorithm or aout-detect if the data was already
-normalized in Spectronaut using e.g. local cross-run normalization</p>
+using the median-median normalization or auto-detect if the data was
+already normalized in Spectronaut using e.g. local cross-run
+normalization (If normalization was conducted using Spectronaut, the
+median-median normalization step is omitted, and the data normalized by
+Spectronaut is utilized.)</p>
 <p><u><strong>(optional) batch adjusting:</strong></u> - provides the
 batch adjusting functionality if needed using the ComBat methodology
 described in <a href="https://academic.oup.com/biostatistics/article/8/1/118/252073" class="external-link">Johnson
@@ -255,7 +258,7 @@ are then computed. Given that iBAQ intensities are derived from the
 Spectronaut report, they undergo a similar adjustment process as was
 applied to the peptides.</p>
 <div class="float">
-<img src="figures/Covariate_adj_example.png" style="width:100.0%" alt="covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)"><div class="figcaption">covariate adjustment example on simulated
+<img src="../articles/figures/Covariate_adj_example.png" style="width:100.0%" alt="covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)"><div class="figcaption">covariate adjustment example on simulated
 peptide data (left pannel: peptide intensities; right pannel: age
 adjusted peptide intensities)</div>
 </div>
@@ -356,8 +359,8 @@ read_spectronaut_module() !</strong></p>
 <p>The output in your specified output folder for the
 norm_quant_module() function should look like in this example
 (03_normalization, 05_processed_data):</p>
-<p><img src="figures/folder_structure_normalize.png" style="width:30.0%"></p>
-<p><img src="figures/folder_structure_processed.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/folder_structure_normalize.png" style="width:30.0%"></p>
+<p><img src="../articles/figures/folder_structure_processed.png" style="width:50.0%"></p>
 <!-- figures norm quant. Spectronaut data -->
 <div class="section level4">
 <h4 class="tabset tabset-pills" id="normalization---figures">normalization - figures<a class="anchor" aria-label="anchor" href="#normalization---figures"></a>
@@ -373,7 +376,7 @@ cut-off threshold in the SpectroPipeR parameters setting is represented
 by the solid lines. If a run were to have a normalization factor
 exceeding the threshold, it would be highlighted in orange on the plot
 and indicated in the normalization tables.</p>
-<p><img src="figures/02__normalization_factor_plot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/02__normalization_factor_plot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="normalization_factor_boxplot">normalization_factor_BOXplot<a class="anchor" aria-label="anchor" href="#normalization_factor_boxplot"></a>
@@ -382,7 +385,7 @@ and indicated in the normalization tables.</p>
 <strong>normalization_factor_BOXplot</strong>, depicts the normalization
 factor employed for data normalization e.g. if local cross-run
 normalization was chosen in Spectronaut.</p>
-<p><img src="figures/02__normalization_factor_BOXplot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/02__normalization_factor_BOXplot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="normalization_boxplot">normalization_boxplot<a class="anchor" aria-label="anchor" href="#normalization_boxplot"></a>
@@ -390,14 +393,14 @@ normalization was chosen in Spectronaut.</p>
 <p>The boxplot/density chart, denoted as
 <strong>normalization_boxplot</strong>, depicts the raw and normalized
 ion intensities.</p>
-<p><img src="figures/02__normalization_boxplot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/02__normalization_boxplot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="ion_cv_plot">ion_CV_plot<a class="anchor" aria-label="anchor" href="#ion_cv_plot"></a>
 </h5>
 <p>The <strong>ion_CV_plot</strong> illustrates the ion coefficient of
 variation (CV) globally and assigned to missed cleavages.</p>
-<p><img src="figures/02__ion_CV_plot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/02__ion_CV_plot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="ion_intenisty_vs_cv_hexbin_plot">ion_intenisty_vs_CV_hexbin_plot<a class="anchor" aria-label="anchor" href="#ion_intenisty_vs_cv_hexbin_plot"></a>
@@ -405,7 +408,7 @@ variation (CV) globally and assigned to missed cleavages.</p>
 <p>The <strong>ion_intenisty_vs_CV_hexbin_plot</strong> depicts the ion
 coefficient of variation (CV) in regard to the normalized ion
 intensity.</p>
-<p><img src="figures/02__ion_intenisty_vs_CV_hexbin_plot.png" style="width:80.0%"></p>
+<p><img src="../articles/figures/02__ion_intenisty_vs_CV_hexbin_plot.png" style="width:80.0%"></p>
 </div>
 </div>
 <div class="section level4">
@@ -601,7 +604,7 @@ no
 </h5>
 <p>The <strong>MaxLFQ_protein_intensity_boxplot</strong> illustrates the
 raw and normalized MaxLFQ protein intensities.</p>
-<p><img src="figures/02a__MaxLFQ_protein_intensity_boxplot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/02a__MaxLFQ_protein_intensity_boxplot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="cv_vs_intensity_plot">CV_vs_intensity_plot<a class="anchor" aria-label="anchor" href="#cv_vs_intensity_plot"></a>
@@ -618,7 +621,7 @@ have a CV below 0.1 or 0.2, respectively, in relation to the total
 number of protein identifications. This information provides insights
 into the overall reproducibility of the protein abundance measurements
 within the dataset.</p>
-<p><img src="figures/02a__CV_vs_intensity_plot.png" style="width:80.0%"></p>
+<p><img src="../articles/figures/02a__CV_vs_intensity_plot.png" style="width:80.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="protein_intensities_vs_ibaq_intensities">protein_intensities_vs_iBAQ_intensities<a class="anchor" aria-label="anchor" href="#protein_intensities_vs_ibaq_intensities"></a>
@@ -633,7 +636,7 @@ intensity estimates, providing a visual representation of the
 similarities or discrepancies between the different algorithms.</p>
 <p>The lower panel of the plot includes a bar chart that shows the count
 or frequency of the individual protein intensity estimations.</p>
-<p><img src="figures/02a__protein_intensities_vs_iBAQ_intensities.png" style="width:70.0%"></p>
+<p><img src="../articles/figures/02a__protein_intensities_vs_iBAQ_intensities.png" style="width:70.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="cv_cumulative_frequency_plot">CV_cumulative_frequency_plot<a class="anchor" aria-label="anchor" href="#cv_cumulative_frequency_plot"></a>
@@ -646,7 +649,7 @@ frequency. The lines are differentiated by color according to the
 condition. This enables the user to assess and evaluate the
 reproducibility of measurements across different conditions in the
 analysis.</p>
-<p><img src="figures/02a__CV_cumulative_frequency_plot.png" style="width:70.0%"></p>
+<p><img src="../articles/figures/02a__CV_cumulative_frequency_plot.png" style="width:70.0%"></p>
 </div>
 </div>
 <div class="section level4">
@@ -4462,7 +4465,7 @@ protein level
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

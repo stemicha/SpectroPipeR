@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{SpectroPipeR - step 5 - reporting}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/example_report.png'
 ---
 
 ```{r, include = FALSE}
@@ -138,7 +140,7 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 
 ## SpectroPipeR_report_module() output
 
-![SpectroPipeR_report_module() - screenshot of html output report](figures/example_report.png){width=80%}
+![SpectroPipeR_report_module() - screenshot of html output report](../vignettes/figures/example_report.png){width=80%}
 
 [SpectroPipeR example report](https://stemicha.github.io/SpectroPipeR_examples/species_mix_analysis__2024_07_11__15_06_SpectroPipeR_report.html)
 

@@ -1,9 +1,0 @@
-source name	comment[biological replicate]	comment[instrument]	comment[data file]	comment[MS1 analyzer type]	comment[MS2 analyzer type]	technology type	comment[label]	comment[fraction identifier]
-HYE mix A__1	1	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_A_400ng_R1_S1-A5_1_6354.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix A__2	2	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_A_400ng_R2_S1-B5_1_6355.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix A__3	3	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_A_400ng_R3_S1-C5_1_6356.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix A__4	4	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_A_400ng_R4_S1-D5_1_6357.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix B__1	1	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_B_400ng_R1_S1-E5_1_6362.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix B__2	2	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_B_400ng_R2_S1-F5_1_6363.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix B__3	3	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_B_400ng_R3_S1-G5_1_6364.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1
-HYE mix B__4	4	timsTOF Pro2	20230314_TIMS1_SM_Protoc_OT2_B_400ng_R4_S1-H5_1_6365.d	TOF	TOF	proteomic profiling by mass spectrometry	label free sample	1

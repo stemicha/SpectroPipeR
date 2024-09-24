@@ -361,24 +361,24 @@ unmodified counterparts. To determine quantitative ratios, mix A ion
 intensities were divided by the corresponding ion intensities from mix
 B.</p>
 <div class="float">
-<img src="figures/HYE_mix_composition.png" style="width:30.0%" alt="HYE species mix composition"><div class="figcaption">HYE species mix composition</div>
+<img src="../articles/figures/HYE_mix_composition.png" style="width:30.0%" alt="HYE species mix composition"><div class="figcaption">HYE species mix composition</div>
 </div>
 <div class="section level5">
 <h5 id="hye-species-mix-experiements-results-regarding-methionine-oxidation">HYE species mix experiements results regarding methionine
 oxidation<a class="anchor" aria-label="anchor" href="#hye-species-mix-experiements-results-regarding-methionine-oxidation"></a>
 </h5>
 <div class="float">
-<img src="figures/ox_vs_nonox__CV_plot.png" style="width:80.0%" alt="HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: coefficient of
+<img src="../articles/figures/ox_vs_nonox__CV_plot.png" style="width:80.0%" alt="HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: coefficient of
 variation plot of ions containing oxidized methionines and their
 unmodified forms</div>
 </div>
 <div class="float">
-<img src="figures/ox_vs_nonox__hist_plot.png" style="width:80.0%" alt="HYE species mix results: histogram of mean ion intensity of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: histogram of mean ion
+<img src="../articles/figures/ox_vs_nonox__hist_plot.png" style="width:80.0%" alt="HYE species mix results: histogram of mean ion intensity of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: histogram of mean ion
 intensity of ions containing oxidized methionines and their unmodified
 forms</div>
 </div>
 <div class="float">
-<img src="figures/ox_vs_nonox__box_plot.png" style="width:80.0%" alt="HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: ratios (A/B) boxplot of
+<img src="../articles/figures/ox_vs_nonox__box_plot.png" style="width:80.0%" alt="HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: ratios (A/B) boxplot of
 ions containing oxidized methionines and their unmodified forms</div>
 </div>
 </div>
@@ -392,7 +392,7 @@ ions containing oxidized methionines and their unmodified forms</div>
 will be created. Inside a SpectroPipeR specific folder structure will be
 generated.</p>
 <div class="float">
-<img src="figures/folder_structure_OVERVIEW.png" style="width:50.0%" alt="SpectroPipeR output main folder structure"><div class="figcaption">SpectroPipeR output main folder structure</div>
+<img src="../articles/figures/folder_structure_OVERVIEW.png" style="width:50.0%" alt="SpectroPipeR output main folder structure"><div class="figcaption">SpectroPipeR output main folder structure</div>
 </div>
 </div>
 <div class="section level2">
@@ -531,7 +531,9 @@ replicates per condition</li>
 </h3>
 <p>The output in your specified output folder of the
 read_spectronaut_module() function should look like in this example:</p>
-<p><img src="figures/folder_structure_read.png" style="width:50.0%"></p>
+<div class="float">
+<img src="../articles/figures/folder_structure_read.png" style="width:50.0%" alt="folder structure"><div class="figcaption">folder structure</div>
+</div>
 <!-- figures read Spectronaut data -->
 <div class="section level4">
 <h4 class="tabset tabset-pills" id="figures">figures<a class="anchor" aria-label="anchor" href="#figures"></a>
@@ -543,7 +545,9 @@ read_spectronaut_module() function should look like in this example:</p>
 the number of identifications (IDs) discovered at the ion, peptide, and
 protein group levels, corresponding to user specified Q-value. It is
 advisable to select the same Q-value as defined in Spectronaut.</p>
-<p><img src="figures/01__ID_counts_plot.png" style="width:40.0%"></p>
+<div class="float">
+<img src="../articles/figures/01__ID_counts_plot.png" style="width:40.0%" alt="ID counts plot"><div class="figcaption">ID counts plot</div>
+</div>
 </div>
 <div class="section level5">
 <h5 id="id_counts_plot_ion_filter">ID_counts_plot_ion_filter<a class="anchor" aria-label="anchor" href="#id_counts_plot_ion_filter"></a>
@@ -557,7 +561,7 @@ the cutoff criteria for identifying potential ID outliers is determined
 by the formula <code>median of ion count * (1-0.3)</code>. A run with an
 ion count below this line would be highlighted in orange and labeled as
 an ID outlier.</p>
-<p><img src="figures/01__ID_counts_plot_ion_filter.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/01__ID_counts_plot_ion_filter.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="id_ion_counts_plot">ID_ion_counts_plot<a class="anchor" aria-label="anchor" href="#id_ion_counts_plot"></a>
@@ -567,7 +571,7 @@ the ion identifications (IDs) in a stacked barchart format. It
 differentiates between ions discovered below the specified Q-value
 threshold (depicted in blue), those found above the threshold (shown in
 grey), and the profiled ions (represented in red).</p>
-<p><img src="figures/01__ID_ion_counts_plot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/01__ID_ion_counts_plot.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="missed_cleavages_sample_wise">missed_cleavages_sample_wise<a class="anchor" aria-label="anchor" href="#missed_cleavages_sample_wise"></a>
@@ -575,7 +579,7 @@ grey), and the profiled ions (represented in red).</p>
 <p>The bar chart, titled <strong>ID_ion_counts_plot</strong>, depicts
 the number of missed cleavages per run. The text above the bar indicates
 the missed cleavage percentage.</p>
-<p><img src="figures/01__missed_cleavages_sample_wise.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/01__missed_cleavages_sample_wise.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="missed_cleavages_sample_wise_percentage">missed_cleavages_sample_wise_PERCENTAGE<a class="anchor" aria-label="anchor" href="#missed_cleavages_sample_wise_percentage"></a>
@@ -584,26 +588,27 @@ the missed cleavage percentage.</p>
 <strong>missed_cleavages_sample_wise_PERCENTAGE</strong>, shows the
 number of peptides with x-missed cleavages (y-axis left side) and the
 percentage (y-axis right side) per run.</p>
-<p><img src="figures/01__missed_cleavages_sample_wise_PERCENTAGE.png" style="width:30.0%"></p>
+<p><img src="../articles/figures/01__missed_cleavages_sample_wise_PERCENTAGE.png" style="width:30.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="missed_cleavages_global">missed_cleavages_global<a class="anchor" aria-label="anchor" href="#missed_cleavages_global"></a>
 </h5>
 <p>The bar chart, titled <strong>missed_cleavages_global</strong>,
 depicts the missed cleavage rate for the whole project.</p>
-<p><img src="figures/01__missed_cleavages_global.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/01__missed_cleavages_global.png" style="width:50.0%"></p>
 </div>
 <div class="section level5">
 <h5 id="detected_proteingroups__upsetr__plot">Detected_ProteinGroups__UpSetR__plot<a class="anchor" aria-label="anchor" href="#detected_proteingroups__upsetr__plot"></a>
 </h5>
-<p>The UpSet plot (**Detected_ProteinGroups__UpSetR__plot**) illustrates
-the outcome from the ON/OFF analysis. The ON/OFF analysis is conducted
-by filtering the data to include only proteins with a minimum of 2
-peptide hits that are present in at least 50% of the sample replicates,
-with proteins meeting this criteria being classified as “ON” and those
+<p>The UpSet plot
+(<strong>Detected_ProteinGroups__UpSetR__plot</strong>) illustrates the
+outcome from the ON/OFF analysis. The ON/OFF analysis is conducted by
+filtering the data to include only proteins with a minimum of 2 peptide
+hits that are present in at least 50% of the sample replicates, with
+proteins meeting this criteria being classified as “ON” and those
 failing to do so being designated as “OFF”.</p>
 <p>If you want to know about the principle of an UpSet plot visit <a href="https://en.wikipedia.org/wiki/UpSet_plot" class="external-link uri">https://en.wikipedia.org/wiki/UpSet_plot</a></p>
-<p><img src="figures/01__Detected_ProteinGroups__UpSetR__plot.png" style="width:50.0%"></p>
+<p><img src="../articles/figures/01__Detected_ProteinGroups__UpSetR__plot.png" style="width:50.0%"></p>
 <!-- tables read Spectronaut data -->
 </div>
 </div>
@@ -3456,7 +3461,7 @@ plot.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

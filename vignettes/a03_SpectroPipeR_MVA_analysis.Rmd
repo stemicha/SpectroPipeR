@@ -5,6 +5,29 @@ vignette: >
   %\VignetteIndexEntry{SpectroPipeR - step 3 -  MVA analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/folder_structure_MVA.png'
+  - '../vignettes/figures/03__3D_PCA_plot__protein_level.png'
+  - '../vignettes/figures/03__correlation_plots_condition.png'
+  - '../vignettes/figures/03__correlation_plots.png'
+  - '../vignettes/figures/03__HCPC_plots_peptide_level__2D_map.png'
+  - '../vignettes/figures/03__HCPC_plots_peptide_level__3D_map.png'
+  - '../vignettes/figures/03__HCPC_plots_peptide_level__barplot.png'
+  - '../vignettes/figures/03__HCPC_plots_peptide_level__tree_plot.png'
+  - '../vignettes/figures/03__HCPC_plots_protein_level__2D_map.png'
+  - '../vignettes/figures/03__HCPC_plots_protein_level__3D_map.png'
+  - '../vignettes/figures/03__HCPC_plots_protein_level__barplot.png'
+  - '../vignettes/figures/03__HCPC_plots_protein_level__tree_plot.png'
+  - '../vignettes/figures/03__PCA_individuals_contribution_plot.png'
+  - '../vignettes/figures/03__PCA_plot_1st_5th_peptide_measurement_order.png'
+  - '../vignettes/figures/03__PCA_plot_1st_5th_protein_measurement_order.png'
+  - '../vignettes/figures/03__PCA_plot_1st_to_5th_dimension__peptide_level.png'
+  - '../vignettes/figures/03__PCA_plot_1st_to_5th_dimension__protein_level.png'
+  - '../vignettes/figures/03__PCA_plot_protein_level_conditions_marked.png'
+  - '../vignettes/figures/03__PCA_plot_protein_level_measurement_order.png'
+  - '../vignettes/figures/03__PCA_plot_protein_level_replicates_marked.png'
+  - '../vignettes/figures/03__PCA_plots.png'
+  - '../vignettes/figures/03__UMAP_plot_protein_level_conditions_marked.png'
 ---
 
 ```{r, include = FALSE}
@@ -89,7 +112,7 @@ MVA_module(SpectroPipeR_data_quant = SpectroPipeR_data_quant)
 
 The output in your specified output folder for the MVA_module() function should look like in this example (04_multivariate_analysis):
 
-![MVA_module() outputs folder/files part 1](figures/folder_structure_MVA.png){width="50%"}
+![MVA_module() outputs folder/files part 1](../vignettes/figures/folder_structure_MVA.png){width="50%"}
 
 <!-- figures MVA. Spectronaut data -->
 
@@ -97,11 +120,11 @@ The output in your specified output folder for the MVA_module() function should 
 
 .rds files are a file format used in R to save and load single R objects, such as data frames, models, or lists
 
-The \*\*PCA_analysis\_\_peptide_level.RDS\*\* data R object file contains the PCA data on peptide level
+The **PCA_analysis\_\_peptide_level.RDS** data R object file contains the PCA data on peptide level
 
-The \*\*PCA_analysis\_\_protein_level.RDS\*\* data R object file contains the PCA data on protein level
+The **PCA_analysis\_\_protein_level.RDS** data R object file contains the PCA data on protein level
 
-The \*\*UMAP_analysis\_\_protein_level.RDS\*\* data R object file contains the UMAP data on protein level
+The **UMAP_analysis\_\_protein_level.RDS** data R object file contains the UMAP data on protein level
 
 ### MVA - figures {.tabset .tabset-pills}
 
@@ -109,14 +132,17 @@ The \*\*UMAP_analysis\_\_protein_level.RDS\*\* data R object file contains the U
 
 The **correlation_plots** depicts the spearman correlation score (closer to 1 = higher correaltion) on peptide and protein level in a tile plot.
 
-![correlation with reordering](figures/03__correlation_plots.png){width="80%"}
+![correlation with reordering](../vignettes/figures/03__correlation_plots.png){width="80%"}
 
-![correlation plot sorted by conditions](figures/03__correlation_plots_condition.png){width="80%"}
+![correlation plot sorted by conditions](../vignettes/figures/03__correlation_plots_condition.png){width="80%"}
 
 
 #### 3D PCA_plots
 
 The **3D_PCA_plot\_\_peptide_level.html** and **3D_PCA_plot\_\_protein_level.html** are interactive 3D representations of the 1st-2nd-3rd dimension of the PCA.
+
+![screenshot of interactive 3D PCA (protein level) presentations](../vignettes/figures/03__3D_PCA_plot__protein_level.png){width="70%"}
+
 
 #### PCA_plots
 
@@ -130,51 +156,51 @@ The PCA plot comparing the 1st and 2nd dimensions of the samples.
 
 The biplot displays the relationships between samples and proteins/peptides in a dataset.
 
-![](figures/03__PCA_plots.png){width="70%"}
+![ ](../vignettes/figures/03__PCA_plots.png){width="70%"}
 
 #### PCA_plot_protein_level_conditions_marked
 
 The **PCA_plot_protein_level_conditions_marked** graphically represents the samples in the 1st and 2nd PCA dimensions at the protein level, with colors indicating their respective conditions.
 
-![](figures/03__PCA_plot_protein_level_conditions_marked.png){width="70%"}
+![ ](../vignettes/figures/03__PCA_plot_protein_level_conditions_marked.png){width="70%"}
 
 #### PCA_plot_protein_level_replicates_marked
 
 The **PCA_plot_protein_level_replicates_marked** graphically represents the samples in the 1st and 2nd PCA dimensions at the protein level, with colors indicating their respective conditions and text labels indicating the replicates.
 
-![](figures/03__PCA_plot_protein_level_replicates_marked.png){width="70%"}
+![ ](../vignettes/figures/03__PCA_plot_protein_level_replicates_marked.png){width="70%"}
 
 The **PCA_plot_1st_to_5th_dimension\_\_protein_level** graphically represents the samples in the 1st to the 5th PCA dimensions at the protein level, with colors indicating their respective conditions.
 
-![](figures/03__PCA_plot_1st_to_5th_dimension__protein_level.png){width="70%"}
+![ ](../vignettes/figures/03__PCA_plot_1st_to_5th_dimension__protein_level.png){width="70%"}
 
 #### PCA_plot_protein_level_measurement_order
 
 The **PCA_plot_protein_level_conditions_marked** graphically represents the samples in the 1st and 2nd PCA dimensions at the protein level, with colors indicating the measurement order.
 
-![](figures/03__PCA_plot_protein_level_measurement_order.png){width="70%"}
+![ ](../vignettes/figures/03__PCA_plot_protein_level_measurement_order.png){width="70%"}
 
 The **PCA_plot_1st_to_5th_dimension\_\_protein_level_measurement_order** graphically represents the samples in the 1st to the 5th PCA dimensions at the protein level, with colors indicating the measurement order.
 
-![](figures/03__PCA_plot_1st_5th_protein_measurement_order.png){width="60%"}
+![ ](../vignettes/figures/03__PCA_plot_1st_5th_protein_measurement_order.png){width="60%"}
 
 #### PCA_plot_1st_to_5th_dimension\_\_peptide_level
 
 The **PCA_plot_1st_to_5th_dimension\_\_peptide_level** graphically represents the samples in the 1st to the 5th PCA dimensions at the peptide level, with colors indicating their respective conditions.
 
-![](figures/03__PCA_plot_1st_to_5th_dimension__peptide_level.png){width="60%"}
+![ ](../vignettes/figures/03__PCA_plot_1st_to_5th_dimension__peptide_level.png){width="60%"}
 
 #### PCA_plot_1st_to_5th_dimension\_\_peptide_level_measurement_order
 
 The **PCA_plot_1st_to_5th_dimension\_\_peptide_level_measurement_order** graphically represents the samples in the 1st to the 5th PCA dimensions at the peptide level, with colors indicating the measurement order.
 
-![](figures/03__PCA_plot_1st_5th_peptide_measurement_order.png){width="60%"}
+![ ](../vignettes/figures/03__PCA_plot_1st_5th_peptide_measurement_order.png){width="60%"}
 
 #### UMAP_plot_protein_level_conditions_marked
 
 The **UMAP_plot_protein_level_conditions_marked** graphically represents the samples in the UMAP dimensions at the protein level, with colors indicating the conditions.
 
-![](figures/03__UMAP_plot_protein_level_conditions_marked.png){width="60%"}
+![ ](../vignettes/figures/03__UMAP_plot_protein_level_conditions_marked.png){width="60%"}
 
 #### HCPC - figures
 
@@ -182,18 +208,18 @@ The HCPC performs an agglomerative hierarchical clustering on results from a fac
 
 In SpectroPipeR it is performed on peptide and protein level.
 
-![HCPC_plots_peptide_level\_\_2D_map](figures/03__HCPC_plots_peptide_level__2D_map.png){width="60%"}
+![HCPC_plots_peptide_level\_\_2D_map](../vignettes/figures/03__HCPC_plots_peptide_level__2D_map.png){width="60%"}
 
-![HCPC_plots_peptide_level\_\_3D_map](figures/03__HCPC_plots_peptide_level__3D_map.png){width="60%"}
+![HCPC_plots_peptide_level\_\_3D_map](../vignettes/figures/03__HCPC_plots_peptide_level__3D_map.png){width="60%"}
 
-![HCPC_plots_peptide_level\_\_barplot](figures/03__HCPC_plots_peptide_level__barplot.png){width="60%"}
+![HCPC_plots_peptide_level\_\_barplot](../vignettes/figures/03__HCPC_plots_peptide_level__barplot.png){width="60%"}
 
-![HCPC_plots_peptide_level\_\_tree_plot](figures/03__HCPC_plots_peptide_level__tree_plot.png){width="60%"}
+![HCPC_plots_peptide_level\_\_tree_plot](../vignettes/figures/03__HCPC_plots_peptide_level__tree_plot.png){width="60%"}
 
-![HCPC_plots_protein_level\_\_2D_map](figures/03__HCPC_plots_protein_level__2D_map.png){width="60%"}
+![HCPC_plots_protein_level\_\_2D_map](../vignettes/figures/03__HCPC_plots_protein_level__2D_map.png){width="60%"}
 
-![HCPC_plots_protein_level\_\_3D_map](figures/03__HCPC_plots_protein_level__3D_map.png){width="60%"}
+![HCPC_plots_protein_level\_\_3D_map](../vignettes/figures/03__HCPC_plots_protein_level__3D_map.png){width="60%"}
 
-![HCPC_plots_protein_level\_\_barplot](figures/03__HCPC_plots_protein_level__barplot.png){width="60%"}
+![HCPC_plots_protein_level\_\_barplot](../vignettes/figures/03__HCPC_plots_protein_level__barplot.png){width="60%"}
 
-![HCPC_plots_protein_level\_\_tree_plot](figures/03__HCPC_plots_protein_level__tree_plot.png){width="60%"}
+![HCPC_plots_protein_level\_\_tree_plot](../vignettes/figures/03__HCPC_plots_protein_level__tree_plot.png){width="60%"}

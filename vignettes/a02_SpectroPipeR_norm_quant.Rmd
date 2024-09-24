@@ -5,6 +5,20 @@ vignette: >
   %\VignetteIndexEntry{SpectroPipeR - step 2 - normalization and quantification}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/Covariate_adj_example.png'
+  - '../vignettes/figures/folder_structure_normalize.png'
+  - '../vignettes/figures/folder_structure_processed.png'
+  - '../vignettes/figures/02__ion_CV_plot.png'
+  - '../vignettes/figures/02__ion_intenisty_vs_CV_hexbin_plot.png'
+  - '../vignettes/figures/02__normalization_boxplot.png'
+  - '../vignettes/figures/02__normalization_factor_BOXplot.png'
+  - '../vignettes/figures/02__normalization_factor_plot.png'
+  - '../vignettes/figures/02a__CV_cumulative_frequency_plot.png'
+  - '../vignettes/figures/02a__CV_vs_intensity_plot.png'
+  - '../vignettes/figures/02a__MaxLFQ_protein_intensity_boxplot.png'
+  - '../vignettes/figures/02a__protein_intensities_vs_iBAQ_intensities.png'
+
 ---
 
 ```{r, include = FALSE}
@@ -43,7 +57,7 @@ For Windows users, it is recommended to use the PNG files, as applications like 
 
 The `norm_quant_module()` function serves to further process the data from the `read_spectronaut_module()`; utilizes the read_spectronaut_module output:
 
-<u>**data normalization:**</u> - normalize the ion data using the median-median lagorithm or aout-detect if the data was already normalized in Spectronaut using e.g. local cross-run normalization
+<u>**data normalization:**</u> - normalize the ion data using the median-median normalization or auto-detect if the data was already normalized in Spectronaut using e.g. local cross-run normalization (If normalization was conducted using Spectronaut, the median-median normalization step is omitted, and the data normalized by Spectronaut is utilized.)
 
 <u>**(optional) batch adjusting:**</u> - provides the batch adjusting functionality if needed using the ComBat methodology described in [Johnson et al. 2007](https://academic.oup.com/biostatistics/article/8/1/118/252073)
 
@@ -117,7 +131,7 @@ After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of adjusted
 
 SpectroPipeR is capable of performing covariate adjustment on quantitative data. This adjustment is achieved by utilizing user-provided meta data and a formula. The adjustment process employs the linear model function, lm(), and it operates on the log<sub>10</sub> transformed peptide intensity data. Once the linear model is fitted, the residuals are computed. These residuals are then adjusted back to the original quantitative range by adding the mean peptide intensity across all samples. This ensures that each peptide's quantitative range is preserved. Following the adjustment of peptide data, protein intensities are then computed. Given that iBAQ intensities are derived from the Spectronaut report, they undergo a similar adjustment process as was applied to the peptides.
 
-![covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)](figures/Covariate_adj_example.png){width="100%"}
+![covariate adjustment example on simulated peptide data (left pannel: peptide intensities; right pannel: age adjusted peptide intensities)](../vignettes/figures/Covariate_adj_example.png){width="100%"}
 
 ## example code
 
@@ -216,9 +230,9 @@ SpectroPipeR_data_quant <- norm_quant_module(SpectroPipeR_data = SpectroPipeR_da
 The output in your specified output folder for the
 norm_quant_module() function should look like in this example (03_normalization, 05_processed_data):
 
-![](figures/folder_structure_normalize.png){width="30%"}
+![ ](../vignettes/figures/folder_structure_normalize.png){width="30%"}
 
-![](figures/folder_structure_processed.png){width="50%"}
+![ ](../vignettes/figures/folder_structure_processed.png){width="50%"}
 
 <!-- figures norm quant. Spectronaut data -->
 
@@ -228,34 +242,34 @@ norm_quant_module() function should look like in this example (03_normalization,
 
 The bar chart, denoted as **normalization_factor_plot**, depicts the normalization factor employed for data normalization. In the event that local cross-run normalization was chosen in Spectronaut, the median of the normalization factors is exhibited. The user-defined cut-off threshold in the SpectroPipeR parameters setting is represented by the solid lines. If a run were to have a normalization factor exceeding the threshold, it would be highlighted in orange on the plot and indicated in the normalization tables. 
 
-![](figures/02__normalization_factor_plot.png){width="50%"}
+![ ](../vignettes/figures/02__normalization_factor_plot.png){width="50%"}
 
 #### normalization_factor_BOXplot
 
 The boxplot/density chart, denoted as **normalization_factor_BOXplot**, depicts the normalization factor employed for data normalization e.g. if local cross-run normalization was chosen in Spectronaut. 
 
-![](figures/02__normalization_factor_BOXplot.png){width="50%"}
+![ ](../vignettes/figures/02__normalization_factor_BOXplot.png){width="50%"}
 
 
 #### normalization_boxplot
 
 The boxplot/density chart, denoted as **normalization_boxplot**, depicts the raw and normalized ion intensities. 
 
-![](figures/02__normalization_boxplot.png){width="50%"}
+![ ](../vignettes/figures/02__normalization_boxplot.png){width="50%"}
 
 
 #### ion_CV_plot
 
 The **ion_CV_plot** illustrates the ion coefficient of variation (CV) globally and assigned to missed cleavages. 
 
-![](figures/02__ion_CV_plot.png){width="50%"}
+![ ](../vignettes/figures/02__ion_CV_plot.png){width="50%"}
 
 
 #### ion_intenisty_vs_CV_hexbin_plot
 
 The **ion_intenisty_vs_CV_hexbin_plot** depicts the ion coefficient of variation (CV) in regard to the normalized ion intensity.
 
-![](figures/02__ion_intenisty_vs_CV_hexbin_plot.png){width="80%"}
+![ ](../vignettes/figures/02__ion_intenisty_vs_CV_hexbin_plot.png){width="80%"}
 
 ### normalization - tables {.tabset .tabset-pills}
 
@@ -284,7 +298,7 @@ kable(read_csv(file = "tables/02__Median_normalization_factors.csv")) %>%
 
 The **MaxLFQ_protein_intensity_boxplot** illustrates the raw and normalized MaxLFQ protein intensities. 
 
-![](figures/02a__MaxLFQ_protein_intensity_boxplot.png){width="50%"}
+![ ](../vignettes/figures/02a__MaxLFQ_protein_intensity_boxplot.png){width="50%"}
 
 
 #### CV_vs_intensity_plot
@@ -295,7 +309,7 @@ The horizontal solid line in the figure indicates a CV of 0.1, while the dotted 
 
 The pink labels in the figure show the percentage of proteins that have a CV below 0.1 or 0.2, respectively, in relation to the total number of protein identifications. This information provides insights into the overall reproducibility of the protein abundance measurements within the dataset.
 
-![](figures/02a__CV_vs_intensity_plot.png){width="80%"}
+![ ](../vignettes/figures/02a__CV_vs_intensity_plot.png){width="80%"}
 
 
 #### protein_intensities_vs_iBAQ_intensities
@@ -307,13 +321,13 @@ In the upper panel the plot displays the ratios between the protein intensity es
 
 The lower panel of the plot includes a bar chart that shows the count or frequency of the individual protein intensity estimations.
 
-![](figures/02a__protein_intensities_vs_iBAQ_intensities.png){width="70%"}
+![ ](../vignettes/figures/02a__protein_intensities_vs_iBAQ_intensities.png){width="70%"}
 
 #### CV_cumulative_frequency_plot
 
 The **CV_cumulative_frequency_plot** graphically represents the cumulative frequency of the Coefficient of Variation (CV) at both the peptide and protein levels. On the x-axis, the coefficient of variation (CV) is plotted, while the y-axis displays the cumulative frequency. The lines are differentiated by color according to the condition. This enables the user to assess and evaluate the reproducibility of measurements across different conditions in the analysis.
 
-![](figures/02a__CV_cumulative_frequency_plot.png){width="70%"}
+![ ](../vignettes/figures/02a__CV_cumulative_frequency_plot.png){width="70%"}
 
 
 

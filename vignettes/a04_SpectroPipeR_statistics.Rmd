@@ -5,9 +5,19 @@ vignette: >
   %\VignetteIndexEntry{SpectroPipeR - step 4 - statistics}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  markdown: 
-    wrap: sentence
+resource_files:
+  - '../vignettes/figures/04__cutoff_simple_test__B_manual_vs_A_manual.png'
+  - '../vignettes/figures/04__cutoff_test__B_manual_vs_A_manual.png'
+  - '../vignettes/figures/04__iBAQ_quantile_ratio_comparison_legend.png'
+  - '../vignettes/figures/04__volcano_plots_adjusted_p_value__B_manual_vs_A_manual.png'
+  - '../vignettes/figures/04__volcano_plots_effect_size_shape_q.png'
+  - '../vignettes/figures/04__volcano_plots_raw_p_value__B_manual_vs_A_manual.png'
+  - '../vignettes/figures/04a__Protein_intensity_benchmark__barplot.png'
+  - '../vignettes/figures/04a__Protein_intensity_benchmark__FC_gradient_area_plot.png'
+  - '../vignettes/figures/04a__Protein_intensity_benchmark__histogram_plot.png'
+  - '../vignettes/figures/04a__Protein_intensity_benchmark__MA_like_plot.png'
+  - '../vignettes/figures/04a__Protein_intensity_benchmark__scatter_plot.png'
+  - '../vignettes/figures/04a__Signal_to_noise__scatter_plot.png'
 ---
 
 ```{r, include = FALSE}
@@ -176,7 +186,9 @@ SpectroPipeR_data_stats <- statistics_module(SpectroPipeR_data_quant = SpectroPi
 
 The output in your specified output folder for the norm_quant_module() function should look like in this example (06_statistics, 05_processed_data):
 
-![](figures/folder_structure_statistics.png){width="30%"} ![](figures/folder_structure_processed.png){width="30%"}
+![](../vignettes/figures/folder_structure_statistics.png){width="30%"} 
+
+![](../vignettes/figures/folder_structure_processed.png){width="30%"}
 
 <!-- figures statistics Spectronaut data -->
 
@@ -194,16 +206,16 @@ The user specified p-value and fold-change threshold are used to determine the f
 
 On the right panel of the plot the Top10 (based on euclidean distance) abundance differences are highlighted for the lower and upper fraction.
 
-![](figures/04__volcano_plots_raw_p_value__B_manual_vs_A_manual.png){width="80%"}
+![](../vignettes/figures/04__volcano_plots_raw_p_value__B_manual_vs_A_manual.png){width="80%"}
 
 The **volcano_plots_adjusted_p_value...** illustrates the volcano plot (adjusted p-value / q-value) of the statistical analysis for a specific comparison.
 
-![](figures/04__volcano_plots_adjusted_p_value__B_manual_vs_A_manual.png){width="80%"}
+![](../vignettes/figures/04__volcano_plots_adjusted_p_value__B_manual_vs_A_manual.png){width="80%"}
 
 The **volcano_plots_effect_size_shape_adjusted_p_value...** illustrates the volcano plot (adjusted p-value / q-value) of the statistical analysis for a specific comparison.
 The point shape depicts the estimated effect size.
 
-![](figures/04__volcano_plots_effect_size_shape_q.png){width="80%"}
+![](../vignettes/figures/04__volcano_plots_effect_size_shape_q.png){width="80%"}
 
 
 #### cut-off plots
@@ -211,9 +223,9 @@ The point shape depicts the estimated effect size.
 The **cutoff_test...** & **cutoff_simple_test...** illustrate the protein count by varying the fold-change threshold to filter significant proteins.
 They should help to estimate a meaningful project specific fold-change cutoff for the statistical analysis.
 
-![The simple cutoff plot highlights the protein count differences using various fold-change threshold with and without q-value filtering](figures/04__cutoff_simple_test__B_manual_vs_A_manual.png){width="60%"}
+![The simple cutoff plot highlights the protein count differences using various fold-change threshold with and without q-value filtering](../vignettes/figures/04__cutoff_simple_test__B_manual_vs_A_manual.png){width="60%"}
 
-![The cutoff plot highlights the protein count (with 1 or at least 2 peptides) differences using various fold-change threshold with and without q-value filtering](figures/04__cutoff_test__B_manual_vs_A_manual.png){width="90%"}
+![The cutoff plot highlights the protein count (with 1 or at least 2 peptides) differences using various fold-change threshold with and without q-value filtering](../vignettes/figures/04__cutoff_test__B_manual_vs_A_manual.png){width="90%"}
 
 ### statistics - tables {.tabset .tabset-pills}
 
@@ -267,7 +279,7 @@ The files **statistical_analysis_filtered...** contain the same information but 
 
 The Excel table **statistical_analysis_2_more_peptides_per_protein_iBAQ_quantiles.xlsx** (csv file also available) holds the information of the statistical analysis and the iBAQ quantiles associated with the comparisons.
 
-![iBAQ quantile ratio legend](figures/04__iBAQ_quantile_ratio_comparison_legend.png){width="40%"}
+![iBAQ quantile ratio legend](../vignettes/figures/04__iBAQ_quantile_ratio_comparison_legend.png){width="40%"}
 
 -   <u>slr:</u> signal log2-ratios on peptide basis
 -   <u>iBAQ_quantile_comp:</u> iBAQ quantiles of comparison
@@ -344,7 +356,7 @@ The size of the dots illustrate the number of peptides.
 Usually proteins with low number of peptides are stronger affected by a difference between protein intensity estimation ratios, e.g.
 MaxLFQ ratios, vs. peptide ratios.
 
-![](figures/04a__Protein_intensity_benchmark__scatter_plot.png){width="60%"}
+![](../vignettes/figures/04a__Protein_intensity_benchmark__scatter_plot.png){width="60%"}
 
 #### Protein_intensity_benchmark\_\_MA_like_plot
 
@@ -358,26 +370,26 @@ The size of the dots illustrate the number of peptides.
 Usually proteins with low number of peptides are stronger affected by a difference between protein intensity estimation ratios, e.g.
 MaxLFQ ratios, and peptide ratios.
 
-![](figures/04a__Protein_intensity_benchmark__MA_like_plot.png){width="80%"}
+![](../vignettes/figures/04a__Protein_intensity_benchmark__MA_like_plot.png){width="80%"}
 
 #### Protein_intensity_benchmark\_\_histogram_plot
 
 The **Protein_intensity_benchmark\_\_histogram_plot** plot depicts a histogram of the the peptide ratio / protein ratio on the x-axis.
 
-![](figures/04a__Protein_intensity_benchmark__histogram_plot.png){width="60%"}
+![](../vignettes/figures/04a__Protein_intensity_benchmark__histogram_plot.png){width="60%"}
 
 #### Protein_intensity_benchmark\_\_FC_gradient_area_plot
 
 The **Protein_intensity_benchmark\_\_FC_gradient_area_plot** presents an area plot across a range of fold-changes.
 In this instance, at a 1.5-fold change threshold, there are 76 proteins where the protein ratio is more than 1.5-fold to high, and 2 proteins where the protein ratio is more than 1.5-fold to low when compared to the peptide ratios.
 
-![](figures/04a__Protein_intensity_benchmark__FC_gradient_area_plot.png){width="60%"}
+![](../vignettes/figures/04a__Protein_intensity_benchmark__FC_gradient_area_plot.png){width="60%"}
 
 #### Protein_intensity_benchmark\_\_barplot
 
 The **Protein_intensity_benchmark\_\_barplot** displays a stacked bar plot, summarizing the number of proteins that exhibit a protein intensity ratio exceeding a 2-fold difference when compared to the peptide ratio.
 
-![](figures/04a__Protein_intensity_benchmark__barplot.png){width="60%"}
+![](../vignettes/figures/04a__Protein_intensity_benchmark__barplot.png){width="60%"}
 
 ### processed data - tables {.tabset .tabset-pills}
 

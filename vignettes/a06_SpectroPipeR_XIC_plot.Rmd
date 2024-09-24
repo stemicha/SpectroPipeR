@@ -2,9 +2,12 @@
 title: "SpectroPipeR - additional feature - XIC plotting module"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SpectroPipeR - XIC plotting}
+  %\VignetteIndexEntry{SpectroPipeR - additional feature - XIC plotting module}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/Spectronaut_xic_setting.png'
+  - '../vignettes/figures/XIC_example.png'
 ---
 
 ```{r, include = FALSE}
@@ -23,7 +26,7 @@ knitr::opts_chunk$set(
 Evaluating results directly from raw data is highly recommended. While the commercially licensed Spectronaut software offers this functionality, the free Spectronaut Viewer can also be used for this purpose. However, in proteomics research facilities, heavily utilized full Spectronaut licenses can become a bottleneck for routine tasks like XIC (Extracted Ion Chromatogram) inspection. To address this, SpectroPipeR offers the ability to extract and plot XICs directly, if the Spectronaut Pipeline analysis generated the corresponding SQLite files per raw file. This setting can be found within Spectronaut and has to be checked under "Pipeline Mode" settings.
 
 
-![Pipeline Mode setting for exporting the SQLite files per raw file](figures/Spectronaut_xic_setting.png){width="80%"}
+![Pipeline Mode setting for exporting the SQLite files per raw file](../vignettes/figures/Spectronaut_xic_setting.png){width="80%"}
 
 If the Spectronaut analysis utilized the SpectroPipeR report export scheme (accessible through the  function `Spectronaut_export_scheme(output_location = "../SpectroPipeR_test_folder")`) and enabled XIC SQLite export, a separate folder containing individual SQLite files for each raw file should be present within the Spectronaut reporting folder.
 
@@ -68,7 +71,7 @@ library(SpectroPipeR)
 
 In the output folder the user can find plots and csv files of the protein group selected ion XICs (MS1/MS2).
 
-![example plot output of the XIC_plot_module() function](figures/XIC_example.png){width="90%"}
+![example plot output of the XIC_plot_module() function](../vignettes/figures/XIC_example.png){width="90%"}
 
 ## explanation of depicted scores
 

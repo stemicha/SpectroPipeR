@@ -76,8 +76,8 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>During proteome studies, researchers frequently face various challenges, some of which can be mitigated while others cannot. A prevalent issue is the bottleneck in downstream data analysis, which arises due to a limited number of bioinformaticians, rapid generation of raw data, and variations in data analysis methods or workflows.</p>
-<p>To tackle this problem SpectroPipeR was developed. This pipeline is designed to simplify data analysis tasks, significantly reduce the workload for scientists, be easily expandable, user-friendly even for those with minimal bioinformatics knowledge, generate standardized analysis, outputs, and reports for each project, and produce publication-ready tables, figures, and reports.</p>
-<p>SpectroPipeR comprises a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment, iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.</p>
+<p>To tackle this problem SpectroPipeR was developed. This pipeline is designed to simplify data analysis tasks, significantly reduce the workload for scientists, be easily expandable, user-friendly even for those with minimal bioinformatic background, generate standardized analysis, outputs, and reports for each project, and produce publication-ready tables, figures, and reports.</p>
+<p>SpectroPipeR comprises a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment, iBAQ and MaxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA, modified t-test or t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.</p>
 <p>SpectroPipeR consists of a global parameter setting and four analysis modules and one reporting module that are executed sequentially. This modular approach allows flexibility where specific analyses like ID- and intensity plots can be run independently or as part of the complete pipeline.</p>
 <p>After each module execution, dynamic console feedback is provided and written to a log file to help identify errors early on. Upon completion of all modules, a comprehensive set of tables and plots categorized in different folders is generated to summarize the project from various perspectives.</p>
 <p>SpectroPipeR includes also a module for XIC plotting, capable of generating protein-specific XIC plots for each ion associated with the protein. This is complemented by a range of significant metrics designed to aid in evaluating the accuracy of both identification and quantification.</p>
@@ -322,7 +322,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

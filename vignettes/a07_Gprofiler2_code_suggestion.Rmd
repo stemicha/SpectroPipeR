@@ -2,9 +2,12 @@
 title: "SpectroPipeR - example code - functional enrichment analysis (external package)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{SpectroPipeR - stat. results functional enrichment analysis}
+  %\VignetteIndexEntry{SpectroPipeR - example code - functional enrichment analysis (external package)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/gprofiler2__plot.png'
+  - '../vignettes/figures/gprofiler2__table.png'
 ---
 
 ```{r, include = FALSE}
@@ -102,10 +105,10 @@ Upon execution of the above mentioned code, you will obtain a comprehensive func
 
 ### annotated Manhattan plot of enrichment results
 
-![annotated Manhattan plot of enrichment results](figures/gprofiler2__plot.png){width="70%"}
+![annotated Manhattan plot of enrichment results](../vignettes/figures/gprofiler2__plot.png){width="70%"}
 
 ### table with the functional enrichment analysis results
 
-![table with the functional enrichment analysis results with a p value below 1E-16](figures/gprofiler2__table.png){width="70%"}
+![table with the functional enrichment analysis results with a p-value below 1E-16](../vignettes/figures/gprofiler2__table.png){width="70%"}
 
 

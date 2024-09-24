@@ -5,6 +5,21 @@ vignette: >
   %\VignetteIndexEntry{SpectroPipeR - step 1 - read Spectronaut data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../vignettes/figures/folder_structure_OVERVIEW.png'
+  - '../vignettes/figures/HYE_mix_composition.png'
+  - '../vignettes/figures/ox_vs_nonox__CV_plot.png'
+  - '../vignettes/figures/ox_vs_nonox__hist_plot.png'
+  - '../vignettes/figures/ox_vs_nonox__box_plot.png'
+  - '../vignettes/figures/01__Detected_ProteinGroups__UpSetR__plot.png'
+  - '../vignettes/figures/01__ID_counts_plot_ion_filter.png'
+  - '../vignettes/figures/01__ID_counts_plot.png'
+  - '../vignettes/figures/01__ID_ion_counts_plot.png'
+  - '../vignettes/figures/01__missed_cleavages_global.png'
+  - '../vignettes/figures/01__missed_cleavages_sample_wise_PERCENTAGE.png'
+  - '../vignettes/figures/01__missed_cleavages_sample_wise.png'
+  - '../vignettes/figures/01__protein_count__strippedPEP_without_Qvalue_cut.png'
+  - '../vignettes/figures/01__protein_count__strippedPEP.png'
 ---
 
 
@@ -149,18 +164,17 @@ The HYE species mix experiments were carried out with 4 replicates as described 
 
 Spectronaut version 18.6 was used for data analysis. Following filtering, the ion data only included peptides containing methionine oxidation without prior carbamidomethylation, along with their unmodified counterparts. To determine quantitative ratios, mix A ion intensities were divided by the corresponding ion intensities from mix B.
 
-![HYE species mix composition](figures/HYE_mix_composition.png){width=30%}
+![HYE species mix composition](../vignettes/figures/HYE_mix_composition.png){width=30%}
 
 #### HYE species mix experiements results regarding methionine oxidation
 
-![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](figures/ox_vs_nonox__CV_plot.png){width=80%}
+![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](../vignettes/figures/ox_vs_nonox__CV_plot.png){width=80%}
 
 
-![HYE species mix results: histogram of mean ion intensity of ions containing oxidized methionines and their unmodified forms](figures/ox_vs_nonox__hist_plot.png){width=80%}
+![HYE species mix results: histogram of mean ion intensity of ions containing oxidized methionines and their unmodified forms](../vignettes/figures/ox_vs_nonox__hist_plot.png){width=80%}
 
 
-![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](figures/ox_vs_nonox__box_plot.png){width=80%}
-
+![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](../vignettes/figures/ox_vs_nonox__box_plot.png){width=80%}
 
 
 
@@ -169,7 +183,7 @@ Spectronaut version 18.6 was used for data analysis. Following filtering, the io
 The specified output folder is essential. If it does not exist it will be created.
 Inside a SpectroPipeR specific folder structure will be generated.
 
-![SpectroPipeR output main folder structure](figures/folder_structure_OVERVIEW.png){width=50%}
+![SpectroPipeR output main folder structure](../vignettes/figures/folder_structure_OVERVIEW.png){width=50%}
 
 # SpectroPipeR - read Spectronaut data module
 
@@ -298,7 +312,8 @@ SpectroPipeR_data <- read_spectronaut_module(file = example_file_path,
 The output in your specified output folder of the
 read_spectronaut_module() function should look like in this example:
 
-![](figures/folder_structure_read.png){width="50%"}
+![folder structure](../vignettes/figures/folder_structure_read.png){width="50%"}
+
 
 <!-- figures read Spectronaut data -->
 
@@ -311,7 +326,7 @@ identifications (IDs) discovered at the ion, peptide, and protein group
 levels, corresponding to user specified Q-value. It is advisable to
 select the same Q-value as defined in Spectronaut.
 
-![](figures/01__ID_counts_plot.png){width="40%"}
+![ID counts plot](../vignettes/figures/01__ID_counts_plot.png){width="40%"}
 
 #### ID_counts_plot_ion_filter
 
@@ -324,7 +339,7 @@ criteria for identifying potential ID outliers is determined by the
 formula `median of ion count * (1-0.3)`. A run with an ion count below
 this line would be highlighted in orange and labeled as an ID outlier.
 
-![](figures/01__ID_counts_plot_ion_filter.png){width="50%"}
+![ ](../vignettes/figures/01__ID_counts_plot_ion_filter.png){width="50%"}
 
 #### ID_ion_counts_plot
 
@@ -334,7 +349,7 @@ between ions discovered below the specified Q-value threshold (depicted
 in blue), those found above the threshold (shown in grey), and the
 profiled ions (represented in red).
 
-![](figures/01__ID_ion_counts_plot.png){width="50%"}
+![ ](../vignettes/figures/01__ID_ion_counts_plot.png){width="50%"}
 
 #### missed_cleavages_sample_wise
 
@@ -342,7 +357,7 @@ The bar chart, titled **ID_ion_counts_plot**, depicts the number of
 missed cleavages per run. The text above the bar indicates the missed
 cleavage percentage.
 
-![](figures/01__missed_cleavages_sample_wise.png){width="50%"}
+![ ](../vignettes/figures/01__missed_cleavages_sample_wise.png){width="50%"}
 
 #### missed_cleavages_sample_wise_PERCENTAGE
 
@@ -350,18 +365,18 @@ The bar chart, titled **missed_cleavages_sample_wise_PERCENTAGE**, shows
 the number of peptides with x-missed cleavages (y-axis left side) and
 the percentage (y-axis right side) per run.
 
-![](figures/01__missed_cleavages_sample_wise_PERCENTAGE.png){width="30%"}
+![ ](../vignettes/figures/01__missed_cleavages_sample_wise_PERCENTAGE.png){width="30%"}
 
 #### missed_cleavages_global
 
 The bar chart, titled **missed_cleavages_global**, depicts the missed
 cleavage rate for the whole project.
 
-![](figures/01__missed_cleavages_global.png){width="50%"}
+![ ](../vignettes/figures/01__missed_cleavages_global.png){width="50%"}
 
 #### Detected_ProteinGroups\_\_UpSetR\_\_plot
 
-The UpSet plot (\*\*Detected_ProteinGroups\_\_UpSetR\_\_plot\*\*)
+The UpSet plot (**Detected_ProteinGroups\_\_UpSetR\_\_plot**)
 illustrates the outcome from the ON/OFF analysis. The ON/OFF analysis is
 conducted by filtering the data to include only proteins with a minimum
 of 2 peptide hits that are present in at least 50% of the sample
@@ -371,7 +386,7 @@ and those failing to do so being designated as "OFF".
 If you want to know about the principle of an UpSet plot visit
 <https://en.wikipedia.org/wiki/UpSet_plot>
 
-![](figures/01__Detected_ProteinGroups__UpSetR__plot.png){width="50%"}
+![ ](../vignettes/figures/01__Detected_ProteinGroups__UpSetR__plot.png){width="50%"}
 
 <!-- tables read Spectronaut data -->
 
