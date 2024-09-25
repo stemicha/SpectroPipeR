@@ -66,7 +66,7 @@ The test may be performed paired or unpaired depending on your experimental desi
 PECA determines differential gene expression using directly the peptide intensity measurements of proteomic datasets.
 An change between two groups of samples is first calculated for each peptide in the datasets.
 The protein-level changes are then defined as median/tukey over the peptide level changes.
-For more details about the peptide-level expression change averaging (PECA) procedure, see [Elo _et al._ (2005)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1316121/), [Laajala _et al._ (2009)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2728531/) and [Suomi _et al._ (2024)](https://www.bioconductor.org/packages/release/bioc/html/PECA.html)
+For more details about the peptide-level expression change averaging (PECA) procedure, see Elo _et al._ (2005) <doi:10.1093/nar/gni193>, Laajala _et al._ (2009) <doi:10.1186/gb-2009-10-7-r77> and Suomi _et al._ (2024) <doi:10.18129/B9.bioc.PECA>
 
 PECA calculates the peptide level changes using the ordinary or modified t-statistic.
 The ordinary t-statistic is calculated using the function rowttests in the Bioconductor genefilter package.

@@ -59,11 +59,11 @@ The `norm_quant_module()` function serves to further process the data from the `
 
 <u>**data normalization:**</u> - normalize the ion data using the median-median normalization or auto-detect if the data was already normalized in Spectronaut using e.g. local cross-run normalization (If normalization was conducted using Spectronaut, the median-median normalization step is omitted, and the data normalized by Spectronaut is utilized.)
 
-<u>**(optional) batch adjusting:**</u> - provides the batch adjusting functionality if needed using the ComBat methodology described in [Johnson et al. 2007](https://academic.oup.com/biostatistics/article/8/1/118/252073)
+<u>**(optional) batch adjusting:**</u> - provides the batch adjusting functionality if needed using the ComBat methodology described in Johnson _et al._ 2007 <doi:10.1093/biostatistics/kxj037>
 
 <u>**(optional) covariate adjusting:**</u> - provides the covariate adjusting functionality if needed using the lm() function and the user specified meta data and formula to calculate the residuals per peptides which are back-transformed to intensities by adding the mean peptide intensity.
 
-<u>**protein quantification:**</u> - protein quantification can be either done by Hi3 (project-wide determination of Hi3 peptides) or MaxLFQ approach ([iq package](https://academic.oup.com/bioinformatics/article/36/8/2611/5697917))
+<u>**protein quantification:**</u> - protein quantification can be either done by Hi3 (project-wide determination of Hi3 peptides) or MaxLFQ approach (iq package <doi:10.1093/bioinformatics/btz961>)
 
 EG.TotalQuantity (Settings) column is used for the quantification. 
 Per default MS2 level should be selected in the quantification setting in Spectronaut™.
@@ -106,13 +106,13 @@ Hi3 uses the mean over the highest 2-3 peptides per protein defined by the media
 
 #### iBAQ protein intensity
 
-The iBAQ (intensity-Based Absolute Quantification) is a method used in proteomics to estimate the relative abundance of proteins within a sample. The iBAQ value for a protein is calculated by dividing the total intensity (sum of peptide intensities) of the protein by the number of theoretically observable tryptic peptides for that protein. This normalizes the protein intensity by the number of peptides that can be detected. [Schwanhäusser *et al., 2011](https://www.nature.com/articles/nature10098)
+The iBAQ (intensity-Based Absolute Quantification) is a method used in proteomics to estimate the relative abundance of proteins within a sample. The iBAQ value for a protein is calculated by dividing the total intensity (sum of peptide intensities) of the protein by the number of theoretically observable tryptic peptides for that protein. This normalizes the protein intensity by the number of peptides that can be detected. [Schwanhäusser _et al._, 2011](https://www.nature.com/articles/nature10098)
 
 #### MaxLFQ protein intensity
 
 MaxLFQ stands for Maximal Peptide Ratio Extraction and Label-Free Quantification. It is an algorithm used to estimate protein abundances in mass spectrometry-based proteomics by aiming to maintain the fragment intensity ratios between samples. The MaxLFQ algorithm calculates protein intensities by taking the maximum peptide ratio of all peptides that map to a protein and normalizing it across all samples.
 
-The MaxLFQ algorithm was developed by [Cox et al. in 2014](https://doi.org/10.1074/mcp.M113.031591) and is widely used in label-free quantitative proteomics. It is considered to be an accurate method for proteome-wide label-free quantification.
+The MaxLFQ algorithm was developed by [Cox _et al._ in 2014](https://doi.org/10.1074/mcp.M113.031591) and is widely used in label-free quantitative proteomics. It is considered to be an accurate method for proteome-wide label-free quantification.
 
 In more technical terms, the MaxLFQ algorithm calculates ratio between any two samples using the peptide species that are present. The pair-wise protein ratio is then defined as the median of the peptide ratios, to protect against outliers (require a minimal number of two peptide ratios in order for a given protein ratio to be considered valid). At this point the algorithm constructed a triangular matrix containing all pair-wise protein ratios between any two samples, which is the maximal possible quantification information. Then the algorithm perform a least-squares analysis to reconstruct the abundance profile optimally satisfying the individual protein ratios in the matrix based on the sum of squared differences. Then the algorithm rescales the whole profile to the cumulative intensity across samples, thereby preserving the total summed intensity for a protein over all samples.
 This procedure is repeated for all proteins, resulting in an accurate abundance profile for each protein across the samples.
@@ -121,8 +121,8 @@ This procedure is repeated for all proteins, resulting in an accurate abundance 
 
 Batch effects refer to systematic differences between batches (groups) of samples in high-throughput experiments.
 These differences can arise due to various factors, such as batch variations in sample preparation, handling, processing procedures and measurement orders. Batch effects can obscure the true biological signal and lead to incorrect conclusions if not properly accounted for.
-In the SpectroPipeR pipeline, the ComBat tool was employed to adjust for batch effects in the datasets where the batch covariate was known. ComBat utilizes the methodology described in [Johnson et al. 2007](https://pubmed.ncbi.nlm.nih.gov/16632515/).
-It uses an empirical Bayes (EB) framework for adjusting data for batch effects that is robust to outliers in small sample sizes and performs comparable to existing methods for large samples. [Johnson et al. 2007:](https://pubmed.ncbi.nlm.nih.gov/16632515/)
+In the SpectroPipeR pipeline, the ComBat tool was employed to adjust for batch effects in the datasets where the batch covariate was known. ComBat utilizes the methodology described in [Johnson _et al._ 2007](https://pubmed.ncbi.nlm.nih.gov/16632515/).
+It uses an empirical Bayes (EB) framework for adjusting data for batch effects that is robust to outliers in small sample sizes and performs comparable to existing methods for large samples. [Johnson _et al._ 2007:](https://pubmed.ncbi.nlm.nih.gov/16632515/)
 This method incorporates systematic batch biases common across genes in making adjustments, assuming that phenomena resulting in batch effects often affect many genes in similar ways (i.e. increased expression, higher variability, etc). Specifically, the L/S model parameters are estimated that represent the batch effects by pooling information across genes in each batch to shrink the batch effect parameter estimates toward the overall mean of the batch effect estimates (across peptides). These EB estimates are then used to adjust the data for batch effects, providing more robust adjustments for the batch effect on each peptide.
 In SpectroPipeR a parametric ComBAT empirical Bayes adjustment is implemented by utilizing the sva-package.
 After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of adjusted and un-adjusted data under `05_processed_data`. Following the adjustment of peptide data, protein intensities are then computed.
@@ -433,7 +433,7 @@ kable(read_csv(file = "tables/02a__iBAQ_protein_int_extracted_from_SN_summary.cs
 
 #### maxLFQ_protein_intensity_data.csv
 
-The **maxLFQ_protein_intensity_data.csv** table contains the information about the calculated MaxLFQ protein intensity data calculated by the [iq package](https://academic.oup.com/bioinformatics/article/36/8/2611/5697917) algorithm.
+The **maxLFQ_protein_intensity_data.csv** table contains the information about the calculated MaxLFQ protein intensity data calculated by the iq package <doi:10.1093/bioinformatics/btz961> algorithm.
 
 
 -   <u>PG.ProteinGroups</u> protein group IDs

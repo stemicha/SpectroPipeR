@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-SpectroPipeR does not incorporate a function for functional enrichment analysis due to the existence of numerous solutions, and users may have a preference for their own approach. However, the following code example illustrates the recommended implementation of statistical results files for a functional enrichment analysis using the Gprofiler2 package. For more information, please refer to the [Gprofiler R implementation](https://biit.cs.ut.ee/gprofiler/page/r) and the [R vignette of Gprofiler2](https://cran.r-project.org/web/packages/gprofiler2/vignettes/gprofiler2.html).
+SpectroPipeR does not incorporate a function for functional enrichment analysis due to the existence of numerous solutions, and users may have a preference for their own approach. However, the following code example illustrates the recommended implementation of statistical results files for a functional enrichment analysis using the Gprofiler2 package. For more information, please refer to the [Gprofiler R implementation](https://biit.cs.ut.ee/gprofiler/page/r) and the [R vignette of Gprofiler2](https://cran.r-project.org/package=gprofiler2).
 
 # Gprofiler2 code suggestion
 
