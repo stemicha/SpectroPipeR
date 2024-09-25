@@ -5,7 +5,7 @@ Authors@R:
     person("Stephan", "Michalik", , "stephan.michalik@uni-greifswald.de",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-6550-0132"))
-Description: a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.
+Description: A set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.
 Encoding: UTF-8
 Language: eng
 URL: https://stemicha.github.io/SpectroPipeR/
