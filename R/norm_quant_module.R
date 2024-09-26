@@ -137,6 +137,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #'#load library
 #'library(SpectroPipeR)
 #'
@@ -155,6 +156,7 @@
 #'
 #'# step 2: normalize & quantification module
 #'SpectroPipeR_data_quant <- norm_quant_module(SpectroPipeR_data = SpectroPipeR_data)
+#'}
 
 norm_quant_module <- function(SpectroPipeR_data = NULL,
                               batch_adjusting = FALSE,

@@ -35,6 +35,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #'#load library
 #'library(SpectroPipeR)
 #'
@@ -57,6 +58,7 @@
 #'# step 3: MVA module
 #'SpectroPipeR_MVA <- MVA_module(SpectroPipeR_data_quant = SpectroPipeR_data_quant,
 #'           HCPC_analysis = FALSE)
+#'}
 
 MVA_module <- function(SpectroPipeR_data_quant = NULL,
                        HCPC_analysis = FALSE,

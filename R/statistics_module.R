@@ -41,6 +41,7 @@
 #' @import tibble
 #'
 #' @examples
+#' \donttest{
 #'#load library
 #'library(SpectroPipeR)
 #'
@@ -70,6 +71,7 @@
 #'                                                                             "HYE mix B")
 #'                                                                           )
 #'                                             )
+#'}
 
 statistics_module <- function(SpectroPipeR_data_quant = NULL,
                               condition_comparisons = NULL,

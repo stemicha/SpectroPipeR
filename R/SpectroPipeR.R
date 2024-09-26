@@ -196,6 +196,7 @@
 #' @md
 #'
 #' @examples
+#' \donttest{
 #'# load library
 #'library(SpectroPipeR)
 #'
@@ -211,7 +212,8 @@
 #'                                      parameter = params,
 #'                                      condition_comparisons = cbind(c("HYE mix A","HYE mix B"))
 #'                                      )
-#'
+#'}
+
 SpectroPipeR <- function( file = "",
                           parameter = list(),
                           max_chars_file_name_capping = 25,

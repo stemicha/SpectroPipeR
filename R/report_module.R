@@ -25,6 +25,7 @@
 #' @import readxl
 #'
 #' @examples
+#' \donttest{
 #'#load library
 #'library(SpectroPipeR)
 #'
@@ -57,6 +58,7 @@
 #'SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 #'                           SpectroPipeR_data_quant = SpectroPipeR_data_quant,
 #'                           SpectroPipeR_data_stats = SpectroPipeR_data_stats)
+#'}
 
 
 SpectroPipeR_report_module <- function(SpectroPipeR_data = NULL,

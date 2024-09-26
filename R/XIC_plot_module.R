@@ -57,6 +57,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' #setup example input paths / protein selection for plotting
 #' Spectronaut_report_path <- system.file("extdata/HYE_demo_data",
 #'                                        "HYE_demo_data_Report_SpectroPipeR.tsv",
@@ -72,7 +73,8 @@
 #'                 output_path = output_path,
 #'                 number_of_cores = 2
 #' )
-#'
+#'}
+
 XIC_plot_module <- function(Spectronaut_report_path = NULL,
                             Spectronaut_xicDB_path = NULL,
                             protein_groups = NULL,

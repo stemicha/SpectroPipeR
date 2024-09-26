@@ -95,6 +95,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #'#load library
 #'library(SpectroPipeR)
 #'
@@ -110,6 +111,7 @@
 #'SpectroPipeR_data <- read_spectronaut_module(file = example_file_path,
 #'                                             parameter = params,
 #'                                             print.plot = FALSE)
+#'}
 
 read_spectronaut_module <- function(file = "",
                                     ID_condition_filtering = FALSE,
