@@ -127,6 +127,7 @@ peptide intensities retain their intensity level (low intense peptides keep thei
 high intense ions keep their higher intensity).
 }
 \examples{
+\donttest{
 #load library
 library(SpectroPipeR)
 
@@ -145,4 +146,5 @@ SpectroPipeR_data <- read_spectronaut_module(file = example_file_path,
 
 # step 2: normalize & quantification module
 SpectroPipeR_data_quant <- norm_quant_module(SpectroPipeR_data = SpectroPipeR_data)
+}
 }

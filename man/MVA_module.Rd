@@ -34,6 +34,7 @@ For the description of the generated figures and tables please read the manual &
 Function for conducting multivariate analysis, which represents the third step in the pipeline and builds upon the normalization and quantification module from step 2.
 }
 \examples{
+\donttest{
 #load library
 library(SpectroPipeR)
 
@@ -56,4 +57,5 @@ SpectroPipeR_data_quant <- norm_quant_module(SpectroPipeR_data = SpectroPipeR_da
 # step 3: MVA module
 SpectroPipeR_MVA <- MVA_module(SpectroPipeR_data_quant = SpectroPipeR_data_quant,
           HCPC_analysis = FALSE)
+}
 }

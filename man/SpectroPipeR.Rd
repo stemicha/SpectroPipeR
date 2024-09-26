@@ -235,6 +235,7 @@ peptide intensities retain their intensity level (low intense peptides keep thei
 high intense ions keep their higher intensity).
 }
 \examples{
+\donttest{
 # load library
 library(SpectroPipeR)
 
@@ -250,5 +251,5 @@ SpectroPipeR_analysis <- SpectroPipeR(file = example_file_path,
                                      parameter = params,
                                      condition_comparisons = cbind(c("HYE mix A","HYE mix B"))
                                      )
-
+}
 }

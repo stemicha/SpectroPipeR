@@ -97,6 +97,7 @@ For the description of the generated figures and tables please read the manual &
 Function for loading Spectronaut data and performing identification (ID) analysis, which is an essential first step in the SpectroPipeR workflow.
 }
 \examples{
+\donttest{
 #load library
 library(SpectroPipeR)
 
@@ -112,4 +113,5 @@ example_file_path <- system.file("extdata",
 SpectroPipeR_data <- read_spectronaut_module(file = example_file_path,
                                             parameter = params,
                                             print.plot = FALSE)
+}
 }

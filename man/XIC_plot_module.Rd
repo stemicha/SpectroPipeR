@@ -73,6 +73,7 @@ Description of the Spectronaut scores shown in the output plots:\tabular{ll}{
 The vertical dashed line in the plots indicate the individual ApexRT, which is calculated based on all fragment XIC for a specific peptide precursor ion.
 }
 \examples{
+\donttest{
 #setup example input paths / protein selection for plotting
 Spectronaut_report_path <- system.file("extdata/HYE_demo_data",
                                        "HYE_demo_data_Report_SpectroPipeR.tsv",
@@ -88,5 +89,5 @@ XIC_plot_module(Spectronaut_report_path = Spectronaut_report_path,
                 output_path = output_path,
                 number_of_cores = 2
 )
-
+}
 }

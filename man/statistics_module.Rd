@@ -35,6 +35,7 @@ For the description of the generated figures and tables please read the manual &
 Function for performing statistical analysis on Spectronaut output reports, representing the fourth step in the pipeline and is dependent on the normalization and quantification module output from step 2.
 }
 \examples{
+\donttest{
 #load library
 library(SpectroPipeR)
 
@@ -64,4 +65,5 @@ SpectroPipeR_data_stats <- statistics_module(SpectroPipeR_data_quant = SpectroPi
                                                                             "HYE mix B")
                                                                           )
                                             )
+}
 }
