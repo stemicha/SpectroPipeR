@@ -27,6 +27,7 @@ generates and exports an interactive standalone html report to the output folder
 Function for generating an interactive analysis report (HTML file). This is the final part of the SpectroPipeR pipeline where the analysis modules output serves as input.
 }
 \examples{
+\donttest{
 #load library
 library(SpectroPipeR)
 
@@ -59,4 +60,5 @@ SpectroPipeR_data_stats <- statistics_module(SpectroPipeR_data_quant = SpectroPi
 SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
                           SpectroPipeR_data_quant = SpectroPipeR_data_quant,
                           SpectroPipeR_data_stats = SpectroPipeR_data_stats)
+}
 }
