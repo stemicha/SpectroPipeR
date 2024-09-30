@@ -904,7 +904,10 @@ read_spectronaut_module <- function(file = "",
            ID_rate_plot
          },
          height = 20,
-         width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
+         # cap to 200 width with high number of samples project
+         width = ifelse(fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions)>200,
+                        200,
+                        fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions)),
          limitsize = FALSE)
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/ID_counts_plot_ion_filter"),
@@ -1150,7 +1153,8 @@ read_spectronaut_module <- function(file = "",
                         missed_cleavage_plot
                       },
                  filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/missed_cleavages_sample_wise"),
-                 width = (sample_length*1)+1,
+                 # cap to 200 width with high number of samples project
+                 width = fig_width_estimation(sample_length = sample_length,condition_length = number_of_conditions),
                  height = 10)
 
   # missed cleavage plot percentage
