@@ -1135,8 +1135,8 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/correlation_plots"),
          plot = correlation_plot_final,
-         width = if((0.4*sample_length)<13){20}else{0.5*sample_length},
-         height = if((0.4*sample_length)<10){10}else{0.25*sample_length},
+         width = if((0.4*sample_length)<13){20}else{ifelse(0.5*sample_length>200,0.25*sample_length,0.5*sample_length)},
+         height = if((0.4*sample_length)<10){10}else{ifelse(0.5*sample_length>200,0.125*sample_length,0.25*sample_length)},
          limitsize = F,
          dpi = 100)
 
@@ -1287,8 +1287,8 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/correlation_plots_condition"),
                  plot = correlation_plot_final_condition,
-                 width = if((0.4*sample_length)<13){20}else{0.4*sample_length},
-                 height = if((0.4*sample_length)<10){10}else{0.2*sample_length},
+                 width = if((0.4*sample_length)<13){20}else{ifelse(0.4*sample_length>200,0.2*sample_length,0.4*sample_length)},
+                 height = if((0.4*sample_length)<10){10}else{ifelse(0.4*sample_length>200,0.1*sample_length,0.2*sample_length)},
                  limitsize = F,
                  dpi = 100)
 
