@@ -50,7 +50,7 @@
 #' |               p_value_cutoff = 0.05,|
 #' |               paired = FALSE|
 #' |              )|
-#'
+#' @param report_copy if TRUE --> copy Spectronaut input report to SpectroPipeR project folder 01_input_data
 #' @param ID_condition_filtering TRUE or FALSE if a condition-wise filtering should be performed
 #' @param ID_condition_filtering_percent (numerical value ranging from 0 - 1, default = 0.5) define the proportion for the condition-wise ID filtering
 #' @param max_chars_file_name_capping integer, (default = 25) number of max characters used for raw file name presentation; must be adjusted if function
@@ -230,7 +230,8 @@ SpectroPipeR <- function( file = "",
                           costum_colors = NULL,
                           condition_comparisons = NULL,
                           number_of_cores_statistics = 2,
-                          build_HTML_report = TRUE
+                          build_HTML_report = TRUE,
+                          report_copy = FALSE
                       ){
   #switch OFF warnings, font issue; In grid.Call(C_textBounds, as.graphicsAnnot(x$label),  ... :font metrics unknown for character 0xa
   options( warn = -1 )
@@ -239,6 +240,7 @@ SpectroPipeR <- function( file = "",
   SpectroPipeR_data <- read_spectronaut_module(file = file,
                                                parameter = parameter,
                                                print.plot = FALSE,
+                                               report_copy = report_copy,
                                                max_chars_file_name_capping = max_chars_file_name_capping,
                                                ID_condition_filtering = ID_condition_filtering,
                                                ID_condition_filtering_percent = ID_condition_filtering_percent)

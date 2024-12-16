@@ -8,6 +8,7 @@
 #' @param ID_condition_filtering_percent (numerical value ranging from 0 - 1, default = 0.5) define the proportion for the condition-wise ID filtering
 #' @param max_chars_file_name_capping integer, (default = 35) number of max characters used for raw file name presentation; must be adjusted if function
 #' @param print.plot if TRUE --> printing ID plot on ion level coloring corresponds ID outlier estimate by "id_drop_cutoff" variable
+#' @param report_copy if TRUE --> copy Spectronaut input report to SpectroPipeR project folder 01_input_data
 #' @param parameter __mandatory parameter list element__
 #'
 #'  _table of list elements:_
@@ -118,7 +119,8 @@ read_spectronaut_module <- function(file = "",
                                     ID_condition_filtering_percent = 0.5,
                                     parameter = list(),
                                     max_chars_file_name_capping = 35,
-                                    print.plot = FALSE){
+                                    print.plot = FALSE,
+                                    report_copy = F){
 
 # setup default parameters ------------------------------------------------
   parameter_user_input <- parameter
@@ -220,13 +222,22 @@ read_spectronaut_module <- function(file = "",
                                                        PG.IBAQ = readr::col_character())))
 
 
-  # write input file to input data folder
-  message_function(text = "write input data to output folder ...",
-                   color = "blue",
-                   log_file_name = log_file_name)
+  # write input data to project folder ====
+  if(report_copy == T){
+    # write input file to input data folder
+    message_function(text = "write input data to output folder ...",
+                     color = "blue",
+                     log_file_name = log_file_name)
 
-  readr::write_delim(x = tmp_data_input,
-                     file = paste0(out_folder,"/","01_input_data","/",rev(unlist(strsplit(file,split = "/")))[1]),delim = "\t")
+    readr::write_delim(x = tmp_data_input,
+                       file = paste0(out_folder,"/","01_input_data","/",rev(unlist(strsplit(file,split = "/")))[1]),delim = "\t")
+
+  }else{
+    # DO not write input file to input data folder
+    message_function(text = "write input data to output folder was omitted...",
+                     color = "blue",
+                     log_file_name = log_file_name)
+  }
 
   # change condition from numeric to character if needed
   if(as.character(class(tmp_data_input$R.Condition))=="numeric"){
