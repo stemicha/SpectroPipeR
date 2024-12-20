@@ -1011,7 +1011,7 @@ read_spectronaut_module <- function(file = "",
   print(UpSetR::upset(as.data.frame(PG_2_peptides_ID_wide_binary),
         nintersects = NA,
         nsets = condition_length,
-        order.by = c("freq", "degree")))
+        order.by = c("freq")))
   dev.off()
 
   #write PG_2_peptides_ID_wide_binary
