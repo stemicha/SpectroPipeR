@@ -177,7 +177,6 @@ Spectronaut version 18.6 was used for data analysis. Following filtering, the io
 ![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](../vignettes/figures/ox_vs_nonox__box_plot.png){width=80%}
 
 
-
 # SpectroPipeR - output folder structure
 
 The specified output folder is essential. If it does not exist it will be created.
@@ -229,6 +228,16 @@ qualitative insights
     designated as "OFF".
 18. generate ON/OFF analysis tables, plots and UpSet analysis
 19. extract missed cleavages rates globally and on run level
+
+
+### SpectroPipeR condition wise filtering (optional)
+
+The `ID_condition_filtering` option, when used in conjunction with `ID_condition_filtering_percent`, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.
+
+The following schematic illustrates the condition-specific filtering process in SpectroPipeR.
+
+![SpectroPipeR condition wise filtering](../vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
+
 
 ### SDRF file 
 

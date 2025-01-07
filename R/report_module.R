@@ -13,7 +13,7 @@
 #' @import tidyverse
 #' @importFrom dplyr filter
 #' @importFrom stats median sd lm as.formula quantile
-#' @import DT
+#' @importFrom DT formatStyle datatable
 #' @importFrom kableExtra kable_styling
 #' @import readxl
 #' @import htmltools

@@ -21,7 +21,8 @@ SpectroPipeR(
   costum_colors = NULL,
   condition_comparisons = NULL,
   number_of_cores_statistics = 2,
-  build_HTML_report = TRUE
+  build_HTML_report = TRUE,
+  report_copy = FALSE
 )
 }
 \arguments{
@@ -126,6 +127,8 @@ you should use the \code{Spectronaut_export_scheme()} function for getting a Spe
 \code{parallel::detectCores()-2} for faster processing (will detect the number of cores in the system and use nearly all cores)}
 
 \item{build_HTML_report}{boolean; if a HTML report of the analysis should be generated or not}
+
+\item{report_copy}{if TRUE --> copy Spectronaut input report to SpectroPipeR project folder 01_input_data}
 }
 \value{
 SpectroPipeR list object containing tables and plots of the analysis in addition to the automatically saved tables and plots.

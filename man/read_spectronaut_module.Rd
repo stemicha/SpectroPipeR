@@ -10,7 +10,8 @@ read_spectronaut_module(
   ID_condition_filtering_percent = 0.5,
   parameter = list(),
   max_chars_file_name_capping = 35,
-  print.plot = FALSE
+  print.plot = FALSE,
+  report_copy = F
 )
 }
 \arguments{
@@ -69,6 +70,8 @@ you should use the \code{Spectronaut_export_scheme()} function for getting a Spe
 \item{max_chars_file_name_capping}{integer, (default = 35) number of max characters used for raw file name presentation; must be adjusted if function}
 
 \item{print.plot}{if TRUE --> printing ID plot on ion level coloring corresponds ID outlier estimate by "id_drop_cutoff" variable}
+
+\item{report_copy}{if TRUE --> copy Spectronaut input report to SpectroPipeR project folder 01_input_data}
 }
 \value{
 SpectroPipeR_data list object with the loaded raw data and processed data tables, in addition to the automatically saved tables and plots.

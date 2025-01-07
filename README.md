@@ -5,6 +5,16 @@ a streamlining post Spectronaut™ DIA-MS data analysis R package
 
 The manual can be found under https://stemicha.github.io/SpectroPipeR/
 
+- [SpectroPipeR - how to start](https://stemicha.github.io/SpectroPipeR/)
+- [SpectroPipeR - step 1 - read Spectronaut data](https://stemicha.github.io/SpectroPipeR/articles/a01_SpectroPipeR_read_Spectronaut_data.html)
+- [SpectroPipeR - step 2 - normalization and quantification](https://stemicha.github.io/SpectroPipeR/articles/a02_SpectroPipeR_norm_quant.html)
+- [SpectroPipeR - step 3 - MVA analysis](https://stemicha.github.io/SpectroPipeR/articles/a03_SpectroPipeR_MVA_analysis.html)
+- [SpectroPipeR - step 4 - statistics](https://stemicha.github.io/SpectroPipeR/articles/a04_SpectroPipeR_statistics.html)
+- [SpectroPipeR - step 5 - reporting](https://stemicha.github.io/SpectroPipeR/articles/a05_SpectroPipeR_reporting.html)
+- [SpectroPipeR - additional feature - XIC plotting module](https://stemicha.github.io/SpectroPipeR/articles/a06_SpectroPipeR_XIC_plot.html)
+- [SpectroPipeR - example code - functional enrichment analysis (external package)](https://stemicha.github.io/SpectroPipeR/articles/a07_Gprofiler2_code_suggestion.html)
+
+
 <!-- badges: start -->
 <!-- badges: end -->
 
@@ -164,6 +174,19 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
                            SpectroPipeR_data_stats = SpectroPipeR_data_stats)
 
 ```
+
+### SpectroPipeR GUI
+
+![](https://github.com/stemicha/SpectroPipeR/blob/main/vignettes/figures/SpectroPipeR_gui_screenshot.png?raw=true)
+
+``` r
+# load SpectroPipeR GUI
+SpectroPipeR_ui()
+```
+
+The `SpectroPipeR_ui()` function launches a user interface in the browser, providing access to the majority of SpectroPipeR's functionalities.
+
+### SpectroPipeR usage in Terminal/Bash
 
 If all the necessary packages are correctly installed, you can also execute SpectroPipeR analysis from the terminal using bash. Sometimes, extensive analyses require more computational power and memory, so it might be beneficial to run them on a server.
 

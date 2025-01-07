@@ -107,7 +107,7 @@
 #' @import tidyverse
 #' @import readr
 #' @import tidyr
-#' @import broom
+#' @importFrom broom glance
 #' @importFrom modelr add_residuals
 #' @import FactoMineR
 #' @import grDevices
