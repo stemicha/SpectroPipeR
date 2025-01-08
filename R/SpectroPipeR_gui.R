@@ -43,10 +43,10 @@ SpectroPipeR_ui<- function(){
           # add parameters ----------------------------------------------------------
           shiny::textInput(inputId = "SN_SpectroPipeR_file",
                     label = "paste absolute path to Spectronaut report in SpectroPipeR report layout (.tsv)",
-                    value = "/Users/stephanmichalik/Desktop/R_pipeline_analysis_scripts/SpectroPipeR/inst/extdata/SN_test_HYE_mix_file.tsv"),
+                    placeholder = "/Users/stephanmichalik/Spectronaut_SpectroPipeR_report_file.tsv"),
           shiny::textInput(inputId = "output_folder",
                     label = "paste absolute path to output folder",
-                    value = "/Users/stephanmichalik/Desktop/R_pipeline_analysis_scripts/SpectroPipeR_test_folder"),
+                    placeholder = "/Users/stephanmichalik/SpectroPipeR_output_folder"),
           shiny::h5("general parameter:"),
           shiny::fluidRow(
             shiny::column(width = 6,
