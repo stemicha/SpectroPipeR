@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="SpectroPipeR - step 2 - normalization and quantification">
 </head>
 <body>
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">SpectroPipeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,8 +46,10 @@
     <li><a class="dropdown-item" href="../articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a></li>
     <li><a class="dropdown-item" href="../articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a></li>
     <li><a class="dropdown-item" href="../articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a></li>
+    <li><a class="dropdown-item" href="../articles/a08_single_protein_plot_code_suggestion.html">SpectroPipeR - example code - single protein plot code suggestion</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -104,8 +106,7 @@ median-median normalization step is omitted, and the data normalized by
 Spectronaut is utilized.)</p>
 <p><u><strong>(optional) batch adjusting:</strong></u> - provides the
 batch adjusting functionality if needed using the ComBat methodology
-described in <a href="https://academic.oup.com/biostatistics/article/8/1/118/252073" class="external-link">Johnson
-et al. 2007</a></p>
+described in Johnson <em>et al.</em> 2007 <a href="doi:10.1093/biostatistics/kxj037" class="uri">doi:10.1093/biostatistics/kxj037</a></p>
 <p><u><strong>(optional) covariate adjusting:</strong></u> - provides
 the covariate adjusting functionality if needed using the lm() function
 and the user specified meta data and formula to calculate the residuals
@@ -113,8 +114,7 @@ per peptides which are back-transformed to intensities by adding the
 mean peptide intensity.</p>
 <p><u><strong>protein quantification:</strong></u> - protein
 quantification can be either done by Hi3 (project-wide determination of
-Hi3 peptides) or MaxLFQ approach (<a href="https://academic.oup.com/bioinformatics/article/36/8/2611/5697917" class="external-link">iq
-package</a>)</p>
+Hi3 peptides) or MaxLFQ approach (iq package <a href="doi:10.1093/bioinformatics/btz961" class="uri">doi:10.1093/bioinformatics/btz961</a>)</p>
 <p>EG.TotalQuantity (Settings) column is used for the quantification.
 Per default MS2 level should be selected in the quantification setting
 in Spectronaut™.</p>
@@ -179,8 +179,7 @@ sample. The iBAQ value for a protein is calculated by dividing the total
 intensity (sum of peptide intensities) of the protein by the number of
 theoretically observable tryptic peptides for that protein. This
 normalizes the protein intensity by the number of peptides that can be
-detected. <a href="https://www.nature.com/articles/nature10098" class="external-link">Schwanhäusser *et
-al., 2011</a></p>
+detected. Schwanhäusser <em>et al.</em>, 2011 <a href="doi:10.1038/nature10098" class="uri">doi:10.1038/nature10098</a></p>
 </div>
 <div class="section level5">
 <h5 id="maxlfq-protein-intensity">MaxLFQ protein intensity<a class="anchor" aria-label="anchor" href="#maxlfq-protein-intensity"></a>
@@ -191,10 +190,9 @@ in mass spectrometry-based proteomics by aiming to maintain the fragment
 intensity ratios between samples. The MaxLFQ algorithm calculates
 protein intensities by taking the maximum peptide ratio of all peptides
 that map to a protein and normalizing it across all samples.</p>
-<p>The MaxLFQ algorithm was developed by <a href="https://doi.org/10.1074/mcp.M113.031591" class="external-link">Cox et al. in 2014</a>
-and is widely used in label-free quantitative proteomics. It is
-considered to be an accurate method for proteome-wide label-free
-quantification.</p>
+<p>The MaxLFQ algorithm was developed by Cox <em>et al.</em> in 2014 <a href="doi:10.1074/mcp.M113.031591" class="uri">doi:10.1074/mcp.M113.031591</a> and is widely used in
+label-free quantitative proteomics. It is considered to be an accurate
+method for proteome-wide label-free quantification.</p>
 <p>In more technical terms, the MaxLFQ algorithm calculates ratio
 between any two samples using the peptide species that are present. The
 pair-wise protein ratio is then defined as the median of the peptide
@@ -222,25 +220,24 @@ Batch effects can obscure the true biological signal and lead to
 incorrect conclusions if not properly accounted for. In the SpectroPipeR
 pipeline, the ComBat tool was employed to adjust for batch effects in
 the datasets where the batch covariate was known. ComBat utilizes the
-methodology described in <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
-al. 2007</a>. It uses an empirical Bayes (EB) framework for adjusting
-data for batch effects that is robust to outliers in small sample sizes
-and performs comparable to existing methods for large samples. <a href="https://pubmed.ncbi.nlm.nih.gov/16632515/" class="external-link">Johnson et
-al. 2007:</a> This method incorporates systematic batch biases common
-across genes in making adjustments, assuming that phenomena resulting in
-batch effects often affect many genes in similar ways (i.e. increased
-expression, higher variability, etc). Specifically, the L/S model
-parameters are estimated that represent the batch effects by pooling
-information across genes in each batch to shrink the batch effect
-parameter estimates toward the overall mean of the batch effect
-estimates (across peptides). These EB estimates are then used to adjust
-the data for batch effects, providing more robust adjustments for the
-batch effect on each peptide. In SpectroPipeR a parametric ComBAT
-empirical Bayes adjustment is implemented by utilizing the sva-package.
-After adjusting the data you may find a PCA analysis plot (Dim. 1-5) of
-adjusted and un-adjusted data under <code>05_processed_data</code>.
-Following the adjustment of peptide data, protein intensities are then
-computed.</p>
+methodology described in Johnson <em>et al.</em> 2007 <a href="doi:10.1093/biostatistics/kxj037" class="uri">doi:10.1093/biostatistics/kxj037</a>. It uses an empirical
+Bayes (EB) framework for adjusting data for batch effects that is robust
+to outliers in small sample sizes and performs comparable to existing
+methods for large samples. Johnson <em>et al.</em> 2007 <a href="doi:10.1093/biostatistics/kxj037" class="uri">doi:10.1093/biostatistics/kxj037</a> This method
+incorporates systematic batch biases common across genes in making
+adjustments, assuming that phenomena resulting in batch effects often
+affect many genes in similar ways (i.e. increased expression, higher
+variability, etc). Specifically, the L/S model parameters are estimated
+that represent the batch effects by pooling information across genes in
+each batch to shrink the batch effect parameter estimates toward the
+overall mean of the batch effect estimates (across peptides). These EB
+estimates are then used to adjust the data for batch effects, providing
+more robust adjustments for the batch effect on each peptide. In
+SpectroPipeR a parametric ComBAT empirical Bayes adjustment is
+implemented by utilizing the sva-package. After adjusting the data you
+may find a PCA analysis plot (Dim. 1-5) of adjusted and un-adjusted data
+under <code>05_processed_data</code>. Following the adjustment of
+peptide data, protein intensities are then computed.</p>
 </div>
 <div class="section level5">
 <h5 id="covariate-adjustment">Covariate adjustment<a class="anchor" aria-label="anchor" href="#covariate-adjustment"></a>
@@ -394,6 +391,15 @@ normalization was chosen in Spectronaut.</p>
 <strong>normalization_boxplot</strong>, depicts the raw and normalized
 ion intensities.</p>
 <p><img src="../articles/figures/02__normalization_boxplot.png" style="width:50.0%"></p>
+</div>
+<div class="section level5">
+<h5 id="ion-intensity-plot-of-identified-and-not-identified-ions">ion intensity plot of identified and not-identified ions<a class="anchor" aria-label="anchor" href="#ion-intensity-plot-of-identified-and-not-identified-ions"></a>
+</h5>
+<p>The boxplot/violin chart, denoted as
+<strong>ion_intensity_Identified_notIdentified</strong>, displays the
+identified and not-identified (imputed or background signal) ion
+intensities.</p>
+<p><img src="../articles/figures/02__ion_intensity_Id.png"></p>
 </div>
 <div class="section level5">
 <h5 id="ion_cv_plot">ion_CV_plot<a class="anchor" aria-label="anchor" href="#ion_cv_plot"></a>
@@ -2357,8 +2363,7 @@ Q9
 </h5>
 <p>The <strong>maxLFQ_protein_intensity_data.csv</strong> table contains
 the information about the calculated MaxLFQ protein intensity data
-calculated by the <a href="https://academic.oup.com/bioinformatics/article/36/8/2611/5697917" class="external-link">iq
-package</a> algorithm.</p>
+calculated by the iq package <a href="doi:10.1093/bioinformatics/btz961" class="uri">doi:10.1093/bioinformatics/btz961</a> algorithm.</p>
 <ul>
 <li>
 <u>PG.ProteinGroups</u> protein group IDs</li>
@@ -2753,8 +2758,7 @@ B_manual
 </h5>
 <p>The <strong>maxLFQ_protein_intensity_data_wideFormat.csv</strong>
 wide-tablular table contains the information about the calculated MaxLFQ
-protein intensity data calculated by the <a href="https://academic.oup.com/bioinformatics/article/36/8/2611/5697917" class="external-link">iq
-package</a> algorithm.</p>
+protein intensity data calculated by the iq package (<a href="doi:10.1093/bioinformatics/btz961" class="uri">doi:10.1093/bioinformatics/btz961</a>) algorithm.</p>
 <ul>
 <li>
 <u>PG.ProteinGroups</u> protein group IDs</li>

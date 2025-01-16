@@ -257,6 +257,13 @@ The boxplot/density chart, denoted as **normalization_boxplot**, depicts the raw
 
 ![ ](../vignettes/figures/02__normalization_boxplot.png){width="50%"}
 
+#### ion intensity plot of identified and not-identified ions
+
+The boxplot/violin chart, denoted as **ion_intensity_Identified_notIdentified**, displays the identified and not-identified (imputed or background signal) ion intensities. 
+
+
+![](../vignettes/figures/02__ion_intensity_Id.png)
+
 
 #### ion_CV_plot
 

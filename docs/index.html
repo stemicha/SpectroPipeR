@@ -14,11 +14,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="R pipeline for the downstream analysis of Spectronaut DIA-MS data">
-<meta name="description" content="a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.">
-<meta property="og:description" content="a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.">
+<meta name="description" content="A set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.">
+<meta property="og:description" content="A set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment,iBAQ and maxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA or modified t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.">
 <meta property="og:image" content="https://stemicha.github.io/SpectroPipeR/logo.png">
 </head>
 <body>
@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">SpectroPipeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,8 +49,10 @@
     <li><a class="dropdown-item" href="articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a></li>
     <li><a class="dropdown-item" href="articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a></li>
     <li><a class="dropdown-item" href="articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a></li>
+    <li><a class="dropdown-item" href="articles/a08_single_protein_plot_code_suggestion.html">SpectroPipeR - example code - single protein plot code suggestion</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -70,9 +72,18 @@
 </div>
 <p>a streamlining post Spectronaut™ DIA-MS data analysis R package</p>
 <p>The manual can be found under <a href="https://stemicha.github.io/SpectroPipeR/" class="uri">https://stemicha.github.io/SpectroPipeR/</a></p>
-<!-- badges: start -->
-<!-- badges: end -->
-<div class="section level2">
+<ul>
+<li><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR - how to start</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a01_SpectroPipeR_read_Spectronaut_data.html">SpectroPipeR - step 1 - read Spectronaut data</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a02_SpectroPipeR_norm_quant.html">SpectroPipeR - step 2 - normalization and quantification</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a03_SpectroPipeR_MVA_analysis.html">SpectroPipeR - step 3 - MVA analysis</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a04_SpectroPipeR_statistics.html">SpectroPipeR - step 4 - statistics</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a05_SpectroPipeR_reporting.html">SpectroPipeR - step 5 - reporting</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a06_SpectroPipeR_XIC_plot.html">SpectroPipeR - additional feature - XIC plotting module</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a07_Gprofiler2_code_suggestion.html">SpectroPipeR - example code - functional enrichment analysis (external package)</a></li>
+<li><a href="https://stemicha.github.io/SpectroPipeR/articles/a08_single_protein_plot_code_suggestion.html">SpectroPipeR - example code - single protein plot code suggestion</a></li>
+</ul>
+<!-- badges: start --><!-- badges: end --><div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>During proteome studies, researchers frequently face various challenges, some of which can be mitigated while others cannot. A prevalent issue is the bottleneck in downstream data analysis, which arises due to a limited number of bioinformaticians, rapid generation of raw data, and variations in data analysis methods or workflows.</p>
@@ -81,6 +92,49 @@
 <p>SpectroPipeR consists of a global parameter setting and four analysis modules and one reporting module that are executed sequentially. This modular approach allows flexibility where specific analyses like ID- and intensity plots can be run independently or as part of the complete pipeline.</p>
 <p>After each module execution, dynamic console feedback is provided and written to a log file to help identify errors early on. Upon completion of all modules, a comprehensive set of tables and plots categorized in different folders is generated to summarize the project from various perspectives.</p>
 <p>SpectroPipeR includes also a module for XIC plotting, capable of generating protein-specific XIC plots for each ion associated with the protein. This is complemented by a range of significant metrics designed to aid in evaluating the accuracy of both identification and quantification.</p>
+</div>
+<div class="section level2">
+<h2 id="recommended-minimum-system-requirements">Recommended minimum system requirements<a class="anchor" aria-label="anchor" href="#recommended-minimum-system-requirements"></a>
+</h2>
+<ul>
+<li>
+<em>Processor:</em> Multi-core CPU, with at least 8-12 cores (12 cores recommended)</li>
+<li>
+<em>Memory (RAM):</em> Minimum 16-32 GB (64 GB recommended for larger datasets, e.g. 1200 neat plasma samples)</li>
+<li>
+<em>Storage:</em> SSD with at least 100 GB free space for intermediate files and results</li>
+<li>
+<em>Operating System:</em> Linux, MacOS, or Windows with the latest R version installed</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="spectronaut-required-version--missing-value-settings">Spectronaut® required version &amp; missing value settings<a class="anchor" aria-label="anchor" href="#spectronaut-required-version--missing-value-settings"></a>
+</h2>
+<div class="section level3">
+<h3 id="required-version">required version<a class="anchor" aria-label="anchor" href="#required-version"></a>
+</h3>
+<p>SpectroPipeR needs at least Spectronaut® version 18.7.240506.55695 to be fully functional.</p>
+</div>
+<div class="section level3">
+<h3 id="missing-value-settings">missing value settings<a class="anchor" aria-label="anchor" href="#missing-value-settings"></a>
+</h3>
+<p><strong>Currently, SpectroPipeR does not incorporate mechanisms to address missing values (complete matrix required!).</strong> However, given the availability of sophisticated missing value imputation algorithms within Spectronaut®, we would like to offer our recommendations for utilizing these features effectively.</p>
+<p>during the Analysis setup (DIA-Analysis or directDIA-Analysis) inside Spectronaut go to:</p>
+<ul>
+<li><strong>DIA Analyisis &gt; Quantification &gt; Precursor Filtering &gt; Imputing strategy</strong></li>
+</ul>
+<p>In order to use SpectroPipeR the one of following settings should be be used.</p>
+<p><strong>Imputing strategy:</strong> (Excerpt from the Spectronaut® manual) the imputing strategy defines how to estimate the missing values (identifications not fulfilling the FDR threshold).</p>
+<ul>
+<li>
+<u><em>Use Empirical Noise:</em></u> the best real picked signal will be reported.</li>
+<li>
+<u><em>Global Imputing:</em></u> missing values are imputed based on a random sampling from a distribution of low abundant signals taken across the entire experiment.</li>
+<li>
+<u><em>Run Wise Imputing:</em></u> missing values are imputed based on a random sampling from a distribution of low abundant signals taken within the corresponding run. This is useful for large scale experiment</li>
+</ul>
+<p><strong>DO NOT USE “NONE”!, in DIA Analyisis &gt; Quantification &gt; Precursor Filtering &gt; Imputing strategy</strong></p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -212,79 +266,160 @@
 <span><span class="fu"><a href="reference/SpectroPipeR_report_module.html">SpectroPipeR_report_module</a></span><span class="op">(</span>SpectroPipeR_data <span class="op">=</span> <span class="va">SpectroPipeR_data</span>,</span>
 <span>                           SpectroPipeR_data_quant <span class="op">=</span> <span class="va">SpectroPipeR_data_quant</span>,</span>
 <span>                           SpectroPipeR_data_stats <span class="op">=</span> <span class="va">SpectroPipeR_data_stats</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="spectropiper-gui">SpectroPipeR GUI<a class="anchor" aria-label="anchor" href="#spectropiper-gui"></a>
+</h3>
+<p><img src="https://github.com/stemicha/SpectroPipeR/blob/main/vignettes/figures/SpectroPipeR_gui_screenshot.png?raw=true"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load SpectroPipeR GUI</span></span>
+<span><span class="fu"><a href="reference/SpectroPipeR_ui.html">SpectroPipeR_ui</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="reference/SpectroPipeR_ui.html">SpectroPipeR_ui()</a></code> function launches a user interface in the browser, providing access to the majority of SpectroPipeR’s functionalities.</p>
+</div>
+<div class="section level3">
+<h3 id="spectropiper-usage-in-terminalbash">SpectroPipeR usage in Terminal/Bash<a class="anchor" aria-label="anchor" href="#spectropiper-usage-in-terminalbash"></a>
+</h3>
 <p>If all the necessary packages are correctly installed, you can also execute SpectroPipeR analysis from the terminal using bash. Sometimes, extensive analyses require more computational power and memory, so it might be beneficial to run them on a server.</p>
 <p>Here is a basic example that you can use as a starting point, which you can save as “SpectroPipeR_terminal.sh”</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Command line arguments</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="va">parameter</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="va">condition_comparisons</span><span class="op">=</span><span class="va">$3</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># usage</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co"># bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co"># R script</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="st">library(SpectroPipeR)</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="st"># split parameters</span></span>
-<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="st">params &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="st">params &lt;- strsplit(unlist(params),</span><span class="dt">\"</span><span class="st">=</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="st">names(params) &lt;- lapply(params, function(x) x[1])</span></span>
-<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="st">params &lt;- lapply(params, function(x) x[2])</span></span>
-<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="st"># convert parameters class</span></span>
-<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="st">convert_params &lt;- function(params) {</span></span>
-<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="st">  numeric_params = c(</span><span class="dt">\"</span><span class="st">ion_q_value_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">id_drop_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">normalization_factor_cutoff_outlier</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">fold_change</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">p_value_cutoff</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="st">  logical_params = c(</span><span class="dt">\"</span><span class="st">filter_oxidized_peptides</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">paired</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="st">  # iterate over each parameter</span></span>
-<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="st">  for (param in names(params)) {</span></span>
-<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="st">    # check if parameter is in numeric_params</span></span>
-<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="st">    if (param %in% numeric_params) {</span></span>
-<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="st">      # convert to numeric</span></span>
-<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.numeric(params[[param]])</span></span>
-<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a><span class="st">    # check if parameter is in logical_params</span></span>
-<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="st">    else if (param %in% logical_params) {</span></span>
-<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="st">      # convert to logical</span></span>
-<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.logical(params[[param]])</span></span>
-<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a><span class="st">  return(params)</span></span>
-<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a></span>
-<span id="cb6-52"><a href="#cb6-52" tabindex="-1"></a><span class="st">params &lt;- convert_params(params)</span></span>
-<span id="cb6-53"><a href="#cb6-53" tabindex="-1"></a></span>
-<span id="cb6-54"><a href="#cb6-54" tabindex="-1"></a><span class="st"># split condition comparisons</span></span>
-<span id="cb6-55"><a href="#cb6-55" tabindex="-1"></a><span class="st">cond_comp &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
-<span id="cb6-56"><a href="#cb6-56" tabindex="-1"></a><span class="st">cond_comp &lt;- sapply(unlist(cond_comp), function(x) strsplit(x,split = </span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">))</span></span>
-<span id="cb6-57"><a href="#cb6-57" tabindex="-1"></a><span class="st">cond_comp &lt;- do.call(cbind,cond_comp)</span></span>
-<span id="cb6-58"><a href="#cb6-58" tabindex="-1"></a></span>
-<span id="cb6-59"><a href="#cb6-59" tabindex="-1"></a><span class="st">class(params)</span></span>
-<span id="cb6-60"><a href="#cb6-60" tabindex="-1"></a><span class="st">print(params)</span></span>
-<span id="cb6-61"><a href="#cb6-61" tabindex="-1"></a></span>
-<span id="cb6-62"><a href="#cb6-62" tabindex="-1"></a><span class="st"># perform the analysis</span></span>
-<span id="cb6-63"><a href="#cb6-63" tabindex="-1"></a><span class="st">SpectroPipeR_analysis &lt;- SpectroPipeR(file = </span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">,</span></span>
-<span id="cb6-64"><a href="#cb6-64" tabindex="-1"></a><span class="st">                                     parameter = params,</span></span>
-<span id="cb6-65"><a href="#cb6-65" tabindex="-1"></a><span class="st">                                     condition_comparisons = cond_comp</span></span>
-<span id="cb6-66"><a href="#cb6-66" tabindex="-1"></a><span class="st">                                     )</span></span>
-<span id="cb6-67"><a href="#cb6-67" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb6-68"><a href="#cb6-68" tabindex="-1"></a></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co"># Command line arguments</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="va">parameter</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="va">condition_comparisons</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co"># usage</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co"># bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co"># R script</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="st">library(SpectroPipeR)</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="st">print(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="st"># split parameters</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a><span class="st">params &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$parameter</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a><span class="st">params &lt;- strsplit(unlist(params),</span><span class="dt">\"</span><span class="st">=</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a><span class="st">names(params) &lt;- lapply(params, function(x) x[1])</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a><span class="st">params &lt;- lapply(params, function(x) x[2])</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a><span class="st"># convert parameters class</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a><span class="st">convert_params &lt;- function(params) {</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a><span class="st">  numeric_params = c(</span><span class="dt">\"</span><span class="st">ion_q_value_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">id_drop_cutoff</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">normalization_factor_cutoff_outlier</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">fold_change</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">p_value_cutoff</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a><span class="st">  logical_params = c(</span><span class="dt">\"</span><span class="st">filter_oxidized_peptides</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a><span class="st">                     </span><span class="dt">\"</span><span class="st">paired</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a><span class="st">  # iterate over each parameter</span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a><span class="st">  for (param in names(params)) {</span></span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a><span class="st">    # check if parameter is in numeric_params</span></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a><span class="st">    if (param %in% numeric_params) {</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a><span class="st">      # convert to numeric</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.numeric(params[[param]])</span></span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a><span class="st">    # check if parameter is in logical_params</span></span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a><span class="st">    else if (param %in% logical_params) {</span></span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a><span class="st">      # convert to logical</span></span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a><span class="st">      params[[param]] &lt;- as.logical(params[[param]])</span></span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a><span class="st">  return(params)</span></span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a><span class="st">params &lt;- convert_params(params)</span></span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a><span class="st"># split condition comparisons</span></span>
+<span id="cb7-55"><a href="#cb7-55" tabindex="-1"></a><span class="st">cond_comp &lt;- strsplit(</span><span class="dt">\"</span><span class="va">$condition_comparisons</span><span class="dt">\"</span><span class="st">,split = </span><span class="dt">\"</span><span class="st">;</span><span class="dt">\"</span><span class="st">)</span></span>
+<span id="cb7-56"><a href="#cb7-56" tabindex="-1"></a><span class="st">cond_comp &lt;- sapply(unlist(cond_comp), function(x) strsplit(x,split = </span><span class="dt">\"</span><span class="st">,</span><span class="dt">\"</span><span class="st">))</span></span>
+<span id="cb7-57"><a href="#cb7-57" tabindex="-1"></a><span class="st">cond_comp &lt;- do.call(cbind,cond_comp)</span></span>
+<span id="cb7-58"><a href="#cb7-58" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" tabindex="-1"></a><span class="st">class(params)</span></span>
+<span id="cb7-60"><a href="#cb7-60" tabindex="-1"></a><span class="st">print(params)</span></span>
+<span id="cb7-61"><a href="#cb7-61" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" tabindex="-1"></a><span class="st"># perform the analysis</span></span>
+<span id="cb7-63"><a href="#cb7-63" tabindex="-1"></a><span class="st">SpectroPipeR_analysis &lt;- SpectroPipeR(file = </span><span class="dt">\"</span><span class="va">$input_file</span><span class="dt">\"</span><span class="st">,</span></span>
+<span id="cb7-64"><a href="#cb7-64" tabindex="-1"></a><span class="st">                                     parameter = params,</span></span>
+<span id="cb7-65"><a href="#cb7-65" tabindex="-1"></a><span class="st">                                     condition_comparisons = cond_comp</span></span>
+<span id="cb7-66"><a href="#cb7-66" tabindex="-1"></a><span class="st">                                     )</span></span>
+<span id="cb7-67"><a href="#cb7-67" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb7-68"><a href="#cb7-68" tabindex="-1"></a></span></code></pre></div>
 <p>example terminal usage:</p>
 <p>bash SpectroPipeR_terminal.sh [input_file] [named parameters separated by ;] [condition comparisons separated by ;]</p>
 <pre class="terminal"><code>bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"</code></pre>
+</div>
+</div>
+<div class="section level2">
+<h2 id="selected-options-of-spectropiper">selected options of SpectroPipeR<a class="anchor" aria-label="anchor" href="#selected-options-of-spectropiper"></a>
+</h2>
+<div class="section level3">
+<h3 id="spectropiper-condition-wise-filtering-optional">SpectroPipeR condition wise filtering (optional)<a class="anchor" aria-label="anchor" href="#spectropiper-condition-wise-filtering-optional"></a>
+</h3>
+<p>The <code>ID_condition_filtering</code> option, when used in conjunction with <code>ID_condition_filtering_percent</code>, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># SpectroPipeR analysis with ions only present in 100% of replicates per condition</span></span>
+<span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/SpectroPipeR.html">SpectroPipeR</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">example_file_path</span>,</span>
+<span>                                      parameter <span class="op">=</span> <span class="va">params</span>,</span>
+<span>                                      ID_condition_filtering <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>                                      ID_condition_filtering_percent <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                                      condition_comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HYE mix A"</span>,</span>
+<span>                                                                      <span class="st">"HYE mix B"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                      <span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># SpectroPipeR analysis with ions only present in 50% of replicates per condition</span></span>
+<span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/SpectroPipeR.html">SpectroPipeR</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Spectronaut_SpectroPipeR_report_file.tsv"</span>,</span>
+<span>                                      parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"output_folder"</span><span class="op">)</span>,</span>
+<span>                                      ID_condition_filtering <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>                                      ID_condition_filtering_percent <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>                                      condition_comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HYE mix A"</span>,</span>
+<span>                                                                      <span class="st">"HYE mix B"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                      <span class="op">)</span></span></code></pre></div>
+<p>The following schematic illustrates the condition-specific filtering process in SpectroPipeR.</p>
+<div class="float">
+<img src="articles/figures/SpectroPipeR_condition_filtering.png" alt="SpectroPipeR condition wise filtering"><div class="figcaption">SpectroPipeR condition wise filtering</div>
+</div>
+<p>The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.</p>
+</div>
+<div class="section level3">
+<h3 id="remove-methionine-oxidized-peptides-before-quantitative-analysis-optional">remove methionine oxidized peptides before quantitative analysis (optional)<a class="anchor" aria-label="anchor" href="#remove-methionine-oxidized-peptides-before-quantitative-analysis-optional"></a>
+</h3>
+<p>Methionine oxidation during sample preparation is a significant concern, particularly when using e.g. 2-chloroacetamide (CA) as an alkylating agent. The oxidation of methionine increases dramatically with CA, affecting up to 40% of all Met-containing peptides, compared to only 2-5% with iodoacetamide (IOA) (Hains, P. G. &amp; Robinson, P. J. - 10.1021/acs.jproteome.7b00022). This extensive oxidation can cause qualitative and quantitative issues in large-scale proteomics studies, complicating data analysis and increasing the search space required for database matching.</p>
+<p>Methionine oxidation has been also observed to accumulate spuriously during the initial stages of a typical bottom-up proteomics workflow. Notably, the extent of methionine oxidation increases with prolonged trypsin digestion and higher ionization energy during electrospray ionization (ESI) (Zang, L. <em>et al.</em>, 2012 - 10.1016/j.jchromb.2012.03.016; Chen, M. &amp; Cook, K. D. - 10.1021/ac061743r).</p>
+<p>These observations complicate the differentiation between methionines oxidized <em>in vivo</em> and those artifactually oxidized <em>in vitro</em> during sample preparation and mass spectrometric analysis.</p>
+<p>SpectroPipeR includes an option to remove oxidized methionine peptides.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load library</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://stemicha.github.io/SpectroPipeR/">SpectroPipeR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># SpectroPipeR analysis with removing oxidized methionine peptides</span></span>
+<span><span class="va">SpectroPipeR_analysis</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/SpectroPipeR.html">SpectroPipeR</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"Spectronaut_SpectroPipeR_report_file.tsv"</span>,</span>
+<span>                                      parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>output_folder <span class="op">=</span> <span class="st">"output_folder"</span>,</span>
+<span>                                                       <span class="co"># remove Met-ox. peptides</span></span>
+<span>                                                       filter_oxidized_peptides <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>                                      condition_comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HYE mix A"</span>,</span>
+<span>                                                                      <span class="st">"HYE mix B"</span><span class="op">)</span><span class="op">)</span></span>
+<span>                                      <span class="op">)</span></span></code></pre></div>
+<p>This is recommended because species mix experiments have shown that the non-oxidized (methionine containing peptides) fraction of the peptide exhibits a lower coefficient of variation and better conservation of expected ratios compared to the oxidized fraction of the peptides.</p>
+<div class="float">
+<img src="articles/figures/ox_vs_nonox__CV_plot.png" alt="HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms</div>
+</div>
+<div class="float">
+<img src="articles/figures/ox_vs_nonox__box_plot.png" alt="HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms"><div class="figcaption">HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms</div>
+</div>
 </div>
 </div>
 </div>

@@ -168,6 +168,35 @@ Spectronaut version 18.6 was used for data analysis. Following filtering, the io
 
 #### HYE species mix experiements results regarding methionine oxidation
 
+
+Methionine oxidation during sample preparation is a significant concern, particularly when using e.g. 2-chloroacetamide (CA) as an alkylating agent.
+The oxidation of methionine increases dramatically with CA, affecting up to 40% of all Met-containing peptides, compared to only 2-5% with iodoacetamide (IOA) (Hains, P. G. & Robinson, P. J. - 10.1021/acs.jproteome.7b00022). 
+This extensive oxidation can cause qualitative and quantitative issues in large-scale proteomics studies, complicating data analysis and increasing the search space required for database matching. 
+
+Methionine oxidation has been also observed to accumulate spuriously during the initial stages of a typical bottom-up proteomics workflow. 
+Notably, the extent of methionine oxidation increases with prolonged trypsin digestion and higher ionization energy during electrospray ionization (ESI) (Zang, L. *et al.*, 2012 - 10.1016/j.jchromb.2012.03.016; Chen, M. & Cook, K. D. - 10.1021/ac061743r).
+
+These observations complicate the differentiation between methionines oxidized *in vivo* and those artifactually oxidized *in vitro* during sample 
+preparation and mass spectrometric analysis.
+
+SpectroPipeR includes an option to remove oxidized methionine peptides. 
+
+
+``` r
+# SpectroPipeR analysis with removing oxidized methionine peptides
+SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_file.tsv",
+                                      parameter = list(output_folder = "output_folder",
+                                                       # remove Met-ox. peptides
+                                                       filter_oxidized_peptides = TRUE),
+                                      condition_comparisons = cbind(c("HYE mix A",
+                                                                      "HYE mix B"))
+                                      )
+
+```
+
+This is recommended because species mix experiments have shown that the non-oxidized (methionine containing peptides) fraction of the peptide exhibits a lower coefficient of variation and better conservation of expected ratios compared to the oxidized fraction of the peptides.
+
+
 ![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](../vignettes/figures/ox_vs_nonox__CV_plot.png){width=80%}
 
 
@@ -234,10 +263,24 @@ qualitative insights
 
 The `ID_condition_filtering` option, when used in conjunction with `ID_condition_filtering_percent`, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.
 
+```{r,eval=F}
+# SpectroPipeR analysis with ions only present in 50% of replicates per condition
+SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_file.tsv",
+                                      parameter = list(output_folder = "output_folder"),
+                                      ID_condition_filtering = T,
+                                      ID_condition_filtering_percent = 0.5,
+                                      condition_comparisons = cbind(c("HYE mix A",
+                                                                      "HYE mix B"))
+                                      )
+```
+
+
+
 The following schematic illustrates the condition-specific filtering process in SpectroPipeR.
 
 ![SpectroPipeR condition wise filtering](../vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
 
+The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.
 
 ### SDRF file 
 
