@@ -144,6 +144,9 @@ UpSetR_PG_2_peptides_ID_wide_binary <- paste0(out_folder,"/","02_ID_rate/",sampl
 normalization_boxplot <- list.files(paste0(out_folder,"/","03_normalization/",sample_length,"_sample_analysis"),
                               pattern = "normalization_boxplot.png",full.names = T)
 
+ion_int_ident_boxplot <- list.files(paste0(out_folder,"/","03_normalization/",sample_length,"_sample_analysis"),
+                                    pattern = "ion_intensity_Identified_notIdentified.png",full.names = T)
+
 normalization_factors <- read_csv(paste0(out_folder,"/","03_normalization/",sample_length,"_sample_analysis/Median_normalization_factors.csv"),show_col_types = FALSE)
 
 protein_normalization_plot <- list.files(paste0(out_folder,"/","03_normalization/",sample_length,"_sample_analysis"),
@@ -318,6 +321,7 @@ params_quarto <- list(
                UpSetR_PG_2_peptides_ID_wide_binary = UpSetR_PG_2_peptides_ID_wide_binary,
                normalization_factors = normalization_factors,
                normalization_boxplot = normalization_boxplot,
+               ion_int_ident_boxplot = ion_int_ident_boxplot,
                protein_normalization_plot = protein_normalization_plot,
                protein_normalization_boxplot = protein_normalization_boxplot,
                pca_1_2_plot_cond = pca_1_2_plot_cond,

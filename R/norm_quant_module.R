@@ -562,6 +562,48 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
                    width = 20
     )
 
+
+    # plot identified and non-identified ion intensities ----------------------
+
+    message_function(text = "generate and save ion intensity plot (ident./not-ident.)...",
+                     color = "blue",
+                     log_file_name = log_file_name)
+
+    ion_int_plot_ident_color <- ggplot(data = data %>%
+             mutate(EG.TotalQuantity.MedianNormalized = ifelse(.data$EG.TotalQuantity.MedianNormalized==0 |
+                                                                 is.na(.data$EG.TotalQuantity.MedianNormalized),
+                                                               yes = 0.1, # replace 0 or NA with 0.1 for plotting
+                                                               no = .data$EG.TotalQuantity.MedianNormalized)),
+           aes(x = .data$R.FileName,
+               y = .data$EG.TotalQuantity.MedianNormalized,
+               fill= EG.Identified))+
+      #geom_boxplot(outlier.colour = NA)+
+      scale_y_log10()+
+      annotation_logticks(side = "b")+
+      geom_half_violin(side = "r")+
+      geom_half_boxplot(side = "l", color = "grey10",
+                        outlier.colour = NA,
+                        errorbar.length = 0.4,show.legend = F)+
+      scale_fill_manual(values = c("TRUE" = "dodgerblue4", "FALSE" = "grey"))+
+      theme_light(base_size = 18)+
+      theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9))+
+      coord_flip()+
+      labs(title="ion intensity plot",
+           subtitle = "identified vs. not-indentified ions",
+           y=expression(log[10]~"ion intensities"),
+           x="raw file name",
+           fill = "identified ion"
+      )
+    #save ion_int_plot_ident plot
+    ggsave_pdf_png(filename = paste0(out_folder,"/","03_normalization/",sample_length,"_sample_analysis/ion_intensity_Identified_notIdentified"),
+                   plot = ion_int_plot_ident_color,
+                   limitsize = F,
+                   height = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+                   width = 13
+    )
+
+
+
     # adding MC--> CV plots for ion data --------------------------------------------
     message_function(text = "generate ion CV data...",
                      color = "blue",

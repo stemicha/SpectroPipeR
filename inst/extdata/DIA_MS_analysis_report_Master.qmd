@@ -41,6 +41,7 @@ params:
   PG_2_peptides_ID_wide_binary: NA
   normalization_factors: NA
   normalization_boxplot: NA
+  ion_int_ident_boxplot: NA
   protein_normalization_plot: NA
   protein_normalization_boxplot: NA
   pca_1_2_plot_cond: NA
@@ -271,6 +272,11 @@ knitr::include_graphics(sub(".", "",str_replace_all(params$protein_normalization
 ## ion intensity boxplot
 
 `r knitr::include_graphics(sub(".","",str_replace_all(params$normalization_boxplot,params$output_folder,"")))`
+
+## ion intensity of identified and not identified ions
+
+`r knitr::include_graphics(sub(".","",str_replace_all(params$ion_int_ident_boxplot,params$output_folder,"")))`
+
 
 :::
 
