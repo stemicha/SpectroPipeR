@@ -32,6 +32,42 @@ After each module execution, dynamic console feedback is provided and written to
 
 SpectroPipeR includes also a module for XIC plotting, capable of generating protein-specific XIC plots for each ion associated with the protein. This is complemented by a range of significant metrics designed to aid in evaluating the accuracy of both identification and quantification.
 
+## Recommended minimum system requirements
+
+- *Processor:* Multi-core CPU, with at least 8-12 cores (12 cores recommended)
+- *Memory (RAM):* Minimum 16-32 GB (64 GB recommended for larger datasets, e.g. 1200 neat plasma samples)
+- *Storage:* SSD with at least 100 GB free space for intermediate files and results
+- *Operating System:* Linux, MacOS, or Windows with the latest R version installed
+
+## Spectronaut® required version & missing value settings
+
+### required version
+
+SpectroPipeR needs at least Spectronaut® version 18.7.240506.55695 to be fully functional.
+
+### missing value settings
+
+**Currently, SpectroPipeR does not incorporate mechanisms to address missing values (complete matrix required!).**
+However, given the availability of sophisticated missing value imputation algorithms within Spectronaut®, we would like to offer our recommendations for utilizing these features effectively.
+
+during the Analysis setup (DIA-Analysis or directDIA-Analysis) inside Spectronaut go to:
+
+- **DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy**
+
+In order to use SpectroPipeR the one of following settings should be be used.
+
+**Imputing strategy:** (Excerpt from the Spectronaut® manual) the imputing strategy defines how to estimate the missing values (identifications not fulfilling the FDR threshold).
+
+- <u><em>Use Empirical Noise:</u></em> the best real picked signal will be reported.
+- <u><em>Global Imputing:</u></em> missing values are imputed based on a random sampling from a distribution of low abundant signals taken across the entire experiment.
+- <u><em>Run Wise Imputing:</u></em> missing values are imputed based on a random sampling from a distribution of low abundant signals taken within the corresponding run. This is useful for large scale experiment
+
+
+**DO NOT USE "NONE"!, in DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy**
+
+
+
+
 ## Installation
 
 You can install the development version of SpectroPipeR like so:
@@ -180,11 +216,16 @@ SpectroPipeR_report_module(SpectroPipeR_data = SpectroPipeR_data,
 ![](https://github.com/stemicha/SpectroPipeR/blob/main/vignettes/figures/SpectroPipeR_gui_screenshot.png?raw=true)
 
 ``` r
+# load library
+library(SpectroPipeR)
+
 # load SpectroPipeR GUI
 SpectroPipeR_ui()
 ```
 
 The `SpectroPipeR_ui()` function launches a user interface in the browser, providing access to the majority of SpectroPipeR's functionalities.
+
+
 
 ### SpectroPipeR usage in Terminal/Bash
 
@@ -271,3 +312,85 @@ bash SpectroPipeR_terminal.sh [input_file] [named parameters separated by ;] [co
 ``` terminal
 bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroPipeR_test_folder;stat_test=modt;ion_q_value_cutoff=0.001" "HYE mix A,HYE mix B;HYE mix B,HYE mix A"
 ```
+
+## selected options of SpectroPipeR
+
+### SpectroPipeR condition wise filtering (optional)
+
+The `ID_condition_filtering` option, when used in conjunction with `ID_condition_filtering_percent`, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.
+
+``` r
+# load library
+library(SpectroPipeR)
+
+# SpectroPipeR analysis with ions only present in 100% of replicates per condition
+SpectroPipeR_analysis <- SpectroPipeR(file = example_file_path,
+                                      parameter = params,
+                                      ID_condition_filtering = T,
+                                      ID_condition_filtering_percent = 1,
+                                      condition_comparisons = cbind(c("HYE mix A",
+                                                                      "HYE mix B"))
+                                      )
+
+```
+
+``` r
+# load library
+library(SpectroPipeR)
+
+# SpectroPipeR analysis with ions only present in 50% of replicates per condition
+SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_file.tsv",
+                                      parameter = list(output_folder = "output_folder"),
+                                      ID_condition_filtering = T,
+                                      ID_condition_filtering_percent = 0.5,
+                                      condition_comparisons = cbind(c("HYE mix A",
+                                                                      "HYE mix B"))
+                                      )
+
+```
+
+The following schematic illustrates the condition-specific filtering process in SpectroPipeR.
+
+![SpectroPipeR condition wise filtering](vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
+
+
+The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.
+
+### remove methionine oxidized peptides before quantitative analysis  (optional)
+
+Methionine oxidation during sample preparation is a significant concern, particularly when using e.g. 2-chloroacetamide (CA) as an alkylating agent.
+The oxidation of methionine increases dramatically with CA, affecting up to 40% of all Met-containing peptides, compared to only 2-5% with iodoacetamide (IOA) (Hains, P. G. & Robinson, P. J. - 10.1021/acs.jproteome.7b00022). 
+This extensive oxidation can cause qualitative and quantitative issues in large-scale proteomics studies, complicating data analysis and increasing the search space required for database matching. 
+
+Methionine oxidation has been also observed to accumulate spuriously during the initial stages of a typical bottom-up proteomics workflow. 
+Notably, the extent of methionine oxidation increases with prolonged trypsin digestion and higher ionization energy during electrospray ionization (ESI) (Zang, L. *et al.*, 2012 - 10.1016/j.jchromb.2012.03.016; Chen, M. & Cook, K. D. - 10.1021/ac061743r).
+
+These observations complicate the differentiation between methionines oxidized *in vivo* and those artifactually oxidized *in vitro* during sample 
+preparation and mass spectrometric analysis.
+
+SpectroPipeR includes an option to remove oxidized methionine peptides. 
+
+
+``` r
+# load library
+library(SpectroPipeR)
+
+# SpectroPipeR analysis with removing oxidized methionine peptides
+SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_file.tsv",
+                                      parameter = list(output_folder = "output_folder",
+                                                       # remove Met-ox. peptides
+                                                       filter_oxidized_peptides = TRUE),
+                                      condition_comparisons = cbind(c("HYE mix A",
+                                                                      "HYE mix B"))
+                                      )
+
+```
+
+This is recommended because species mix experiments have shown that the non-oxidized (methionine containing peptides) fraction of the peptide exhibits a lower coefficient of variation and better conservation of expected ratios compared to the oxidized fraction of the peptides.
+
+
+![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__CV_plot.png){width=80%}
+
+
+![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__box_plot.png){width=80%}
+
