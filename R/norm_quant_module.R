@@ -576,10 +576,10 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
                                                                no = .data$EG.TotalQuantity.MedianNormalized)),
            aes(x = .data$R.FileName,
                y = .data$EG.TotalQuantity.MedianNormalized,
-               fill= EG.Identified))+
+               fill= .data$EG.Identified))+
       #geom_boxplot(outlier.colour = NA)+
       scale_y_log10()+
-      annotation_logticks(side = "b")+
+      annotation_logticks(sides = "b")+
       geom_half_violin(side = "r")+
       geom_half_boxplot(side = "l", color = "grey10",
                         outlier.colour = NA,

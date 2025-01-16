@@ -13,7 +13,7 @@ The manual can be found under https://stemicha.github.io/SpectroPipeR/
 - [SpectroPipeR - step 5 - reporting](https://stemicha.github.io/SpectroPipeR/articles/a05_SpectroPipeR_reporting.html)
 - [SpectroPipeR - additional feature - XIC plotting module](https://stemicha.github.io/SpectroPipeR/articles/a06_SpectroPipeR_XIC_plot.html)
 - [SpectroPipeR - example code - functional enrichment analysis (external package)](https://stemicha.github.io/SpectroPipeR/articles/a07_Gprofiler2_code_suggestion.html)
-
+- [SpectroPipeR - example code - single protein plot code suggestion](https://stemicha.github.io/SpectroPipeR/articles/a08_single_protein_plot_code_suggestion.html)
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -351,7 +351,7 @@ SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_fi
 
 The following schematic illustrates the condition-specific filtering process in SpectroPipeR.
 
-![SpectroPipeR condition wise filtering](vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
+![SpectroPipeR condition wise filtering](vignettes/figures/SpectroPipeR_condition_filtering.png)
 
 
 The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.
@@ -389,8 +389,8 @@ SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_fi
 This is recommended because species mix experiments have shown that the non-oxidized (methionine containing peptides) fraction of the peptide exhibits a lower coefficient of variation and better conservation of expected ratios compared to the oxidized fraction of the peptides.
 
 
-![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__CV_plot.png){width=80%}
+![HYE species mix results: coefficient of variation plot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__CV_plot.png)
 
 
-![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__box_plot.png){width=80%}
+![HYE species mix results: ratios (A/B) boxplot of ions containing oxidized methionines and their unmodified forms](vignettes/figures/ox_vs_nonox__box_plot.png)
 
