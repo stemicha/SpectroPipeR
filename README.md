@@ -20,7 +20,7 @@ The manual can be found under https://stemicha.github.io/SpectroPipeR/
 
 ## video tutorial
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zmN0ji-c__w?si=nJGjMVTzRUthY6u4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![YouTube](http://i.ytimg.com/vi/zmN0ji-c__w/hqdefault.jpg)](https://www.youtube.com/watch?v=zmN0ji-c__w)
 
 ## Introduction
 
