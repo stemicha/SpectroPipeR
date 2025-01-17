@@ -18,6 +18,10 @@ The manual can be found under https://stemicha.github.io/SpectroPipeR/
 <!-- badges: start -->
 <!-- badges: end -->
 
+## video tutorial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zmN0ji-c__w?si=nJGjMVTzRUthY6u4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Introduction
 
 During proteome studies, researchers frequently face various challenges, some of which can be mitigated while others cannot. A prevalent issue is the bottleneck in downstream data analysis, which arises due to a limited number of bioinformaticians, rapid generation of raw data, and variations in data analysis methods or workflows.
