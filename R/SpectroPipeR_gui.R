@@ -12,6 +12,9 @@
 #' @import parallel
 #' @examples
 #' \donttest{
+#' # load library
+#' library(SpectroPipeR)
+#' # run function to show GUI
 #' SpectroPipeR_ui()
 #'}
 #'

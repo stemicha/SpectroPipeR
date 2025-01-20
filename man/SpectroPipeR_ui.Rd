@@ -14,6 +14,9 @@ launches a user interface in the browser, providing access to the majority of Sp
 }
 \examples{
 \donttest{
+# load library
+library(SpectroPipeR)
+# run function to show GUI
 SpectroPipeR_ui()
 }
 
