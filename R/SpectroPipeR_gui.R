@@ -97,7 +97,7 @@ SpectroPipeR_ui<- function(){
                           shiny::selectInput(inputId = "build_HTML_report",
                                label = "build HTML report file",
                                choices = c(TRUE,FALSE),
-                               selected = FALSE)
+                               selected = TRUE)
             ),
             shiny::column(width = 6,
                           shiny::selectInput(inputId = "protein_intensity_estimation",
