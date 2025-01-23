@@ -483,7 +483,7 @@ kable(read_csv(file = "tables/02a__maxLFQ_protein_intensity_rank_data_wideFormat
 
 #### maxLFQ_protein_intensity_data_normalization_factor.csv
 
-The **maxLFQ_protein_intensity_data_normalization_factor.csv** table contains median-median normalization factors of MaxLFQ protein intensity data
+The **maxLFQ_protein_intensity_data_normalization_factor.csv** table contains median-median normalization factors of MaxLFQ protein intensity data.
 
 -   <u>R.FileName	</u> protein group IDs
 -   <u>maxLFQ_post_calculation_normalization_factor</u> MaxLFQ median-median normalization factor
@@ -496,7 +496,7 @@ kable(read_csv(file = "tables/02a__maxLFQ_protein_intensity_data_normalization_f
 
 #### CV_20percent_cumulative_frequency.csv
 
-The **CV_20percent_cumulative_frequency.csv** table contains the cumulative frequency of the CV≤0.2 fraction on peptide and protein intensity level
+The **CV_20percent_cumulative_frequency.csv** table contains the cumulative frequency of the CV≤0.2 fraction on peptide and protein intensity level.
 
 -   <u>R.Condition	</u> conditions as provided by Spectronaut report
 -   <u>cumulative frequency</u> cumulative frequency
@@ -511,7 +511,7 @@ kable(read_csv(file = "tables/02a__CV_20percent_cumulative_frequency.csv")) %>%
 
 #### CV_cumulative_frequency.csv
 
-The comprehensive **CV_cumulative_frequency.csv** table contains the cumulative frequency on peptide and protein intensity level
+The comprehensive **CV_cumulative_frequency.csv** table contains the cumulative frequency on peptide and protein intensity level.
 
 -   <u>R.Condition	</u> conditions as provided by Spectronaut report
 -   <u>cumulative frequency</u> cumulative frequency

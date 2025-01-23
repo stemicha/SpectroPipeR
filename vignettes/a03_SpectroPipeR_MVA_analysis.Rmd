@@ -118,13 +118,13 @@ The output in your specified output folder for the MVA_module() function should 
 
 ### MVA - RDS files {.tabset .tabset-pills}
 
-.rds files are a file format used in R to save and load single R objects, such as data frames, models, or lists
+.rds files are a file format used in R to save and load single R objects, such as data frames, models, or lists.
 
-The **PCA_analysis\_\_peptide_level.RDS** data R object file contains the PCA data on peptide level
+The **PCA_analysis\_\_peptide_level.RDS** data R object file contains the PCA data on peptide level.
 
-The **PCA_analysis\_\_protein_level.RDS** data R object file contains the PCA data on protein level
+The **PCA_analysis\_\_protein_level.RDS** data R object file contains the PCA data on protein level.
 
-The **UMAP_analysis\_\_protein_level.RDS** data R object file contains the UMAP data on protein level
+The **UMAP_analysis\_\_protein_level.RDS** data R object file contains the UMAP data on protein level.
 
 ### MVA - figures {.tabset .tabset-pills}
 

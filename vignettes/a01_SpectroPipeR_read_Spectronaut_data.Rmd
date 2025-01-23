@@ -59,15 +59,15 @@ For Windows users, it is recommended to use the PNG files, as applications like 
 
 # Requirements
 
-SpectroPipeR require the Quarto CLI. please make sure you installed it on your system ! [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+SpectroPipeR require the Quarto CLI. Please make sure you installed it on your system! [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
 
 SpectroPipeR also requires certain columns from the Spectronaut output report that
 are not included by default.
 
 <u>The following steps are advised:</u>
 
-1.  download and install SpectroPipeR (https://github.com/stemicha/SpectroPipeR)
-2.  load SpectroPipeR and utilize the `Spectronaut_export_scheme()` function to create
+1.  Download and install SpectroPipeR (https://github.com/stemicha/SpectroPipeR)
+2.  Load SpectroPipeR and utilize the `Spectronaut_export_scheme()` function to create
     the necessary Spectronaut report scheme (\*.rs).
 3.  Import the generated Spectronaut report scheme.
 4.  Conduct an analysis of your raw mass spectrometry data in
@@ -125,7 +125,7 @@ Spectronaut_export_scheme(output_location = "../SpectroPipeR_test_folder")
 ```
 
 
-# parameters
+# Parameters
 
 The global SpectroPipeR analysis paramaters is a list element containing the
 basic analysis project information SpectroPipeR needs to process the data.
@@ -259,7 +259,7 @@ qualitative insights
 19. extract missed cleavages rates globally and on run level
 
 
-### SpectroPipeR condition wise filtering (optional)
+### SpectroPipeR condition-wise filtering (optional)
 
 The `ID_condition_filtering` option, when used in conjunction with `ID_condition_filtering_percent`, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.
 
@@ -278,7 +278,7 @@ SpectroPipeR_analysis <- SpectroPipeR(file = "Spectronaut_SpectroPipeR_report_fi
 
 The following schematic illustrates the condition-specific filtering process in SpectroPipeR.
 
-![SpectroPipeR condition wise filtering](../vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
+![SpectroPipeR condition-wise filtering](../vignettes/figures/SpectroPipeR_condition_filtering.png){width=100%}
 
 The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.
 
@@ -580,7 +580,7 @@ the same table without the peptide_count column.
 The table
 **Detected_ProteinGroups\_\_UpSetR\_\_plot\_\_stripped_peptide_count_per_condition.csv**
 summarize the same data in wide-tabular format containing the
-information about the peptide count per condition
+information about the peptide count per condition.
 
 -   <u>R.Condition</u> is the condition naming which was setup in your
     Spectronaut analysis

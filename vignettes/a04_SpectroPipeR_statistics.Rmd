@@ -50,10 +50,10 @@ For Windows users, it is recommended to use the PNG files, as applications like 
 
 # SpectroPipeR statistics
 
-The statistical analysis is carried out by utilizing the [PECA package](https://bioconductor.org/packages/release/bioc/html/PECA.html)
+The statistical analysis is carried out by utilizing the [PECA package](https://bioconductor.org/packages/release/bioc/html/PECA.html).
 
 The recommended test is the "rots" test (ROPECA approach).
-This ROPECA (reproducibility-optimized peptide change averaging) approach can be inspected in detail in [Enhanced differential expression statistics for data-independent acquisition proteomics](https://www.nature.com/articles/s41598-017-05949-y)
+This ROPECA (reproducibility-optimized peptide change averaging) approach can be inspected in detail in [Enhanced differential expression statistics for data-independent acquisition proteomics](https://www.nature.com/articles/s41598-017-05949-y).
 
 ## background information
 
@@ -92,7 +92,7 @@ Furthermore, the order statistics from U(0,1) distribution follow a beta distrib
 Finally, the FDR is calculated using the Benjamini-Hochberg procedure.
 
 This complex and computation intense procedure allow a more precise estimate of significance than other methods.
-For further details please see [Suomi & Elo 2017](https://www.nature.com/articles/s41598-017-05949-y#Sec3https://www.nature.com/articles/s41598-017-05949-y#Sec3)
+For further details please see [Suomi & Elo 2017](https://www.nature.com/articles/s41598-017-05949-y#Sec3https://www.nature.com/articles/s41598-017-05949-y#Sec3).
 
 The significance of an expression change is determined based on the analytical p-value of the protein-level test statistic.
 Unadjusted p-values are reported along with the corresponding p-values looked up from beta ditribution.
@@ -223,7 +223,7 @@ The point shape depicts the estimated effect size.
 The **cutoff_test...** & **cutoff_simple_test...** illustrate the protein count by varying the fold-change threshold to filter significant proteins.
 They should help to estimate a meaningful project specific fold-change cutoff for the statistical analysis.
 
-![The simple cutoff plot highlights the protein count differences using various fold-change threshold with and without q-value filtering](../vignettes/figures/04__cutoff_simple_test__B_manual_vs_A_manual.png){width="60%"}
+![The simple cutoff plot highlights the protein count differences using various fold-change threshold with and without q-value filtering.](../vignettes/figures/04__cutoff_simple_test__B_manual_vs_A_manual.png){width="60%"}
 
 ![The cutoff plot highlights the protein count (with 1 or at least 2 peptides) differences using various fold-change threshold with and without q-value filtering](../vignettes/figures/04__cutoff_test__B_manual_vs_A_manual.png){width="90%"}
 
@@ -336,20 +336,20 @@ read_csv("tables/04__statistical_analysis_WIDE_FORMAT_2_more_peptides_per_protei
   kable_styling(font_size = table_font_size)
 ```
 
-## protein intensity estimation comparison
+## Protein intensity estimation comparison
 
 Since bottom-up proteomics measures ions/peptides and not directly proteins the protein intensity estimation is slightly biased depending on the algorithm used.
 The ROPECA statistics used peptide ratios which can be compared to protein intensity ratios.
 This ratio comparison give researchers insights into the performance and agreement between various protein intensity estimation algorithms used in their proteomics data analysis.
 This information can be valuable for selecting the most appropriate estimation method and protein candidates per comparison.
 
-### processed data - figures {.tabset .tabset-pills}
+### Processed data - figures {.tabset .tabset-pills}
 
 #### Protein_intensity_benchmark\_\_scatter_plot
 
 The **Protein_intensity_benchmark\_\_scatter_plot** plot depicts the peptide intensity ratio on the x-axis and the protein intensity ratio on the y-axis for proteins with 2 or more peptides.
 
-The solid line shows the diagonal and the dashed lines indicate a 2-fold difference.
+The solid line shows the diagonal and the dashed lines indicate a 2-fold change.
 The count highlights the number of proteins which are affected by a difference above abs.
 2 fold-change.
 The size of the dots illustrate the number of peptides.

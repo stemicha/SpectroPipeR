@@ -10,7 +10,7 @@ articles:
   a06_SpectroPipeR_XIC_plot: a06_SpectroPipeR_XIC_plot.html
   a07_Gprofiler2_code_suggestion: a07_Gprofiler2_code_suggestion.html
   a08_single_protein_plot_code_suggestion: a08_single_protein_plot_code_suggestion.html
-last_built: 2025-01-16T15:13Z
+last_built: 2025-01-23T14:54Z
 urls:
   reference: https://stemicha.github.io/SpectroPipeR/reference
   article: https://stemicha.github.io/SpectroPipeR/articles

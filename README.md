@@ -1,7 +1,7 @@
 
 # SpectroPipeR <img src="vignettes/figures/SpectroPipeR_hexbin_logo.png" align="right" width="200" />
 
-a streamlining post Spectronaut™ DIA-MS data analysis R package
+a streamlining post Spectronaut® DIA-MS data analysis R package
 
 The manual can be found under https://stemicha.github.io/SpectroPipeR/
 
@@ -28,7 +28,7 @@ During proteome studies, researchers frequently face various challenges, some of
 
 To tackle this problem SpectroPipeR was developed.  This pipeline is designed to simplify data analysis tasks, significantly reduce the workload for scientists, be easily expandable, user-friendly even for those with minimal bioinformatic background, generate standardized analysis, outputs, and reports for each project, and produce publication-ready tables, figures, and reports.
 
-SpectroPipeR comprises a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment, iBAQ and MaxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA, modified t-test or t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.
+SpectroPipeR comprises a set of R functions that facilitate a comprehensive, fully automated, and standardized data analysis of Spectronaut® DIA-MS data. This includes ID rate summary, ON/OFF analysis, normalization, batch or covariate adjustment, iBAQ and MaxLFQ quantification, multivariate analysis, peptide-centric statistical analysis (ROPECA, modified t-test or t-test), and interactive HTML report generation. The output is presented through a variety of clear graphs and tables in a well-structured folder system. The comprehensive standalone HTML report is extremely useful for existing Electronic Laboratory Notebooks (ELN) or Laboratory Information Management Systems (LIMS) to quickly obtain a project-specific overview.
 
 SpectroPipeR consists of a global parameter setting and four analysis modules and one reporting module that are executed sequentially. This modular approach allows flexibility where specific analyses like ID- and intensity plots can be run independently or as part of the complete pipeline.
 
@@ -54,7 +54,7 @@ SpectroPipeR needs at least Spectronaut® version 18.7.240506.55695 to be fully 
 **Currently, SpectroPipeR does not incorporate mechanisms to address missing values (complete matrix required!).**
 However, given the availability of sophisticated missing value imputation algorithms within Spectronaut®, we would like to offer our recommendations for utilizing these features effectively.
 
-during the Analysis setup (DIA-Analysis or directDIA-Analysis) inside Spectronaut go to:
+During the Analysis setup (DIA-Analysis or directDIA-Analysis) inside Spectronaut® go to:
 
 - **DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy**
 
@@ -67,7 +67,7 @@ In order to use SpectroPipeR the one of following settings should be be used.
 - <u><em>Run Wise Imputing:</u></em> missing values are imputed based on a random sampling from a distribution of low abundant signals taken within the corresponding run. This is useful for large scale experiment
 
 
-**DO NOT USE "NONE"!, in DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy**
+**DO NOT USE "NONE"! (in DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy)**
 
 
 
@@ -95,22 +95,22 @@ For the interactive html report feature SpectroPipeR needs **Quarto CLI**.
 Quarto is an open-source scientific and technical publishing system.
 You can install the Quarto CLI using [Quarto get started installation](https://quarto.org/docs/get-started/).
 
-## Spectronaut report requirements
+## Spectronaut® report requirements
 
-SpectroPipeR requires certain columns from the Spectronaut output report that are not included by default.
+SpectroPipeR requires certain columns from the Spectronaut® output report that are not included by default.
 
 _The following steps are advised:_
 
 1. **download and installation of SpectroPipeR (if not already be done)**
-2. **load the SpectroPipeR package and utilize the `Spectronaut_export_scheme()` function to create the necessary Spectronaut report scheme (SpectroPipeR_report.rs) in the output folder provided.**
+2. **load the SpectroPipeR package and utilize the `Spectronaut_export_scheme()` function to create the necessary Spectronaut® report scheme (SpectroPipeR_report.rs) in the output folder provided.**
 ``` r
 # load library
 library(SpectroPipeR)
-# output_location: path to output folder for the SpectroPipeR_report.rs Spectronaut report scheme
+# output_location: path to output folder for the SpectroPipeR_report.rs Spectronaut® report scheme
 Spectronaut_export_scheme(output_location = "../SpectroPipeR_test_folder")
 ```
-3. **import the generated SpectroPipeR report scheme (SpectroPipeR_report.rs) into Spectronaut**
-4. **conduct an analysis of your raw mass spectrometry data in Spectronaut and define conditions during analysis setup process**
+3. **import the generated SpectroPipeR report scheme (SpectroPipeR_report.rs) into Spectronaut®**
+4. **conduct an analysis of your raw mass spectrometry data in Spectronaut® and define conditions during analysis setup process**
 5. **produce the output report (*.tsv) using the imported SpectroPipeR report scheme**
 6. **open R and use/edit code below to perform your analysis**
 
@@ -140,16 +140,16 @@ SpectroPipeR_analysis <- SpectroPipeR(file = file_path,
 ```
 
 
-Spectronaut output report should contain the following columns to work in SpectroPipeR (these are included when using the scheme generated by `Spectronaut_export_scheme()`):
+Spectronaut® output report should contain the following columns to work in SpectroPipeR (these are included when using the scheme generated by `Spectronaut_export_scheme()`):
 
 
 
-<u>mandatory Spectronaut report columns:</u>
+<u>Mandatory Spectronaut® report columns:</u>
 
 R.FileName, R.Condition, R.Replicate, R.Instrument Name, R.Raw File Name, R.MS1 Mass Analyzer, R.MS2 Mass Analyzer, R.Run Date, PG.ProteinGroups, PG.Organisms, PG.IBAQ, PEP.StrippedSequence, EG.ModifiedPeptide, PEP.NrOfMissedCleavages, EG.UserGroup, EG.Qvalue, EG.PEP, EG.Cscore, EG.NormalizationFactor, EG.TotalQuantity (Settings), EG.SignalToNoise, EG.Identified, EG.ApexRT, EG.IntCorrScore, EG.DatapointsPerPeak, EG.DatapointsPerPeak (MS1), FG.Charge, FG.Id, FG.XICDBID, FG.LabeledSequence, FG.ShapeQualityScore, FG.MS1Quantity, FG.MS2Quantity, FG.MS1RawQuantity, FG.MS2RawQuantity
 
 EG.TotalQuantity (Settings) is used for the quantification. 
-Per default MS2 level should be selected in the quantification setting in Spectronaut™.
+Per default MS2 level should be selected in the quantification setting in Spectronaut®.
 
 ## code example
 
@@ -162,7 +162,7 @@ library(SpectroPipeR)
 # use default parameters list
 params <- list(output_folder = "../SpectroPipeR_test_folder")
 
-# example input file // or path to your Spectronaut report (*.tsv)
+# example input file // or path to your Spectronaut® report (*.tsv)
 example_file_path <- system.file("extdata", "SN_test_HYE_mix_file.tsv", package="SpectroPipeR")
 
 # launch analysis
@@ -187,12 +187,12 @@ library(SpectroPipeR)
 # use default parameters list
 params <- list(output_folder = "../SpectroPipeR_test_folder")
 
-# example input file // or path to your Spectronaut report (*.tsv)
+# example input file // or path to your Spectronaut® report (*.tsv)
 example_file_path <- system.file("extdata",
                                  "SN_test_HYE_mix_file.tsv",
                                  package="SpectroPipeR")
 
-# step 1: load Spectronaut data module
+# step 1: load Spectronaut® data module
 SpectroPipeR_data <- read_spectronaut_module(file = example_file_path,
                                              parameter = params)
 
@@ -309,7 +309,7 @@ SpectroPipeR_analysis <- SpectroPipeR(file = \"$input_file\",
 
 ```
 
-example terminal usage:
+Example terminal usage:
 
 bash SpectroPipeR_terminal.sh [input_file] [named parameters separated by ;] [condition comparisons separated by ;]
 
@@ -319,7 +319,7 @@ bash SpectroPipeR_terminal.sh "SN_test_HYE_mix_file.tsv" "output_folder=SpectroP
 
 ## selected options of SpectroPipeR
 
-### SpectroPipeR condition wise filtering (optional)
+### SpectroPipeR condition-wise filtering (optional)
 
 The `ID_condition_filtering` option, when used in conjunction with `ID_condition_filtering_percent`, enables users to filter ions that are present in a specified proportion of replicates per condition. This functionality facilitates the exclusion of ions that are, for instance, detected only once within a given condition.
 
@@ -360,7 +360,7 @@ The following schematic illustrates the condition-specific filtering process in 
 
 The additional filtering step can potentially enhance the robustness of your data by ensuring that only ions detected across multiple replicates are utilized for quantitative and statistical analysis.
 
-### remove methionine oxidized peptides before quantitative analysis  (optional)
+### Remove methionine oxidized peptides before quantitative analysis  (optional)
 
 Methionine oxidation during sample preparation is a significant concern, particularly when using e.g. 2-chloroacetamide (CA) as an alkylating agent.
 The oxidation of methionine increases dramatically with CA, affecting up to 40% of all Met-containing peptides, compared to only 2-5% with iodoacetamide (IOA) (Hains, P. G. & Robinson, P. J. - 10.1021/acs.jproteome.7b00022). 

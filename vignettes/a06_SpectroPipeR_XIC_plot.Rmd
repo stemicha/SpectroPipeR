@@ -25,8 +25,11 @@ knitr::opts_chunk$set(
 
 Evaluating results directly from raw data is highly recommended. While the commercially licensed Spectronaut software offers this functionality, the free Spectronaut Viewer can also be used for this purpose. However, in proteomics research facilities, heavily utilized full Spectronaut licenses can become a bottleneck for routine tasks like XIC (Extracted Ion Chromatogram) inspection. To address this, SpectroPipeR offers the ability to extract and plot XICs directly, if the Spectronaut Pipeline analysis generated the corresponding SQLite files per raw file. This setting can be found within Spectronaut and has to be checked under "Pipeline Mode" settings.
 
+<br>
 
-![Pipeline Mode setting for exporting the SQLite files per raw file](../vignettes/figures/Spectronaut_xic_setting.png){width="80%"}
+![Pipeline Mode setting for exporting the SQLite files per raw file.](../vignettes/figures/Spectronaut_xic_setting.png){width="80%"}
+
+<br>
 
 If the Spectronaut analysis utilized the SpectroPipeR report export scheme (accessible through the  function `Spectronaut_export_scheme(output_location = "../SpectroPipeR_test_folder")`) and enabled XIC SQLite export, a separate folder containing individual SQLite files for each raw file should be present within the Spectronaut reporting folder.
 
