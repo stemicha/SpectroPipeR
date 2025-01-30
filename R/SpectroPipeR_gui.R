@@ -162,7 +162,7 @@ SpectroPipeR_ui<- function(){
           #style = "background-color: #f2f2f2;" # background
         ),
         shiny::mainPanel(
-          shiny::h3("After pressing 'run SpectroPipeR' the data data processing starts! Please be patient..."),
+          shiny::h3("After pressing 'run SpectroPipeR' the data processing starts! Please be patient..."),
           shiny::verbatimTextOutput("log_output")
           #style = "background-color: #f2f2f2;" # background
         )
