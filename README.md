@@ -56,7 +56,7 @@ However, given the availability of sophisticated missing value imputation algori
 
 During the Analysis setup (DIA-Analysis or directDIA-Analysis) inside Spectronaut® go to:
 
-- **DIA Analyisis > Quantification > Precursor Filtering > Imputing strategy**
+- **DIA Analysis > Quantification > Precursor Filtering > Imputing strategy**
 
 In order to use SpectroPipeR the one of following settings should be be used.
 
@@ -101,7 +101,7 @@ SpectroPipeR requires certain columns from the Spectronaut® output report that 
 
 _The following steps are advised:_
 
-1. **download and installation of SpectroPipeR (if not already be done)**
+1. **download and installation of SpectroPipeR (if not already done)**
 2. **load the SpectroPipeR package and utilize the `Spectronaut_export_scheme()` function to create the necessary Spectronaut® report scheme (SpectroPipeR_report.rs) in the output folder provided.**
 ``` r
 # load library

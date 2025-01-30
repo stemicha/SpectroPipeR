@@ -158,9 +158,9 @@ If a Q-value of 0.01 is applied in Spectronaut and a Q-value of 0.001 is establi
 
 In SpectroPipeR, users can optionally set the `filter_oxidized_peptides` parameter to `TRUE` to remove peptides containing oxidized methionines while retaining their unmodified counterparts. This filtering is recommended because experiments using HYE species mixtures have demonstrated that methionine-oxidized peptides exhibit significantly lower intensity and suffer from markedly reduced relative quantitative precision compared to their unmodified forms. Additionally, the variation between replicate measurements is also substantially higher for oxidized peptides. Consequently, removing methionine-oxidized peptides before quantification and statistical analysis is the recommended approach in SpectroPipeR to ensure optimal results.
 
-### HYE species mix experiements
+### HYE species mix experiments
 
-The HYE species mix experiments were carried out with 4 replicates as described in [A multicenter study benchmarks software tools for label-free proteome quantification](https://www.nature.com/articles/nbt.3685). The data can be accessed via MassIVE (MSV000092489) - https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=0f33717d84fd45b1a318ad40670022cc.
+The HYE species mix experiments were carried out with 4 replicates as described in [A multicenter study benchmarks software tools for label-free proteome quantification](https://www.nature.com/articles/nbt.3685). The data can be accessed via MassIVE (MSV000092489) - https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=0f33717d84fd45b1a318ad40670022cc. The species mix is available at ProTec-Diagnostics (https://www.protec-diagnostics.com/en/shop/species-mix-32#attribute_values=3).
 
 Spectronaut version 18.6 was used for data analysis. Following filtering, the ion data only included peptides containing methionine oxidation without prior carbamidomethylation, along with their unmodified counterparts. To determine quantitative ratios, mix A ion intensities were divided by the corresponding ion intensities from mix B.
 
@@ -230,7 +230,7 @@ qualitative insights
 ## read_spectronaut_module() workflow
 
 1.  check parameters
-2.  genrate output folders
+2.  generate output folders
 3.  init log file
 4.  load spectronaut report data
 5.  check columns
