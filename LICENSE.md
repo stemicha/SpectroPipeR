@@ -2,6 +2,13 @@
 
 Copyright (c) 2024 Stephan Michalik
 
+contact details: Stephan Michalik
+University Medicine Greifswald - Department of Functional Genomics
+Felix-Hausdorff-Str. 8
+17475 Greifswald
+Germany
+*e-mail:* stephan.michalik@uni-greifswald.de
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
