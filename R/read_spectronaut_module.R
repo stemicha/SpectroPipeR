@@ -1007,11 +1007,19 @@ read_spectronaut_module <- function(file = "",
   #save upsetR plot
   png(filename = paste0(out_folder,"/","02_ID_rate/",sample_length,"_sample_analysis/Detected_ProteinGroups__UpSetR__plot.png"),
       width = 6+condition_length,height = 8,res = 600,units="in")
-  #plot upset plot
-  print(UpSetR::upset(as.data.frame(PG_2_peptides_ID_wide_binary),
-        nintersects = NA,
-        nsets = condition_length,
-        order.by = c("freq")))
+  if(condition_length==1){
+    ggplot()+
+      theme_void()+
+      labs(title = "no Upset plot possible >> only one condition")
+
+  }else{
+    #plot upset plot
+    print(UpSetR::upset(as.data.frame(PG_2_peptides_ID_wide_binary),
+                        nintersects = NA,
+                        nsets = condition_length,
+                        order.by = c("freq")))
+  }
+
   dev.off()
 
   #write PG_2_peptides_ID_wide_binary
