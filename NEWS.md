@@ -1,3 +1,5 @@
+# SpectroPipeR (development version)
+
 # SpectroPipeR 0.4.0
 
 * add graphical user interface (GUI) function

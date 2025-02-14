@@ -1,6 +1,6 @@
 Package: SpectroPipeR
 Title: R pipeline for the downstream analysis of Spectronaut DIA-MS data
-Version: 0.4.0
+Version: 0.4.0.9000
 Authors@R: 
     person("Stephan", "Michalik", , "stephan.michalik@uni-greifswald.de",
     role = c("aut", "cre"),
