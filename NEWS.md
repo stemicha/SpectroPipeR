@@ -1,4 +1,8 @@
-# SpectroPipeR (development version)
+# SpectroPipeR 0.4.1
+
+# SpectroPipeR 0.4.1
+
+* add Spectronaut colors to XIC (MS1 and MS2) plot (optional: Spectronaut_colors = TRUE)
 
 # SpectroPipeR 0.4.0
 
