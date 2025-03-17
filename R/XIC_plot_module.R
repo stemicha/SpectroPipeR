@@ -10,6 +10,7 @@
 #' @param selected_conditions Vector of user-selected conditions for plotting (serves for both selection and ordering).
 #' @param number_of_cores Define the number of CPU cores to utilize for parallel XIC extraction and plotting.
 #' @param run_specific_y_axis if the XIC plot should be globally scaled y-axis or run specific (default: FALSE)
+#' @param Spectronaut_colors TRUE or FALSE if TRUE Spectronaut colors are selected, FALSE (default) SpectroPipeR colors are selected
 #'
 #' @import doSNOW
 #' @import foreach
@@ -82,6 +83,7 @@ XIC_plot_module <- function(Spectronaut_report_path = NULL,
                             export_csv_files = FALSE,
                             run_specific_y_axis = FALSE,
                             selected_conditions = NULL,
+                            Spectronaut_colors = FALSE,
                             number_of_cores = 2){
 
   #scientific format function of axis
@@ -95,6 +97,24 @@ XIC_plot_module <- function(Spectronaut_report_path = NULL,
   # XIC colors
   MS1_color<- colorRampPalette(c("#B62F1A","#244B52","#586634","#4499AD","#B58542","#666666"))
   MS2_color<- colorRampPalette(c("#5B478B","#356792","#3D8458","#59A4A4","#893B6C","#80AD56","#E3AF3D","#D4812F","#BD5845","#666666"))
+
+
+# Spectronaut colors ------------------------------------------------------
+
+  Spectronaut_color_fn <- function(n) {
+    # Parameters
+    step <- 300.0 / n
+    s <- 1
+    b <- 0.97
+
+    # Generate colors
+    colors <- sapply(0:(n-1), function(i) {
+      h <- (i * step) %% 360 # Ensure the hue stays within 0-360 degrees
+      hsv(h/360, s, b) # Convert HSV to an RGB color string
+    })
+
+    return(colors)
+  }
 
 # create output dir ------------------------------------------------------
   if(dir.exists(output_path)){
@@ -720,8 +740,16 @@ foreach::foreach(i = 1:length(ions),
       labs(title = "XIC MS1 level", color = "XIC MS1", y = "MS1 intensity")+
       guides(color=guide_legend(ncol = 1,
                                 override.aes = list(linewidth = 3)))+
-      scale_y_continuous(labels = scientific_10)+
-      scale_color_manual(values = MS1_color(length(unique(plot_data_MS1$IonLabel))))
+      scale_y_continuous(labels = scientific_10)
+
+    if(Spectronaut_colors==TRUE){
+      tmp_ms1_plot <- tmp_ms1_plot+
+        scale_color_manual(values = Spectronaut_color_fn(length(unique(plot_data_MS1$IonLabel))))
+    }else{
+      tmp_ms1_plot <- tmp_ms1_plot+
+        scale_color_manual(values = MS1_color(length(unique(plot_data_MS1$IonLabel))))
+    }
+
 
     # MS2 plot
     tmp_ms2_plot<- ggplot(data = plot_data_MS2,
@@ -745,8 +773,15 @@ foreach::foreach(i = 1:length(ions),
                                 override.aes = list(linewidth = 3)
                                 )
              )+
-      scale_y_continuous(labels = scientific_10)+
-      scale_color_manual(values = MS2_color(length(unique(plot_data_MS2$IonLabel))))
+      scale_y_continuous(labels = scientific_10)
+
+    if(Spectronaut_colors==TRUE){
+      tmp_ms2_plot <- tmp_ms2_plot+
+        scale_color_manual(values = Spectronaut_color_fn(length(unique(plot_data_MS2$IonLabel))))
+    }else{
+      tmp_ms2_plot <- tmp_ms2_plot+
+        scale_color_manual(values = MS2_color(length(unique(plot_data_MS2$IonLabel))))
+    }
 
     # merge to final plot
     tmp_ion_plot_out<- Qvalue_plot/
