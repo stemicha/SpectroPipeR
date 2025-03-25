@@ -413,12 +413,12 @@ read_spectronaut_module <- function(file = "",
     vendor_formats <- c("\\.d","\\.raw","\\.wiff","\\.wiff2")
     tmp_x<- unlist(strsplit(x = x,split = "\\\\"))
 
-    tmp_raw_out <- tmp_x[unlist(sapply(X = vendor_formats,
+    tmp_raw_out <- unique(tmp_x[unlist(sapply(X = vendor_formats,
                                        FUN = function(y){
                                          grep(pattern = y,x = tmp_x)
                                        })
     )
-    ]
+    ])
     return(tmp_raw_out)
   }
 
