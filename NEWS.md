@@ -1,4 +1,6 @@
-# SpectroPipeR 0.4.1
+# SpectroPipeR 0.4.2
+
+* FIX: for duplicated raw file name in path
 
 # SpectroPipeR 0.4.1
 
