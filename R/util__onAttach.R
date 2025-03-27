@@ -20,7 +20,7 @@
       |_|                             |_|
 #####################################################")
     packageStartupMessage(paste("version:",packageVersion("SpectroPipeR")))
-    packageStartupMessage("please cite: https://doi.org/10.1002/pmic.202300294")
+    packageStartupMessage("please cite: https://doi.org/10.1093/bioinformatics/btaf086")
     packageStartupMessage("!!! no quarto CLI found please install and restart !!!")
     packageStartupMessage("https://quarto.org/docs/get-started/")
     browseURL("https://quarto.org/docs/get-started/")
@@ -36,7 +36,7 @@
       |_|                             |_|
 #####################################################")
     packageStartupMessage(paste("version:",packageVersion("SpectroPipeR")))
-    packageStartupMessage("please cite: https://doi.org/10.1002/pmic.202300294")
+    packageStartupMessage("please cite: https://doi.org/10.1093/bioinformatics/btaf086")
   }
 
 

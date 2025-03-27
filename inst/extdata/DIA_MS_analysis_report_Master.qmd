@@ -103,7 +103,7 @@ suppressMessages(library(htmlwidgets))
 
 **How to cite SpectroPipeR**
 
-Reder, A., Hentschker, C., Steil, L., Gesell Salazar, M., Hammer, E., Dhople, V. M., Sura, T., Lissner, U., Wolfgramm, H., Dittmar, D., Harms, M., Surmann, K., Völker, U., & Michalik, S. (2024). MassSpecPreppy—An end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics applications. Proteomics, 24, e2300294. https://doi.org/10.1002/pmic.202300294
+Stephan Michalik, Elke Hammer, Leif Steil, Manuela Gesell Salazar, Christian Hentschker, Kristin Surmann, Larissa M Busch, Thomas Sura, Uwe Völker, SpectroPipeR—a streamlining post Spectronaut® DIA-MS data analysis R package, Bioinformatics, Volume 41, Issue 3, March 2025, btaf086, https://doi.org/10.1093/bioinformatics/btaf086
 
 # Data analysis description
 
