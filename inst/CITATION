@@ -1,0 +1,11 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "MassSpecPreppy—An end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics applications",
+  author   = "A. Reder, C. Hentschker, L. Steil, M. Gesell Salazar, E. Hammer, V. M. Dhople, T. Sura, U. Lissner, H. Wolfgramm, D. Dittmar, M. Harms, K. Surmann, U. Völker, S. Michalik",
+  journal  = "PROTEOMICS",
+  year     = "2024",
+  volume   = "24",
+  number   = "9",
+  pages    = "2300294",
+  doi      = "https://doi.org/10.1002/pmic.202300294"
+)

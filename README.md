@@ -3,6 +3,12 @@
 
 a streamlining post Spectronaut® DIA-MS data analysis R package
 
+## How to cite
+
+Reder, A., Hentschker, C., Steil, L., Gesell Salazar, M., Hammer, E., Dhople, V. M., Sura, T., Lissner, U., Wolfgramm, H., Dittmar, D., Harms, M., Surmann, K., Völker, U., & Michalik, S. (2024). MassSpecPreppy—An end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics applications. Proteomics, 24, e2300294. https://doi.org/10.1002/pmic.202300294
+
+## Manual
+
 The manual can be found under https://stemicha.github.io/SpectroPipeR/
 
 - [SpectroPipeR - how to start](https://stemicha.github.io/SpectroPipeR/)

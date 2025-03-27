@@ -3,7 +3,7 @@ title: "SpectroPipeR DIA-MS analysis report"
 author: "Stephan Michalik"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 title-block-banner: "#151515"
-subtitle: "automatically generated report"
+subtitle: "automatically generated report (please cite: SpectroPipeR - https://doi.org/10.1002/pmic.202300294)"
 page-layout: full
 css: styles.css
 format:

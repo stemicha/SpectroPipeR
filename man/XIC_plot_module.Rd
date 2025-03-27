@@ -12,6 +12,7 @@ XIC_plot_module(
   export_csv_files = FALSE,
   run_specific_y_axis = FALSE,
   selected_conditions = NULL,
+  Spectronaut_colors = FALSE,
   number_of_cores = 2
 )
 }
@@ -29,6 +30,8 @@ XIC_plot_module(
 \item{run_specific_y_axis}{if the XIC plot should be globally scaled y-axis or run specific (default: FALSE)}
 
 \item{selected_conditions}{Vector of user-selected conditions for plotting (serves for both selection and ordering).}
+
+\item{Spectronaut_colors}{TRUE or FALSE if TRUE Spectronaut colors are selected, FALSE (default) SpectroPipeR colors are selected}
 
 \item{number_of_cores}{Define the number of CPU cores to utilize for parallel XIC extraction and plotting.}
 }
