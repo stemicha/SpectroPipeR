@@ -3,7 +3,7 @@ title: "SpectroPipeR DIA-MS analysis report"
 author: "Stephan Michalik"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 title-block-banner: "#151515"
-subtitle: "automatically generated report (please cite: SpectroPipeR - https://doi.org/10.1002/pmic.202300294)"
+subtitle: "automatically generated report"
 page-layout: full
 css: styles.css
 format:
@@ -100,6 +100,10 @@ suppressMessages(library(htmltools))
 suppressMessages(library(htmlwidgets))
 
 ```
+
+**How to cite SpectroPipeR**
+
+Reder, A., Hentschker, C., Steil, L., Gesell Salazar, M., Hammer, E., Dhople, V. M., Sura, T., Lissner, U., Wolfgramm, H., Dittmar, D., Harms, M., Surmann, K., Völker, U., & Michalik, S. (2024). MassSpecPreppy—An end-to-end solution for automated protein concentration determination and flexible sample digestion for proteomics applications. Proteomics, 24, e2300294. https://doi.org/10.1002/pmic.202300294
 
 
 # Data analysis description
