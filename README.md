@@ -93,8 +93,14 @@ You can install the development version of SpectroPipeR like so:
 - inside R execute the following code:
 
 ``` r
-#install devtools
+# install devtools
 install.packages("devtools")
+
+# install Bioconductor dependencies
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("PECA", "sva"))
+
 # install SpectroPipeR from github
 devtools::install_github("stemicha/SpectroPipeR")
 
