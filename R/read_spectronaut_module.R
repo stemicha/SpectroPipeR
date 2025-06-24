@@ -378,11 +378,43 @@ read_spectronaut_module <- function(file = "",
     stop()
   }
 
-  # stop if there are missing values
+  # perform missing value imputation
   if(sum(is.na(tmp_data_input$"EG.TotalQuantity (Settings)"))!=0){
-    stop_text <- paste("the provided file contains missing values in EG.TotalQuantity; please use a quantification workflow in Spectronaut which either impute or parses the data to omit missing values")
-    message_function(text = stop_text,color = "red",log_file_name = log_file_name)
-    stop()
+    message_NA_values <- paste("the provided file contains missing values in EG.TotalQuantity; please make sure a quantification workflow in Spectronaut which either impute or parses the data to omit missing values")
+    message_function(text = message_NA_values,color = "yellow",log_file_name = log_file_name)
+    message_function(text = paste0(sum(is.na(tmp_data_input$"EG.TotalQuantity (Settings)"))," ions with missing ion intensities"), color = "blue",log_file_name = log_file_name)
+    message_function(text = "performing missing value imputation by halve all values within the global lowest 1% quantile distribution of ion quantities to create a new dataset used for imputing missing values.", color = "blue",log_file_name = log_file_name)
+
+    #get set for missing value imputation for MS1 and MS2
+        # MS2 set for missing value imputation
+    data_input_imputing_set_MS2 <- tmp_data_input %>%
+      filter(FG.MS2Quantity < quantile(tmp_data_input$FG.MS2Quantity,probs = 0.01,na.rm=T))
+    data_input_imputing_set_MS2_sample <- data_input_imputing_set_MS2$FG.MS2Quantity/2
+        # MS1 set for missing value imputation
+    data_input_imputing_set_MS1 <- tmp_data_input %>%
+      filter(FG.MS1Quantity < quantile(tmp_data_input$FG.MS1Quantity,probs = 0.01,na.rm=T))
+    data_input_imputing_set_MS1_sample <- data_input_imputing_set_MS1$FG.MS1Quantity/2
+        # filter missing value containing ions and impute them
+    data_input_imputing_set_NA <- tmp_data_input %>%
+      filter(is.na(.data$`EG.TotalQuantity (Settings)`)) %>%
+      rowwise() %>%
+      mutate(FG.MS2Quantity = ifelse(test = is.na(.data$FG.MS2Quantity),
+                                           yes = sample(x = data_input_imputing_set_MS2_sample,size = 1,replace = T) ,
+                                           no = FG.MS2Quantity),
+             FG.MS1Quantity = ifelse(test = is.na(.data$FG.MS1Quantity),
+                                     yes = sample(x = data_input_imputing_set_MS1_sample,size = 1,replace = T) ,
+                                     no = FG.MS1Quantity),
+             `EG.TotalQuantity (Settings)` = ifelse(test = is.na(.data$`EG.TotalQuantity (Settings)`),
+                                     yes = sample(x = data_input_imputing_set_MS2_sample,size = 1,replace = T) ,
+                                     no = `EG.TotalQuantity (Settings)`)
+             )
+
+    #overwrite input data with imputed data
+    tmp_data_input <- bind_rows(tmp_data_input %>%
+                                  filter(!is.na(.data$`EG.TotalQuantity (Settings)`)),
+                                data_input_imputing_set_NA
+                                )
+
     }
 
   #add ion data
