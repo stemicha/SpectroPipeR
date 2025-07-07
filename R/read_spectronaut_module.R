@@ -388,11 +388,11 @@ read_spectronaut_module <- function(file = "",
     #get set for missing value imputation for MS1 and MS2
         # MS2 set for missing value imputation
     data_input_imputing_set_MS2 <- tmp_data_input %>%
-      filter(FG.MS2Quantity < quantile(tmp_data_input$FG.MS2Quantity,probs = 0.01,na.rm=T))
+      filter(FG.MS2Quantity <= quantile(tmp_data_input$FG.MS2Quantity,probs = 0.01,na.rm=T))
     data_input_imputing_set_MS2_sample <- data_input_imputing_set_MS2$FG.MS2Quantity/2
         # MS1 set for missing value imputation
     data_input_imputing_set_MS1 <- tmp_data_input %>%
-      filter(FG.MS1Quantity < quantile(tmp_data_input$FG.MS1Quantity,probs = 0.01,na.rm=T))
+      filter(FG.MS1Quantity <= quantile(tmp_data_input$FG.MS1Quantity,probs = 0.01,na.rm=T))
     data_input_imputing_set_MS1_sample <- data_input_imputing_set_MS1$FG.MS1Quantity/2
         # filter missing value containing ions and impute them
     data_input_imputing_set_NA <- tmp_data_input %>%
