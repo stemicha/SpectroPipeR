@@ -564,7 +564,7 @@ read_spectronaut_module <- function(file = "",
                    color = "blue",
                    log_file_name = log_file_name)
 
-  if(sum(tmp_data_input$EG.Qvalue=="Profiled")==0){
+  if(sum(tmp_data_input$EG.Qvalue=="Profiled",na.rm = T)==0){
 
     message_function(text = "no profiled ions in data, profiling was omitted in Spectronaut  ...", color = "green",log_file_name = log_file_name)
     tmp_summary_distinct_ions <- tmp_data_input %>%
