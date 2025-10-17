@@ -63,7 +63,7 @@ The `norm_quant_module()` function serves to further process the data from the `
 
 <u>**(optional) covariate adjusting:**</u> - provides the covariate adjusting functionality if needed using the lm() function and the user specified meta data and formula to calculate the residuals per peptides which are back-transformed to intensities by adding the mean peptide intensity.
 
-<u>**protein quantification:**</u> - protein quantification can be either done by Hi3 (project-wide determination of Hi3 peptides) or MaxLFQ approach (iq package <doi:10.1093/bioinformatics/btz961>)
+<u>**protein quantification:**</u> - protein quantification can be either done by Hi3 (project-wide determination of Hi3 peptides) or MaxLFQ approach (iq package <doi:10.1093/bioinformatics/btz961>) or directLFQ
 
 EG.TotalQuantity (Settings) column is used for the quantification. 
 Per default MS2 level should be selected in the quantification setting in Spectronaut™.

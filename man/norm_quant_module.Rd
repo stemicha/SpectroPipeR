@@ -81,7 +81,7 @@ For the description of the generated figures and tables please read the manual &
    NormFactor_plot \tab \emph{ggplot2 plot:} norm. factor plots \cr
    iBAQ_intensities \tab \emph{tibble:} table containing the iBAQ int. \cr
    iBAQ_intensities_summary \tab \emph{tibble:} table containing the per condition summarized iBAQ int. \cr
-   protein_data \tab \emph{tibble:} protein intensity table (e.g. Hi3 or MaxLFQ int.) \cr
+   protein_data \tab \emph{tibble:} protein intensity table (e.g. Hi3 or MaxLFQ, directLFQ) \cr
    PG_2_peptides_ID_raw \tab \emph{tibble:} with protein groups with at least 2 peptides with peptide \cr
     \tab and replicate count \cr
    protein_data_normalization_factor \tab \emph{tibble:} normalization factor table for protein int. data \cr

@@ -1,5 +1,5 @@
-pandoc: '3.2'
-pkgdown: 2.1.1
+pandoc: 3.6.3
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   a01_SpectroPipeR_read_Spectronaut_data: a01_SpectroPipeR_read_Spectronaut_data.html
@@ -10,7 +10,7 @@ articles:
   a06_SpectroPipeR_XIC_plot: a06_SpectroPipeR_XIC_plot.html
   a07_Gprofiler2_code_suggestion: a07_Gprofiler2_code_suggestion.html
   a08_single_protein_plot_code_suggestion: a08_single_protein_plot_code_suggestion.html
-last_built: 2025-01-30T14:26Z
+last_built: 2025-10-17T10:43Z
 urls:
   reference: https://stemicha.github.io/SpectroPipeR/reference
   article: https://stemicha.github.io/SpectroPipeR/articles

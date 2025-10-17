@@ -70,8 +70,8 @@ parameter_check <- function(parameter = NULL, log_file_name = NULL){
     message_function(text = "protein_intensity_estimation: value is not character",color = "red",log_file_name = log_file_name)
     stop()
   }else{
-    if(sum(is.element(el = c("Hi3","MaxLFQ"),set = parameter$protein_intensity_estimation))!=1){
-      message_function(text = "protein_intensity_estimation is not one of these options !!! character: 'Hi3' = Hi3 protein intensity estimation OR 'MaxLFQ' = MaxLFQ protein intensity estimation !!!",color = "red",log_file_name = log_file_name)
+    if(sum(is.element(el = c("Hi3","MaxLFQ", "directLFQ"),set = parameter$protein_intensity_estimation))!=1){
+      message_function(text = "protein_intensity_estimation is not one of these options !!! character: 'Hi3' = Hi3 protein intensity estimation OR 'MaxLFQ' = MaxLFQ protein intensity estimation OR 'directLFQ' = directLFQ protein intensity estimation !!!",color = "red",log_file_name = log_file_name)
       stop()
     }
   }

@@ -61,7 +61,7 @@
 #' | NormFactor_plot            | *ggplot2 plot:* norm. factor plots |
 #' | iBAQ_intensities           | *tibble:* table containing the iBAQ int. |
 #' | iBAQ_intensities_summary   | *tibble:* table containing the per condition summarized iBAQ int. |
-#' | protein_data      | *tibble:* protein intensity table (e.g. Hi3 or MaxLFQ int.)|
+#' | protein_data      | *tibble:* protein intensity table (e.g. Hi3 or MaxLFQ, directLFQ)|
 #' | PG_2_peptides_ID_raw      | *tibble:* with protein groups with at least 2 peptides with peptide
 #' |                           | and replicate count |
 #' | protein_data_normalization_factor| *tibble:* normalization factor table for protein int. data |
@@ -709,7 +709,6 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         scale_x_log10()+
         theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5))+
         labs(title = "ion CV per condition and missed cleavages",
-             color = "MC",
              x = "norm. ion intensity",
              y = "coeff. of variation",
              caption = "dashed line = CV of 0.1; solid line = CV of 0.2")
@@ -728,7 +727,6 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         scale_x_log10()+
         theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5))+
         labs(title = "ion CV per condition and missed cleavages",
-             color = "MC",
              x = "norm. ion intensity",
              y = "coeff. of variation",
              caption = "dashed line = CV of 0.1; solid line = CV of 0.2")
@@ -2002,7 +2000,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
 
 
 
-      #do Hi3 normalization boxplot plot ====
+      #Hi3 normalization boxplot plot
       Norm_plot_Hi3 <- protein_data_Hi3 %>%
         dplyr::select(.data$R.FileName,
                       .data$PG.ProteinGroups,
@@ -2166,7 +2164,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
           ungroup()
 
 
-        #do MaxLFQ normalization boxplot plot ====
+        #MaxLFQ normalization boxplot plot
         Norm_plot_MaxLFQ <- maxLFQ_results_out_tidy %>%
           dplyr::select(.data$R.FileName,
                         .data$PG.ProteinGroups,
@@ -2274,8 +2272,145 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
       protein_data_normalization_factor <- maxLFQ_results_out_tidy_norm_factor
     }
 
+    #
+    # directLFQ calculation ====
+    #
+    if(parameter$protein_intensity_estimation=="directLFQ"){
+      message_function(text = "perform directLFQ protein intensity calculation ... (this will take some time)",color = "blue",log_file_name = log_file_name)
 
-# compare protein intensity (maxLFQ /Hi3 ) to iBAQ intensity --------
+      # check installation of the package
+      directLFQ_module_checking <- check_directlfq_Module()
+      if(directLFQ_module_checking==TRUE){
+        message_function(text = "directLFQ - checking if python directLFQ package is installed ... TRUE",color = "blue",log_file_name = log_file_name)
+      }else{
+        message_function(text = "directLFQ - install directLFQ package",color = "blue",log_file_name = log_file_name)
+      }
+      # calculate directLFQ
+      message_function(text = "directLFQ - run directLFQ with Spectronaut input in python",color = "blue",log_file_name = log_file_name)
+        # input Spectronaut report uses FG.MS2RawQuantity quantification column
+      directLFQ_data_output <- directlfq(Spectronaut_file = SpectroPipeR_data$parameter$Spectronaut_report_file,
+                                         ncores = parallel::detectCores() - 2)
+
+      # split by norm. peptide and protein
+      message_function(text = "directLFQ - extract calculated data",color = "blue",log_file_name = log_file_name)
+
+      # tidy directLFQ protein data
+      directLFQ_protein_data <- directLFQ_data_output$directLFQ_protein %>%
+        dplyr::select(-.data$protein,-.data$PG.Genes) %>%
+        dplyr::select(.data$PG.ProteinGroups, everything())
+
+      colnames(directLFQ_protein_data)[-1] <- stringr::str_extract(colnames(directLFQ_protein_data)[-1], "^[^.]+")
+
+      directLFQ_protein_data <- directLFQ_protein_data %>%
+        pivot_longer(cols = colnames(directLFQ_protein_data)[-1],
+                     names_to = "R.FileName_raw",
+                     values_to = "protein_intensity")
+
+      directLFQ_protein_data <- left_join(directLFQ_protein_data,
+                                          # raw file list contains: R.FileName, R.FileName_raw,	R.Condition,	R.Replicate
+                                          SpectroPipeR_data$raw_file_names %>%
+                                            distinct(.data$R.FileName,
+                                                     .data$R.FileName_raw,
+                                                     .data$R.Replicate,
+                                                     .data$R.Condition),
+                                          by = "R.FileName_raw") %>%
+        dplyr::select(-.data$R.FileName_raw)
+
+      # tidy directLFQ ion data
+      directLFQ_ion_data <- directLFQ_data_output$directLFQ_norm_ion %>%
+        dplyr::rename(PG.ProteinGroups = protein,
+                      EG.Label = ion)
+
+      colnames(directLFQ_ion_data)[-c(1:2)] <- stringr::str_extract(colnames(directLFQ_ion_data)[-c(1:2)],"^[^.]+")
+
+      directLFQ_ion_data <- directLFQ_ion_data %>%
+        pivot_longer(cols = colnames(directLFQ_ion_data)[-c(1:2)],
+                     names_to = "R.FileName_raw",
+                     values_to = "directLFQ_norm_peptide_intensity")
+
+      directLFQ_ion_data <- left_join(directLFQ_ion_data,
+                                          # raw file list contains: R.FileName, R.FileName_raw,	R.Condition,	R.Replicate
+                                          SpectroPipeR_data$raw_file_names %>%
+                                            distinct(.data$R.FileName,
+                                                     .data$R.FileName_raw,
+                                                     .data$R.Replicate,
+                                                     .data$R.Condition),
+                                          by = "R.FileName_raw") %>%
+        dplyr::select(-.data$R.FileName_raw)
+
+      #directLFQ normalization factor place holder
+      directLFQ_results_out_tidy_norm_factor <- directLFQ_protein_data %>%
+        dplyr::distinct(.data$R.FileName) %>%
+        dplyr::mutate(directLFQ_post_calculation_normalization_factor = 1)
+
+      # add rank data // 1st rank = highest intensity
+      directLFQ_protein_data <- directLFQ_protein_data %>%
+        dplyr::group_by(.data$R.FileName,
+                        .data$R.Condition,
+                        .data$R.Replicate) %>%
+        dplyr::mutate(intensity_rank = dense_rank(desc(.data$protein_intensity))) %>%
+        ungroup()
+
+      # raw dtaa plotting
+      raw_plot_directLFQ <- ggplot(directLFQ_protein_data,
+                                   mapping = aes(x = .data$R.FileName,
+                                                 y = .data$protein_intensity))+
+        geom_half_violin(fill = "grey",side = "r", color = NA,trim = F,scale = "width")+
+        geom_half_boxplot(outlier.colour = NA,side = "l", fill = "white",errorbar.draw = F)+
+        scale_y_log10()+
+        annotation_logticks(sides = "b")+
+        coord_flip()+
+        geom_hline(yintercept = median(directLFQ_protein_data$protein_intensity,na.rm = T), linetype = "dashed")+
+        theme_light(base_size = 18)+
+        labs(title = "directLFQ intensities",
+             subtitle = "",
+             x = "",
+             y = "directLFQ intensity")
+
+
+      message_function(text = "... save directLFQ boxplot ...",color = "blue",log_file_name = log_file_name)
+
+      ggsave_pdf_png(filename = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_boxplot"),
+                     plot = raw_plot_directLFQ,
+                     limitsize = F,
+                     height = if((0.2*sample_length)<15){15}else{0.2*sample_length},
+                     width = 10)
+
+
+      message_function(text = "... save directLFQ data ...",color = "blue",log_file_name = log_file_name)
+
+      # write directLFQ wide-results
+      directLFQ_protein_data %>%
+        dplyr::select(.data$PG.ProteinGroups,
+                      .data$R.FileName,
+                      .data$protein_intensity) %>%
+        tidyr::pivot_wider(names_from = .data$R.FileName,
+                           values_from = .data$protein_intensity) %>%
+        write_csv(file = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_data_wideFormat.csv"))
+
+      # write directLFQ tidy-results
+      write_csv(x = directLFQ_protein_data,
+                file = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_data.csv"))
+
+      # write directLFQ tidy-results
+      write_csv(x = directLFQ_ion_data,
+                file = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_normalized_ion_intensity_data.csv"))
+
+      #write directLFQ rank output wide
+      directLFQ_protein_data %>%
+        dplyr::select(.data$PG.ProteinGroups,
+                      .data$R.FileName,
+                      .data$intensity_rank) %>%
+        pivot_wider(names_from = .data$R.FileName,
+                    values_from = .data$intensity_rank) %>%
+        write_csv(paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_rank_data_wideFormat.csv"))
+
+      # final data protein data
+      protein_data <- directLFQ_protein_data
+      protein_data_normalization_factor <- directLFQ_results_out_tidy_norm_factor
+    }
+
+# compare protein intensity (maxLFQ / directLFQ /Hi3 ) to iBAQ intensity --------
     message_function(text = "... compare protein intensities and iBAQ protein intensities ...",color = "blue",log_file_name = log_file_name)
 
     protein_int_iBAQ_comp_table<- left_join(protein_data %>%

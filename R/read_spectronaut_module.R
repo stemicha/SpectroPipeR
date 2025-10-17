@@ -28,8 +28,10 @@
 #' |                        | (4 means abs. 4fold off) |
 #' | filter_oxidized_peptides | **default = TRUE** _logical_ - if oxidized peptides should be removed before |
 #' |                          |peptide quantification |
-#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_ - Hi3 = Hi3 protein intensity estimation, |
-#' |                              |  MaxLFQ = MaxLFQ protein intensity estimation |
+#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_
+#' |                              | Hi3 = Hi3 protein intensity estimation |
+#' |                              | MaxLFQ = MaxLFQ protein intensity estimation |
+#' |                              | directLFQ = directLFQ protein intensity estimation |
 #' | stat_test              | **default = "rots"** - _character_ - choose statistical test: "rots" = reproducibility |
 #' |                        | optimized test statistics, "modt" = moderate t-test (lmfit, eBayes),|
 #' |                        | "t" = t-test |
@@ -388,15 +390,15 @@ read_spectronaut_module <- function(file = "",
     #get set for missing value imputation for MS1 and MS2
         # MS2 set for missing value imputation
     data_input_imputing_set_MS2 <- tmp_data_input %>%
-      filter(FG.MS2Quantity <= quantile(tmp_data_input$FG.MS2Quantity,probs = 0.01,na.rm=T))
+      dplyr::filter(.data$FG.MS2Quantity <= quantile(tmp_data_input$FG.MS2Quantity,probs = 0.01,na.rm=T))
     data_input_imputing_set_MS2_sample <- data_input_imputing_set_MS2$FG.MS2Quantity/2
         # MS1 set for missing value imputation
     data_input_imputing_set_MS1 <- tmp_data_input %>%
-      filter(FG.MS1Quantity <= quantile(tmp_data_input$FG.MS1Quantity,probs = 0.01,na.rm=T))
+      dplyr::filter(.data$FG.MS1Quantity <= quantile(tmp_data_input$FG.MS1Quantity,probs = 0.01,na.rm=T))
     data_input_imputing_set_MS1_sample <- data_input_imputing_set_MS1$FG.MS1Quantity/2
         # filter missing value containing ions and impute them
     data_input_imputing_set_NA <- tmp_data_input %>%
-      filter(is.na(.data$`EG.TotalQuantity (Settings)`)) %>%
+      dplyr::filter(is.na(.data$`EG.TotalQuantity (Settings)`)) %>%
       rowwise() %>%
       mutate(FG.MS2Quantity = ifelse(test = is.na(.data$FG.MS2Quantity),
                                            yes = sample(x = data_input_imputing_set_MS2_sample,size = 1,replace = T) ,

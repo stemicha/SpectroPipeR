@@ -105,7 +105,7 @@ SpectroPipeR_ui<- function(){
             shiny::column(width = 6,
                           shiny::selectInput(inputId = "protein_intensity_estimation",
                                label = "protein intensity aggregation method",
-                               choices = c("MaxLFQ","Hi3"),
+                               choices = c("MaxLFQ","Hi3", "directLFQ"),
                                selected = "MaxLFQ")
             )
           ),

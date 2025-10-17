@@ -23,8 +23,10 @@
 #' |                        | (4 means abs. 4fold off) |
 #' | filter_oxidized_peptides | **default = TRUE** _logical_ - if oxidized peptides should be removed before |
 #' |                          |peptide quantification |
-#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_ - Hi3 = Hi3 protein intensity estimation, |
+#' | protein_intensity_estimation | **default = "MaxLFQ"** - _character_ |
+#' |                              |  Hi3 = Hi3 protein intensity estimation |
 #' |                              |  MaxLFQ = MaxLFQ protein intensity estimation |
+#' |                              |  directLFQ = directLFQ protein intensity estimation |
 #' | stat_test              | **default = "rots"** - _character_ - choose statistical test: "rots" = reproducibility |
 #' |                        | optimized test statistics, "modt" = moderate t-test (lmfit, eBayes),|
 #' |                        | "t" = t-test |
@@ -132,7 +134,7 @@
 #' | NormFactor_plot            | *ggplot2 plot:* norm. factor plots |
 #' | iBAQ_intensities           | *tibble:* table containing the iBAQ int. |
 #' | iBAQ_intensities_summary   | *tibble:* table containing the per condition summarized iBAQ int. |
-#' | protein_data      | *tibble:* protein intensity table (e.g. Hi3 or MaxLFQ int.)|
+#' | protein_data      | *tibble:* protein intensity table (e.g. Hi3 or MaxLFQ, directLFQ)|
 #' | PG_2_peptides_ID_raw      | *tibble:* with protein groups with at least 2 peptides with peptide
 #' |                           | and replicate count |
 #' | protein_data_normalization_factor| *tibble:* normalization factor table for protein int. data |
