@@ -45,15 +45,30 @@ directlfq <- function(Spectronaut_file, ncores = 4, temp_dir = tempdir(), ...){
     cat(paste("python path is:",py_path,"\n"))
 
     # replace intable_config.yaml with file provided in SpectroPipeR inst/extdata folder
+    # replace intable_config.yaml with file provided in SpectroPipeR inst/extdata folder
     # Extract the root directory of the conda environment based on the OS
     if ( Sys.info()["sysname"] == "Windows") {
       # Windows uses backslashes, so we'll handle paths with backslashes
-      directLFQ_root_path <- sub("\\\\bin\\\\python$", "", py_path)  # Double backslashes for escaping
-      directLFQ_root_path <- gsub("\\\\", "/", py_path)  # Convert to forward slashes for consistency
+      directLFQ_root_path <- sub("python.exe$", "", py_path)  # Double backslashes for escaping
+      directLFQ_root_path <- gsub("\\\\", "/", directLFQ_root_path)  # Convert to forward slashes for consistency
+      directLFQ_path_config_yaml <- file.path(directLFQ_root_path,
+                                              "Lib",
+                                              "site-packages",
+                                              "directlfq",
+                                              "configs",
+                                              "intable_config.yaml")
     } else {
       # For Linux and macOS (which both use forward slashes)
       directLFQ_root_path <- sub("/bin/python$", "", py_path)
+      directLFQ_path_config_yaml <- file.path(directLFQ_root_path,
+                                              "lib",
+                                              "python3.8",
+                                              "site-packages",
+                                              "directlfq",
+                                              "configs",
+                                              "intable_config.yaml")
     }
+
 
 
     directLFQ_path_config_yaml <- file.path(directLFQ_root_path,
