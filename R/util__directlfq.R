@@ -70,15 +70,6 @@ directlfq <- function(Spectronaut_file, ncores = 4, temp_dir = tempdir(), ...){
     }
 
 
-
-    directLFQ_path_config_yaml <- file.path(directLFQ_root_path,
-                                            "lib",
-                                            "python3.8",
-                                            "site-packages",
-                                            "directlfq",
-                                            "configs",
-                                            "intable_config.yaml")
-
     # overwrite config / directLFQ shoud use column names provided by SpectroPipeR report scheme
     try(file.copy(from = system.file("extdata",
                                      "run_directLFQ_script__intable_config.yaml",
