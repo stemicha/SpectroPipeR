@@ -2288,8 +2288,12 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
       # calculate directLFQ
       message_function(text = "directLFQ - run directLFQ with Spectronaut input in python",color = "blue",log_file_name = log_file_name)
         # input Spectronaut report uses FG.MS2RawQuantity quantification column
+
+      #cap process cores to not overflow bigger computers
+      directLFQ_process_cores<- ifelse((parallel::detectCores() - 2)>20, 20, (parallel::detectCores() - 2))
+
       directLFQ_data_output <- directlfq(Spectronaut_file = SpectroPipeR_data$parameter$Spectronaut_report_file,
-                                         ncores = parallel::detectCores() - 2)
+                                         ncores = directLFQ_process_cores)
 
       # split by norm. peptide and protein
       message_function(text = "directLFQ - extract calculated data",color = "blue",log_file_name = log_file_name)
