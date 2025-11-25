@@ -49,7 +49,7 @@ directlfq <- function(Spectronaut_file, ncores = 4, temp_dir = tempdir(), ...){
     if ( Sys.info()["sysname"] == "Windows") {
       # Windows uses backslashes, so we'll handle paths with backslashes
       directLFQ_root_path <- sub("\\\\bin\\\\python$", "", py_path)  # Double backslashes for escaping
-      directLFQ_root_path <- gsub("\\\\", "/", env_root_path)  # Convert to forward slashes for consistency
+      directLFQ_root_path <- gsub("\\\\", "/", py_path)  # Convert to forward slashes for consistency
     } else {
       # For Linux and macOS (which both use forward slashes)
       directLFQ_root_path <- sub("/bin/python$", "", py_path)
