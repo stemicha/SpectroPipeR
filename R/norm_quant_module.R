@@ -2296,7 +2296,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
 
       # tidy directLFQ protein data
       directLFQ_protein_data <- directLFQ_data_output$directLFQ_protein %>%
-        dplyr::select(-.data$protein,-.data$PG.Genes) %>%
+        dplyr::select(-.data$protein) %>%
         dplyr::select(.data$PG.ProteinGroups, everything())
 
       colnames(directLFQ_protein_data)[-1] <- stringr::str_extract(colnames(directLFQ_protein_data)[-1], "^[^.]+")
@@ -2319,7 +2319,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
       # tidy directLFQ ion data
       directLFQ_ion_data <- directLFQ_data_output$directLFQ_norm_ion %>%
         dplyr::rename(PG.ProteinGroups = protein,
-                      EG.Label = ion)
+                      FG.Id = ion)
 
       colnames(directLFQ_ion_data)[-c(1:2)] <- stringr::str_extract(colnames(directLFQ_ion_data)[-c(1:2)],"^[^.]+")
 

@@ -1,3 +1,7 @@
+# SpectroPipeR 0.4.5
+
+* bugfix: directLFQ column selection: use SpectroPipeR report columns now
+
 # SpectroPipeR 0.4.4
 
 * feature: integrate directLFQ for label-free quantification, using the directLFQ python package [MannLabs/directlfq](https://github.com/MannLabs/directlfq) 

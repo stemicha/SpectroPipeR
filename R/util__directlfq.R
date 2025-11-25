@@ -44,6 +44,35 @@ directlfq <- function(Spectronaut_file, ncores = 4, temp_dir = tempdir(), ...){
       filter(.data$name == "directlfq") %>% select(.data$python)
     cat(paste("python path is:",py_path,"\n"))
 
+    # replace intable_config.yaml with file provided in SpectroPipeR inst/extdata folder
+    # Extract the root directory of the conda environment based on the OS
+    if ( Sys.info()["sysname"] == "Windows") {
+      # Windows uses backslashes, so we'll handle paths with backslashes
+      directLFQ_root_path <- sub("\\\\bin\\\\python$", "", py_path)  # Double backslashes for escaping
+      directLFQ_root_path <- gsub("\\\\", "/", env_root_path)  # Convert to forward slashes for consistency
+    } else {
+      # For Linux and macOS (which both use forward slashes)
+      directLFQ_root_path <- sub("/bin/python$", "", py_path)
+    }
+
+
+    directLFQ_path_config_yaml <- file.path(directLFQ_root_path,
+                                            "lib",
+                                            "python3.8",
+                                            "site-packages",
+                                            "directlfq",
+                                            "configs",
+                                            "intable_config.yaml")
+
+    # overwrite config / directLFQ shoud use column names provided by SpectroPipeR report scheme
+    try(file.copy(from = system.file("extdata",
+                                     "run_directLFQ_script__intable_config.yaml",
+                                     package="SpectroPipeR"),
+                  to = directLFQ_path_config_yaml,
+                  overwrite = T),silent = T)
+
+
+
     script_path <-  system.file("extdata","run_directLFQ_script.py", package = "SpectroPipeR")
     script_path <-  paste0('"',script_path,'"')
     command <-  paste(py_path, script_path, in_file, ncores)

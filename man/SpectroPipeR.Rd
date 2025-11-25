@@ -46,7 +46,7 @@ you should use the \code{Spectronaut_export_scheme()} function for getting a Spe
     \tab (4 means abs. 4fold off) \cr
    filter_oxidized_peptides \tab \strong{default = TRUE} \emph{logical} - if oxidized peptides should be removed before \cr
     \tab peptide quantification \cr
-   protein_intensity_estimation \tab \strong{default = "directLFQ"} - \emph{character} \cr
+   protein_intensity_estimation \tab \strong{default = "MaxLFQ"} - \emph{character} \cr
     \tab Hi3 = Hi3 protein intensity estimation \cr
     \tab MaxLFQ = MaxLFQ protein intensity estimation \cr
     \tab directLFQ = directLFQ protein intensity estimation \cr
