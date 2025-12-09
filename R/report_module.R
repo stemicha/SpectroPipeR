@@ -169,9 +169,16 @@ cumsum_CV_plot <-  list.files(paste0(out_folder,"/","05_processed_data/",sample_
 batch_adjusting <- SpectroPipeR_data_quant$parameter$batch_adjusting
 
 
-# get MaxLFQ distribution plot --------------------------------------------
+# get LFQ distribution plot --------------------------------------------
 
-MaxLFQ_intensity_distribution_plot <- paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/MaxLFQ_protein_intensity_boxplot.png")
+
+if(SpectroPipeR_data_quant$parameter$protein_intensity_estimation== "MaxLFQ"){
+  LFQ_intensity_distribution_plot <- paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/MaxLFQ_protein_intensity_boxplot.png")
+}
+if(SpectroPipeR_data_quant$parameter$protein_intensity_estimation== "directLFQ"){
+  LFQ_intensity_distribution_plot <- paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_boxplot.png")
+}
+
 
 # PCA analysis & correlation ------------------------------------------------
 
@@ -313,7 +320,7 @@ params_quarto <- list(
                protein_counts_condense = protein_counts_condense,
                protein_count_plot_all = protein_count_plot_all,
                protein_count_plot_filtered = protein_count_plot_filtered,
-               MaxLFQ_intensity_distribution_plot = MaxLFQ_intensity_distribution_plot,
+               LFQ_intensity_distribution_plot = LFQ_intensity_distribution_plot,
                cumsum_CV_20percent = cumsum_CV_20percent,
                cumsum_CV_plot = cumsum_CV_plot,
                ion_id_rate = ion_id_rate,
