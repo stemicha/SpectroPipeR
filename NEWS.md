@@ -1,3 +1,7 @@
+# SpectroPipeR 0.4.6
+
+* feature: add directLFQ to HTML reporting
+
 # SpectroPipeR 0.4.5
 
 * bugfix: directLFQ column selection: use SpectroPipeR report columns now
