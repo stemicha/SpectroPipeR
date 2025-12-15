@@ -2303,7 +2303,15 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         dplyr::select(-.data$protein) %>%
         dplyr::select(.data$PG.ProteinGroups, everything())
 
+      #remove PG.Genes
+      if(sum(colnames(directLFQ_protein_data)=="PG.Genes") == 1){
+        directLFQ_protein_data <- directLFQ_protein_data %>%
+          dplyr::select(-.data$PG.Genes)
+
+      }
+
       colnames(directLFQ_protein_data)[-1] <- stringr::str_extract(colnames(directLFQ_protein_data)[-1], "^[^.]+")
+
 
       directLFQ_protein_data <- directLFQ_protein_data %>%
         pivot_longer(cols = colnames(directLFQ_protein_data)[-1],
