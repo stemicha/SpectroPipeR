@@ -380,7 +380,7 @@ Spearman’s correlation is appropriate for both continuous and discrete ordinal
 
 `r knitr::include_graphics(sub(".", "",str_replace_all(params$correlation_plot,params$output_folder,"")))`
 
-## UAMP
+## UMAP
 
 ```{r, echo = F}
 
