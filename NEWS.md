@@ -3,6 +3,7 @@
 # SpectroPipeR 0.4.6
 
 * feature: add directLFQ to HTML reporting
+* FIX: When equal variances are detected during effect size estimation, implement a workaround by returning "none - equal variance" and setting d = 0 to avoid division by zero errors.
 
 # SpectroPipeR 0.4.5
 
