@@ -1,5 +1,8 @@
 # SpectroPipeR (development version)
 
+# FIX: effect size magnitude
+# FIX: big projects with huge number of conidition dynamic plots
+
 # SpectroPipeR 0.4.6
 
 * feature: add directLFQ to HTML reporting
