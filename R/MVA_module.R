@@ -520,6 +520,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plot_protein_level_replicates_marked"),
          plot = pca_plot_protein_replicate,
+         number_of_conditions = condition_length,
          width = 12,
          height = 9)
 
@@ -639,10 +640,12 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
   }
 
 
-  ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plot_protein_level_conditions_marked"),
+  ggsave_pdf_png(filename = paste0(out_folder, "/", "04_multivariate_analysis/",
+                                   sample_length, "_sample_analysis/PCA_plot_protein_level_conditions_marked"),
                  plot = pca_plot_protein_condition,
-                 width = 12,
-                 height = 9)
+                 width = 10 +  ((condition_length %/% 15) * 2),
+                 height = 7 +  ((condition_length %/% 15) * 2),
+                 number_of_conditions = condition_length)
 
 
 
@@ -816,11 +819,13 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
   ggsave_pdf_png(plot = ggplotPCA_peptide_PCA_1_to_5dim,
                  filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plot_1st_to_5th_dimension__peptide_level"),
                  width = 20,
-                 height = 15)
+                 height = 15,
+                 number_of_conditions = condition_length)
   ggsave_pdf_png(plot = ggplotPCA_protein_PCA_1_to_5dim,
                  filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plot_1st_to_5th_dimension__protein_level"),
                  width = 20,
-                 height = 15)
+                 height = 15,
+                 number_of_conditions = condition_length)
 
   ggsave_pdf_png(plot = ggplotPCA_peptide_PCA_1_to_5dim_measurement_order,
                  filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plot_1st_to_5th_dimension__peptide_level_measurement_order"),
@@ -966,6 +971,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
   ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/PCA_plots"),
                  plot = PCA_final_plots,
+                 number_of_conditions = condition_length,
                  width = 25,
                  height = 25)
 
@@ -1394,6 +1400,7 @@ MVA_module <- function(SpectroPipeR_data_quant = NULL,
 
     ggsave_pdf_png(filename = paste0(out_folder,"/","04_multivariate_analysis/",sample_length,"_sample_analysis/UMAP_plot_protein_level_conditions_marked"),
                    plot = umap_protein_plot,
+                   number_of_conditions = condition_length,
                    width = 12,
                    height = 9)
 
