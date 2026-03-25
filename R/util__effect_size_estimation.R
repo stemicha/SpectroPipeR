@@ -65,7 +65,7 @@ effect_size_estimation <- function(data = NULL,
                                                                     no = tmp_cohend$conf.int[2]),
                                               d_magnitute = ifelse(test = is.na(tmp_cohend$magnitude),
                                                                    yes = "negligible",
-                                                                   no = tmp_cohend$conf.int[2]))
+                                                                   no = as.character(tmp_cohend$magnitude)))
       )
     } # end loop over proteins
 
