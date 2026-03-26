@@ -1388,16 +1388,26 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         tidyr::pivot_wider(names_from = .data$EG.ModifiedPeptide,
                            values_from = .data$peptide_intensity)
 
-      peptide_data_PCA <- as.data.frame(peptide_data_PCA)
-      rownames(peptide_data_PCA)<-peptide_data_PCA$R.FileName #set rownames
-      peptide_data_PCA <- peptide_data_PCA[,-1] #remove file name column
-      peptide_data_PCA_res <-  FactoMineR::PCA(log2(peptide_data_PCA),
-                                               graph=FALSE,
-                                               scale.unit=T,
-                                               ncp = 10,
-                                               quanti.sup = numeric_covariates_names,
-                                               quali.sup = factor_covariates_names,
-                                               )
+      # get peptide column names '_'
+      covariate_unadjusted_data_peptide_cols <- grep("^_", names(peptide_data_PCA), value = TRUE)
+
+      # log2 peptide data only
+      covariate_unadjusted_data_peptide_log2 <- log2(peptide_data_PCA[, covariate_unadjusted_data_peptide_cols])
+
+      # recombine data
+      covariate_unadjusted_data_for_pca <- cbind(covariate_unadjusted_data_peptide_log2,
+                                                 peptide_data_PCA[, c(factor_covariates_names, numeric_covariates_names)])
+      # add rownames = R.FileName
+      rownames(covariate_unadjusted_data_for_pca) <- peptide_data_PCA$R.FileName
+
+      # run PCA of covariate unadjusted data
+      peptide_data_PCA_res <- FactoMineR::PCA(covariate_unadjusted_data_for_pca,
+                                              graph = FALSE,
+                                              scale.unit = TRUE,
+                                              ncp = 10,
+                                              quanti.sup = numeric_covariates_names,
+                                              quali.sup = factor_covariates_names)
+
 
       #if quanti sup is present
       if(sum(names(peptide_data_PCA_res)=="quanti.sup")==1){
@@ -1446,18 +1456,27 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         tidyr::pivot_wider(names_from = .data$EG.ModifiedPeptide,
                            values_from = .data$peptide_intensity_covariate_adjusted)
 
-      peptide_covariate_adjusted_data_PCA <- as.data.frame(peptide_covariate_adjusted_data_PCA)
-      rownames(peptide_covariate_adjusted_data_PCA)<-peptide_covariate_adjusted_data_PCA$R.FileName #set rownames
-      peptide_covariate_adjusted_data_PCA <- peptide_covariate_adjusted_data_PCA[,-1] #remove file name column
 
-      peptide_covariate_adjusted_data_PCA_res <-  FactoMineR::PCA(log2(peptide_covariate_adjusted_data_PCA),
-                                                                   graph=FALSE,
-                                                                   scale.unit=T,
-                                                                   ncp = 10,
-                                                                   quanti.sup = numeric_covariates_names,
-                                                                   quali.sup = factor_covariates_names,
-                                                              )
+      # get peptide column names '_'
+      covariate_adjusted_data_peptide_cols <- grep("^_", names(peptide_covariate_adjusted_data_PCA), value = TRUE)
 
+      # log2 peptide data only
+      covariate_adjusted_data_peptide_log2 <- log2(peptide_covariate_adjusted_data_PCA[, covariate_adjusted_data_peptide_cols])
+
+      # recombine data
+      peptide_covariate_adjusted_data_pca <- cbind(peptide_covariate_adjusted_data_PCA[, c(factor_covariates_names, numeric_covariates_names)],
+                                                   covariate_adjusted_data_peptide_log2
+                                                   )
+      # add rownames = R.FileName
+      rownames(peptide_covariate_adjusted_data_pca) <- peptide_covariate_adjusted_data_PCA$R.FileName
+
+      # run PCA of covariate unadjusted data
+      peptide_covariate_adjusted_data_PCA_res <- FactoMineR::PCA(peptide_covariate_adjusted_data_pca,
+                                                                  graph = FALSE,
+                                                                  scale.unit = TRUE,
+                                                                  ncp = 10,
+                                                                  quanti.sup = numeric_covariates_names,
+                                                                  quali.sup = factor_covariates_names)
 
 
       write_rds(x = peptide_covariate_adjusted_data_PCA_res,
