@@ -1238,7 +1238,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
                                                        dplyr::select(.data$R.FileName,
                                                                      .data$R.FileName_raw),
                                                      covaribale_meta_data,
-                                                     by = c("R.FileName_raw"="R.FileName")) %>%
+                                                     by = c("R.FileName_raw","R.FileName")) %>%
         dplyr::select(-.data$R.FileName_raw)
 
 
