@@ -103,7 +103,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(c("PECA", "sva"))
 
 # install gghalves since R 4.5 not avaialble on CRAN
-pak::pak('erocoar/gghalves')
+pak::pak("erocoar/gghalves")
 
 # install SpectroPipeR from github
 pak::pak("stemicha/SpectroPipeR")
