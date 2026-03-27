@@ -95,14 +95,18 @@ You can install the development version of SpectroPipeR like so:
 ``` r
 # install devtools
 install.packages("devtools")
+install.pacakges("pak")
 
 # install Bioconductor dependencies
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install(c("PECA", "sva"))
 
+# install gghalves since R 4.5 not avaialble on CRAN
+pak::pak('erocoar/gghalves')
+
 # install SpectroPipeR from github
-devtools::install_github("stemicha/SpectroPipeR")
+pak::pak("stemicha/SpectroPipeR")
 
 # quit and restart R or restart R session in Rstudio
 ```
