@@ -1343,7 +1343,7 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
       habil <- dplyr::left_join(habil,
                                 covaribale_meta_data %>%
                                   # remove R.Condition to avoid duplication
-                                  dplyr::select(-any_of("R.Condition")), by = "R.FileName")
+                                  dplyr::select(-any_of(c("R.Condition","R.Replicate"))), by = "R.FileName")
       colnames(habil) <- str_replace_all(colnames(habil)," ","_")
 
       for(i in 1:ncol(habil)){
