@@ -1169,11 +1169,36 @@ statistics_module <- function(SpectroPipeR_data_quant = NULL,
     ## use median protein intensity over replicates to generate protein wise ratios
     message("")
 
+    # setup scatter plot dimensions for saving plot
+    max_dimension_scatter <- ncol(condition_comparisons)/5
+
+
+    if(ncol(condition_comparisons)<5){
+      scatter_height <- 7+2
+      scatter_width <- (max_dimension_scatter*5)*7
+    }else{
+      if(round(max_dimension_scatter)-max_dimension_scatter<0){
+        scatter_height <- 7*(round(max_dimension_scatter)+1)+2
+        scatter_width <- 35
+      }else{
+        scatter_height <- 7*(round(max_dimension_scatter))+2
+        scatter_width <- 35
+      }
+    }
+
+
     #adaption of theme size of ratio comparison benchmark plots
     if(ncol(condition_comparisons)==1){
       theme_size = 10
     }else{
       theme_size = 18
+    }
+
+    #if it gets to big picture half the size and adjust theme size
+    if(scatter_height>150){
+      scatter_height <- scatter_height/2
+      scatter_width <- scatter_width/2
+      theme_size <- 10
     }
 
     #add detection with at least 2 peptides ====
@@ -1296,22 +1321,6 @@ statistics_module <- function(SpectroPipeR_data_quant = NULL,
                      color = "blue",
                      log_file_name = log_file_name)
 
-    # setup scatter plot dimensions for saving plot
-    max_dimension_scatter <- ncol(condition_comparisons)/5
-
-
-    if(ncol(condition_comparisons)<5){
-      scatter_height <- 7+2
-      scatter_width <- (max_dimension_scatter*5)*7
-    }else{
-      if(round(max_dimension_scatter)-max_dimension_scatter<0){
-        scatter_height <- 7*(round(max_dimension_scatter)+1)+2
-        scatter_width <- 35
-      }else{
-        scatter_height <- 7*(round(max_dimension_scatter))+2
-        scatter_width <- 35
-      }
-    }
 
     # save scatter plot
     ggsave_pdf_png(filename = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/Signal_to_noise__scatter_plot"),
@@ -1550,23 +1559,7 @@ statistics_module <- function(SpectroPipeR_data_quant = NULL,
                      color = "blue",
                      log_file_name = log_file_name)
 
-    # setup scatter plot dimensions for saving plot
-    max_dimension_scatter <- ncol(condition_comparisons)/5
 
-
-
-    if(ncol(condition_comparisons)<5){
-      scatter_height <- 7+2
-      scatter_width <- (max_dimension_scatter*5)*7
-    }else{
-      if(round(max_dimension_scatter)-max_dimension_scatter<0){
-        scatter_height <- 7*(round(max_dimension_scatter)+1)+2
-        scatter_width <- 35
-      }else{
-        scatter_height <- 7*(round(max_dimension_scatter))+2
-        scatter_width <- 35
-      }
-    }
 
     # save scatter plot
     ggsave_pdf_png(filename = paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/Protein_intensity_benchmark__scatter_plot"),
@@ -1644,11 +1637,11 @@ statistics_module <- function(SpectroPipeR_data_quant = NULL,
       hist_height <- 5
       hist_width <- (ncol(condition_comparisons)*5)+1
     }else{
-      if(round(max_dimension_scatter)-max_dimension_scatter<0){
-        hist_height <- 5*(round(max_dimension_scatter)+1)
+      if(round(max_dimension_hist)-max_dimension_hist<0){
+        hist_height <- 5*(round(max_dimension_hist)+1)
         hist_width <- 25
       }else{
-        hist_height <- 5*(round(max_dimension_scatter))
+        hist_height <- 5*(round(max_dimension_hist))
         hist_width <- 25
       }
     }
