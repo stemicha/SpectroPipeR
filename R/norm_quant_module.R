@@ -485,7 +485,6 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
         gghalves::geom_half_boxplot(outlier.colour = NA,side = "r", fill = "white",errorbar.draw = F)+
         theme_light(base_size = 18)+
         theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size=9))+
-        scale_fill_manual(values = c("yes"="orangered","no"="darkgrey"))+
         geom_hline(yintercept = log2(1),linetype="solid",color="darkgrey")+
         geom_hline(yintercept = log2(parameter$normalization_factor_cutoff_outlier),linetype="solid")+
         geom_hline(yintercept = log2(parameter$normalization_factor_cutoff_outlier)*-1,linetype="solid")+
