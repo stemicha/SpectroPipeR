@@ -1859,9 +1859,15 @@ norm_quant_module <- function(SpectroPipeR_data = NULL,
 
       message_function(text = "covariate adjustment of iBAQ intensities from Spectronaut report ...",color = "green",log_file_name = log_file_name)
       # add covariate table and perform log10 transformation of peptide intensity data
+      min_iBAQ <- min(data_iBAQ$iBAQ_intensities[data_iBAQ$iBAQ_intensities > 0], na.rm = TRUE)
       iBAQ_intensity_covariate<- left_join(data_iBAQ,
-                                              covaribale_meta_data[,colnames(covaribale_meta_data)%nin%c("R.FileName", "R.Condition", "R.Replicate")], #remove redundant colnames
-                                              by = c("R.FileName_raw" = "R.FileName")) %>%
+                                           # covariable table already modified for peptides covariable adjustment
+                                           covaribale_meta_data[,colnames(covaribale_meta_data)%nin%c("R.Condition", "R.Replicate")], #remove redundant colnames
+                                           by = c("R.FileName")) %>%
+        # replace iBAQ 0 with half minimal iBAQ values
+        dplyr::mutate(iBAQ_intensities = ifelse(test = iBAQ_intensities==0,
+                                                yes = min_iBAQ/2, # use half-minimum for 0 iBAQ
+                                                iBAQ_intensities)) %>%
         #perform log10 transformation of peptide intensity
         dplyr::mutate(log10_iBAQ_intensities = log10(.data$iBAQ_intensities))
 
