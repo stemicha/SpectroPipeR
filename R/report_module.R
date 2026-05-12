@@ -178,7 +178,9 @@ if(SpectroPipeR_data_quant$parameter$protein_intensity_estimation== "MaxLFQ"){
 if(SpectroPipeR_data_quant$parameter$protein_intensity_estimation== "directLFQ"){
   LFQ_intensity_distribution_plot <- paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/directLFQ_protein_intensity_boxplot.png")
 }
-
+if(SpectroPipeR_data_quant$parameter$protein_intensity_estimation== "Hi3"){
+  LFQ_intensity_distribution_plot <- paste0(out_folder,"/","05_processed_data/",sample_length,"_sample_analysis/Hi3_protein_intensity_boxplot.png")
+}
 
 # PCA analysis & correlation ------------------------------------------------
 
