@@ -390,7 +390,10 @@ setwd(out_folder)
 
 quarto::quarto_render(input = "DIA_MS_analysis_report_Master.qmd",
                       #execute_dir = out_folder,
-                      execute_params = params_quarto,
+                      # deal with NAs in quarto
+                      execute_params = lapply(params_quarto, function(x) {
+                        if (is.atomic(x) && length(x) == 1 && is.na(x)) "NA" else x
+                      }),
                       output_file = paste0(time_stamp_log_file,
                                            "_SpectroPipeR_report.html")
 )
