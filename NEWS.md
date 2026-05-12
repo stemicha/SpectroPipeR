@@ -1,7 +1,9 @@
-# SpectroPipeR (development version)
+# SpectroPipeR 0.5.0
 
-# FIX: effect size magnitude
-# FIX: big projects with huge number of conidition dynamic plots
+* FIX: effect size magnitude
+* FIX: big projects with huge number of conidition dynamic plots
+* FIX: missing Hi3 (if selected) LFQ distribution plot in reporting
+* feeature: add MS2 (default) or MS1 quantification selection
 
 # SpectroPipeR 0.4.6
 

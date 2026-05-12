@@ -52,6 +52,7 @@
 #' |               p_value_cutoff = 0.05,|
 #' |               paired = FALSE|
 #' |              )|
+#' @param MS_level MS level (MS1 or MS2) used for quantification (default: MS2)
 #' @param report_copy if TRUE --> copy Spectronaut input report to SpectroPipeR project folder 01_input_data
 #' @param ID_condition_filtering TRUE or FALSE if a condition-wise filtering should be performed
 #' @param ID_condition_filtering_percent (numerical value ranging from 0 - 1, default = 0.5) define the proportion for the condition-wise ID filtering
@@ -218,6 +219,7 @@
 
 SpectroPipeR <- function( file = "",
                           parameter = list(),
+                          MS_level = "MS2",
                           max_chars_file_name_capping = 25,
                           ID_condition_filtering = FALSE,
                           ID_condition_filtering_percent = 0.5,
@@ -272,6 +274,7 @@ SpectroPipeR <- function( file = "",
   # step 2: normalize & quantification module
   SpectroPipeR_data_quant <- norm_quant_module(SpectroPipeR_data = SpectroPipeR_data,
                                                print.plot = FALSE,
+                                               MS_level = MS_level,
                                                batch_adjusting = batch_adjusting,
                                                sample__batch_meta_data_file = sample__batch_meta_data_file,
                                                batch_adjusting_column = batch_adjusting_column,
