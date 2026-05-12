@@ -13,6 +13,7 @@ norm_quant_module(
   covariate_adjusting_formula = "",
   covariate_adjusting_meta_data_file = "",
   skipping_MaxLFQ_median_norm = FALSE,
+  MS_level = "MS2",
   costum_colors = NULL,
   print.plot = FALSE
 )
@@ -66,6 +67,8 @@ covariate_adjusting_meta_data_file = "covariate_MetaData_file.csv"
 
 \item{skipping_MaxLFQ_median_norm}{logical - if median normalization after MaxLFQ calculation
 should be skipped; default = FALSE; applied only if MaxLFQ protein estimation is selected}
+
+\item{MS_level}{MS level (MS1 or MS2) used for quantification (default: MS2)}
 
 \item{costum_colors}{if you would like to use your own colors please provide a named color vector (e.g. c(condition1 = "black", condition2 = "grey")); names should have the same naming and length like the conditions set in Spectronaut}
 

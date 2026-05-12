@@ -7,6 +7,7 @@
 SpectroPipeR(
   file = "",
   parameter = list(),
+  MS_level = "MS2",
   max_chars_file_name_capping = 25,
   ID_condition_filtering = FALSE,
   ID_condition_filtering_percent = 0.5,
@@ -75,6 +76,8 @@ you should use the \code{Spectronaut_export_scheme()} function for getting a Spe
    paired = FALSE \cr
    ) \cr
 }}
+
+\item{MS_level}{MS level (MS1 or MS2) used for quantification (default: MS2)}
 
 \item{max_chars_file_name_capping}{integer, (default = 25) number of max characters used for raw file name presentation; must be adjusted if function}
 
