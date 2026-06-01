@@ -1,3 +1,7 @@
+# SpectroPipeR 0.5.1
+
+* fix(XIC): strip .htrms and other vendor exts from RawFileName
+
 # SpectroPipeR 0.5.0
 
 * FIX: effect size magnitude
