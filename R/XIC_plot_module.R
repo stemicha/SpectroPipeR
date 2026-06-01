@@ -378,7 +378,7 @@ XIC_plot_module <- function(Spectronaut_report_path = NULL,
   merged_extracted_data_unnested_tmp1 <- dplyr::left_join(merged_extracted_data_unnested,
                                                            result_runTable %>%
                                                             rowwise() %>%
-                                                            mutate(RawFileName = stringr::str_remove(RawFileName, "\\.(raw|d|wiff)$")) %>%
+                                                            mutate(RawFileName = stringr::str_remove(RawFileName, "\\.[A-Za-z0-9]+$")) %>%
                                                             ungroup(),
                                                            by = c("Run_ID" = "ID"))
 
