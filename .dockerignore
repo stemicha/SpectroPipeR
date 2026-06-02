@@ -1,0 +1,24 @@
+# Default-deny build context — allowlist only what the Dockerfile needs.
+*
+
+# Image build scaffolding
+!environment.yml
+!Dockerfile
+!docker/
+
+# Package source (used when --build-arg SPECTROPIPER_LOCAL=true)
+!DESCRIPTION
+!NAMESPACE
+!NEWS.md
+!LICENSE
+!LICENSE.md
+!R/
+!inst/
+!man/
+
+# Belt-and-braces: keep large untracked dirs out even if accidentally added above
+data/
+docs/
+pkgdown/
+tests/
+vignettes/

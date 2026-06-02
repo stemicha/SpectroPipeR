@@ -1,0 +1,65 @@
+name: spectropiper
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base>=4.4
+  - quarto
+  - pandoc
+  - make
+  - r-devtools
+  - r-remotes
+  - r-testthat
+  - r-systemfonts
+  # tidyverse umbrella (dplyr, ggplot2, tibble, tidyr, readr, purrr, stringr, forcats, lubridate)
+  - r-tidyverse
+  # core deps
+  - r-base64enc
+  - r-broom
+  - r-bslib
+  - r-crayon
+  - r-doparallel
+  - r-dosnow
+  - r-dt
+  - r-effsize
+  - r-factoextra
+  - r-factominer
+  - r-foreach
+  - r-future
+  - r-ggally
+  - r-ggcorrplot
+  - r-gghalves
+  - r-ggrepel
+  - r-hexbin
+  - r-htmltools
+  - r-htmlwidgets
+  - r-kableextra
+  - r-knitr
+  - r-modelr
+  - r-openxlsx
+  - r-patchwork
+  - r-plotly
+  - r-quarto
+  - r-readxl
+  - r-reticulate
+  - r-reshape2
+  - r-rlang
+  - r-rmarkdown
+  - r-rsqlite
+  - r-scales
+  - r-shiny
+  - r-summarytools
+  - r-umap
+  - r-upsetr
+  # Bioconductor
+  - bioconductor-biocparallel
+  - bioconductor-sva
+  # PECA's transitive chain — installed as conda binaries to avoid Fortran
+  # source compiles. PECA itself + ROTS + iq are installed via R afterwards
+  # (PECA's conda recipe pins to bioconductor-rots which isn't on every arch;
+  # r-iq is not packaged for conda at all).
+  - bioconductor-affy
+  - bioconductor-dnacopy
+  - r-pscbs
+  - r-aroma.core
+  - r-aroma.affymetrix
